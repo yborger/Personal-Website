@@ -1,22 +1,33 @@
 export default function Page() {
-  return(
-    <div>
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold underline">wowo fast it it works, Next.js!</h1>
-        <div className="flex flex-col">
-          <div className="p-3 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">1</div>
-          <div>1</div>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded=xl">
-          <slot/>
-          </button>
-          <div>1</div>
+  return (
+    <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage:'url(clouds.jpg)' }}>
+      
+      {/* Container of page content */}
+      <div className="bg-white rounded-lg shadow-xl p-8 m-8 w-full h-screen">
+        {/* Signature-ish Image at the Top */}
+        <div className="flex justify-center mb-6">
+          <img
+            src="art sign.png"
+            className="w-24 h-24 rounded-lg"
+          />
         </div>
-      
-      
-      
-      
-      
+        
+        {/* Clickable Pages */}
+        <div className="grid grid-cols-2 gap-4">
+          {Array.from({ length: 4 }, (_, index) => (
+            <a
+              key={index}
+              href={`#page-${index + 1}`}
+              className="flex items-center justify-center h-24 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors duration-300"
+            >
+              Page {index + 1}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
-  )
+  );
 }
+
