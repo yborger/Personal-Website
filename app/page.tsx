@@ -15,12 +15,12 @@ export default function Page() {
         </div>
         
         {/* Clickable Pages */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-4 gap-4">
           {Array.from({ length: 4 }, (_, index) => (
             <a
               key={index}
               href={`#page-${index + 1}`}
-              className="flex items-center justify-center h-24 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors duration-300"
+              className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300"
             >
               Page {index + 1}
             </a>
