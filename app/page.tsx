@@ -1,33 +1,18 @@
-export default function Page() {
-  return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage:'url(clouds.jpg)' }}>
-      
-      {/* Container of page content */}
-      <div className="bg-white rounded-lg shadow-xl p-8 m-8 w-full h-screen">
-        {/* Signature-ish Image at the Top */}
-        <div className="flex justify-center mb-6">
-          <img
-            src="art sign.png"
-            className="w-24 h-24 rounded-lg"
-          />
-        </div>
-        
-        {/* Clickable Pages */}
-        <div className="grid grid-cols-4 gap-4">
-          {Array.from({ length: 4 }, (_, index) => (
-            <a
-              key={index}
-              href={`#page-${index + 1}`}
-              className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300"
-            >
-              Page {index + 1}
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+// src/page.tsx
+import React from 'react';
 
+const Page: React.FC = () => {
+  return (
+    <>
+      <h2 className="text-xl font-bold">Welcome to the Main Page</h2>
+      <p className="mt-4">
+        This is the main page content. Here you can find information about our website and what we do.
+      </p>
+      <p className="mt-4">
+        amazing
+      </p>
+    </>
+  );
+};
+
+export default Page;
