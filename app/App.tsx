@@ -1,33 +1,24 @@
-// src/App.tsx
+// src/app.tsx
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Page from './page'; // Adjust this based on your actual page file
-import About from './about';
-import Contact from './contact';
-import Coursework from './coursework';
-import Portfolio from './portfolio';
-import Layout from './layout'; // Your layout file
+import { Route, Routes } from 'react-router-dom'; // Import Routes and Route
+import Layout from './layout'; // Ensure correct import for your Layout component
+import Page from './page'; // Import your main page component
+import About from './about'; // Import the About page component
+import Contact from './contact'; // Import the Contact page component
+import Coursework from './coursework'; // Import the Coursework page component
+import Portfolio from './portfolio'; // Import the Portfolio page component
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <nav className="p-4 bg-gray-300">
-        <Link to="/" className="mr-4">Home</Link>
-        <Link to="/about" className="mr-4">About</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/coursework">Coursework</Link>
-        <Link to="/potfolio">Portfolio</Link>
-
-      </nav>
+    <Layout> {/* Use Layout to wrap the Routes */}
       <Routes>
-        <Route path="/"  Component={Page} />
-        <Route path="/about" Component={About} />
-        <Route path="/contact" Component={Contact} />
-        <Route path="/coursework" Component={Coursework} />
-        <Route path="/portfolio" Component={Portfolio} />
-
+        <Route path="/" element={<Page />} /> {/* Main home page */}
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/coursework" element={<Coursework />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
-    </Router>
+    </Layout>
   );
 };
 

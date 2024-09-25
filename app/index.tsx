@@ -1,13 +1,16 @@
 // src/index.tsx
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './globals.css'; // Your global styles
-import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import App from './app'; // Import your main App component
+import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
+import './globals.css'; // Import global styles if any
 
-ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('root')
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter> {/* Wrap your App component */}
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
 );
