@@ -16,11 +16,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div
-          className="min-h-screen flex items-center justify-center bg-cover bg-center"
+          className="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed"
           style={{ backgroundImage: 'url(clouds.jpg)' }}
         >
           {/* Container of page content */}
-          <div className="bg-white rounded-lg shadow-xl p-8 m-8 w-full h-screen">
+          <div className="bg-white rounded-lg shadow-xl p-8 m-8 w-full max-w-4xl">
             {/* Signature-ish Image at the Top */}
             <Link href="/" className="flex justify-center mb-6">
               <img
