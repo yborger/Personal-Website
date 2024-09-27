@@ -1,17 +1,18 @@
 import React from 'react';
 import Layout from './layout';
 
-
 const Page: React.FC = () => {
   return (
     <>
-      <h2 className="text-xl font-bold">Welcome to the Main Page</h2>
-      <p className="mt-4">
-        This is the main page content. Here you can find information about our website and what we do.
+    {/* "Header" Section */}
+      <section className="text-center py-16">
+         <h1 className="text-4xl font-bold">Hi, I'm Yael Borger</h1>
+      <p className="text-lg mt-4">
+        I'm a full-stack software developer with a focus on building scalable, efficient web applications. 
+        Proficient in a wide range of technologies, including JavaScript, Python, and C++, I deliver solutions across the entire stack.
       </p>
-      <p className="mt-4">
-        amazing
-      </p>
+      </section>
+
     </>
   );
 };
