@@ -4,10 +4,12 @@ import Layout from '../layout';
 const Coursework: React.FC = () => {
   return (
     <Layout>
-      <h2 className="text-xl font-bold">Coursework</h2>
+      <section className="bg-white shadow-xl ">
+      <div className="ml-6 mr-6">
+      <h2 className="text-xl font-bold text-center">Coursework</h2>
 
       {/* images for courses */}
-      <div className="flex flex-wrap justify-center gap-4 mt-6">
+      <div className="flex flex-wrap justify-center gap-4 ">
         
         {/* each image has special content */}
         <div className="relative flex flex-col items-end shadow-md transition-transform duration-300 hover:scale-105">
@@ -113,6 +115,8 @@ const Coursework: React.FC = () => {
 
         </div>
       </div>
+      </div>
+      </section>
     </Layout>
   );
 };
