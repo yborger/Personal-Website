@@ -25,3 +25,10 @@ body {
     text-wrap: balance;
   }
 }
+.hidden {
+  display: none;
+}
+.fade-out {
+  opacity: 0; 
+  transition: opacity 1s ease; /* Transition effect over 1 second */
+}
