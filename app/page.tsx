@@ -32,12 +32,21 @@ const Page: React.FC = () => {
 
     {/* "Header" Section */}
 
-    <section className="text-center py-16 bg-white shadow-xl">
-      <div className="ml-6 mr-6">
+    <section className=" py-16 bg-white shadow-xl">
+      <div className="text-center text-spacing ml-6 mr-6">
         <h1 className="text-4xl font-bold">Hi, I'm Yael Borger</h1>
-    <p className="text-lg mt-4">
-      I'm a full-stack software developer with a focus on building scalable, efficient web applications. 
-      Proficient in a wide range of technologies, including JavaScript, Python, and C++, I deliver solutions across the entire stack.
+    
+    <p className="text-md mt-12">
+      I'm a software developer passionate about creating innovative solutions and engaging user experiences. My journey spans various fields, including frontend, backend, and full-stack development. 
+    </p>
+    <p className=" text-md mt-6">
+
+    Equipped with a strong foundation in JavaScript, Python, Java, HTML, CSS, and C++, I am committed to transforming ideas into dynamic applications that make a difference.
+    </p>
+
+    {/* END */}
+    <p className="text-md mt-6">
+    Feel free to explore my projects and coursework to see how I apply my skills in real-world scenarios.
     </p></div>
     </section>
 
