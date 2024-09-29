@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../layout';
+import Image from 'next/image';
 
 const Coursework: React.FC = () => {
   return (
@@ -17,10 +18,13 @@ const Coursework: React.FC = () => {
             Artificial Intelligence CS63
           </span>
           <a href="https://github.com/yborger/Artificial-Intelligence-Class" target="_blank" rel="noopener noreferrer">
-            <img 
+            <Image 
             src="/ai.png" 
             alt="Artificial Intelligence" 
-            className="w-48 h-48 object-cover"/>
+            className="w-48 h-48 object-cover"
+            width={192}
+            height={192}
+            />
           </a>
         </div>
         
@@ -29,11 +33,13 @@ const Coursework: React.FC = () => {
           Computational Images
           </span>
           <a href="https://github.com/yborger/Computational-Images" target="_blank" rel="noopener noreferrer">
-          <img 
+          <Image 
             src="/Computational_Images.png" 
             alt="Computational Images" 
-            className="w-48 h-48 object-cover"/>
-          </a>
+            className="w-48 h-48 object-cover"
+            width={192}
+            height={192}/>
+            </a>
 
         </div>
         
@@ -42,10 +48,13 @@ const Coursework: React.FC = () => {
           Computer Systems
           </span>
           <a href="https://github.com/yborger/Intro-CS" target="_blank" rel="noopener noreferrer">
-          <img 
+          <Image 
             src="/Cs_31.jpg" 
             alt="Computer Systems" 
-            className="w-48 h-48 object-cover "/>
+            className="w-48 h-48 object-cover "
+            width={192}
+            height={192}
+            />
           </a>
 
         </div>
@@ -55,10 +64,13 @@ const Coursework: React.FC = () => {
           Data Structures & Algorithms
           </span>
           <a href="https://github.com/yborger/Data-Structures-Algorithms" target="_blank" rel="noopener noreferrer">
-          <img 
+          <Image 
             src="/Cs_35.jpg" 
             alt="Data Structures and Algorithms" 
-            className="w-48 h-48 object-cover "/>
+            className="w-48 h-48 object-cover "
+            width={192}
+            height={192}
+            />
           </a>
 
         </div>
@@ -68,10 +80,13 @@ const Coursework: React.FC = () => {
           Compilers
           </span>
           <a href="https://github.com/yborger/Compilers" target="_blank" rel="noopener noreferrer">
-          <img 
+          <Image 
             src="/compilers.jpg" 
             alt="Compilers" 
-            className="w-48 h-48 object-cover "/>
+            className="w-48 h-48 object-cover "
+            width={192}
+            height={192}
+            />
           </a>
 
         </div>
@@ -81,10 +96,13 @@ const Coursework: React.FC = () => {
           Game Systems
           </span>          
           <a href="https://github.com/yborger/Game-Systems" target="_blank" rel="noopener noreferrer">
-          <img 
+          <Image 
             src="/game_systems.jpg" 
             alt="Game Systems" 
-            className="w-48 h-48 object-cover "/>
+            className="w-48 h-48 object-cover "
+            width={192}
+            height={192}
+            />
           </a>
 
         </div>
@@ -94,10 +112,13 @@ const Coursework: React.FC = () => {
           Software Engineering
           </span>
           <a href="https://github.com/yborger/mystudybuddy" target="_blank" rel="noopener noreferrer">
-          <img 
+          <Image 
             src="/Software_engineering.jpg" 
             alt="Software Engineering" 
-            className="w-48 h-48 object-cover "/>
+            className="w-48 h-48 object-cover "
+            width={192}
+            height={192}
+            />
           </a>
 
         </div>
@@ -107,10 +128,13 @@ const Coursework: React.FC = () => {
           Computer Society
           </span>
           <a href="https://www.sccs.swarthmore.edu/" target="_blank" rel="noopener noreferrer">
-          <img 
+          <Image 
             src="/SCCS_LOGO.jpg" 
             alt="SCCS" 
-            className="w-48 h-48 object-cover "/>
+            className="w-48 h-48 object-cover "
+            width={192}
+            height={192}
+            />
           </a>
 
         </div>

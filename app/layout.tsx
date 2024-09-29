@@ -1,6 +1,6 @@
 import './globals.css';
 import Link from 'next/link'; // Import the Link component from Next.js
-
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Website: Yael Borger',
@@ -25,10 +25,12 @@ export default function RootLayout({
             {/* Signature-ish Image at the Top */}
             <div className="bg-white shadow-xl">
               <Link href="/" className=" flex justify-center mb-6">
-                <img
+                <Image
                   src="/art sign.png"
                   className="w-24 h-24 rounded-lg"
                   alt="Signature"
+                  height={50}
+                  width={50}
                 />
               </Link>
 
