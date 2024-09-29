@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react';
-import Layout from './layout';
 
 const Page: React.FC = () => {
   

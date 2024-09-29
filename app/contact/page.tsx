@@ -7,7 +7,7 @@ const Contact: React.FC = () => {
     <section className="text-spacing bg-white shadow-xl ">
     <div className="ml-6 mr-6">
     <h2 className="text-xl font-bold">Contact Me</h2>
-      <p>I'd love to hear from you!</p>
+    <p>I&apos;d love to hear from you!</p>
 
     <div className="mt-6">
         <p>Email: yaelnborger@gmail.com</p>
