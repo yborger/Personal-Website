@@ -3,7 +3,7 @@ import Link from 'next/link'; // Import the Link component from Next.js
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'Website: Yael Borger',
+  title: 'Yael N Borger',
   description: 'A portfolio website showcasing projects and coursework built with React, Next.js, and Tailwind CSS. View the code on GitHub.',
 };
 
@@ -42,8 +42,8 @@ export default function RootLayout({
                 <Link href="/contact" className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300">
                   Contact
                 </Link>
-                <Link href="/coursework" className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300">
-                  Coursework
+                <Link href="/projects" className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300">
+                  Projects
                 </Link>
                 <Link href="/portfolio" className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300">
                   Portfolio
@@ -51,13 +51,12 @@ export default function RootLayout({
               </div>
             </div>
             {/* Render children content here */}
-            <div className="">
+            <div className="bg-white p-8 shadow-xl">
               {children}
             </div>
-
              {/* Footer */}
-            <div className="bg-white shadow-xl">
-              <footer className="bg-white-800 text-black text-sm py-4">
+            <div className=" ">
+              <footer className="text-black text-sm py-4">
               <p>
                 &copy; {currentYear} Yael Borger. This project is 
                 <a href="https://github.com/yborger/website" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600"> open source </a> 

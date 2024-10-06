@@ -4,7 +4,7 @@ import Layout from '../layout';
 const Contact: React.FC = () => {
   return (
     <Layout>
-    <section className="text-spacing bg-white shadow-xl ">
+    <section className="text-spacing">
     <div className="ml-6 mr-6">
     <h2 className="text-xl font-bold">Contact Me</h2>
     <p>I&apos;d love to hear from you!</p>

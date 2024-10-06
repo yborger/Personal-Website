@@ -4,7 +4,7 @@ import Layout from '../layout';
 const About: React.FC = () => {
   return (
     <Layout>
-      <section className="bg-white shadow-xl text-spacing">
+      <section className=" text-spacing">
       <div className="ml-6 mr-6">
       <h2 className="text-xl font-bold ">About Me</h2>
       <p className="mt-4">Hi! I&apos;m Yael Borger, and I am a software developer from New Jersey. My journey into the tech world began with a fascination for problem-solving and technology, leading me to explore various programming languages and frameworks.</p>

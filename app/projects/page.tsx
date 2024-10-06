@@ -5,7 +5,7 @@ import Image from 'next/image';
 const Coursework: React.FC = () => {
   return (
     <Layout>
-      <section className="bg-white shadow-xl ">
+      <section className="text-spacing">
       <div className="ml-6 mr-6">
       <h2 className="text-xl font-bold ">Coursework</h2>
 
