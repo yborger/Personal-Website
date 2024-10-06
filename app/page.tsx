@@ -28,7 +28,7 @@ const Page: React.FC = () => {
       )}
 
       {/* "Header" Section */}
-      <section className="py-16 bg-white shadow-xl">
+      <section className="py-16 bg-white ">
         <div className="text-center text-spacing ml-6 mr-6">
           <h1 className="text-4xl font-bold">Hi, I&apos;m Yael Borger</h1>
 
