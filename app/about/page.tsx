@@ -13,7 +13,7 @@ const About: React.FC = () => {
 
           <p>I have worked on projects ranging from simple applications to complex software solutions, each teaching me something new. I&apos;m particularly interested in web development and UI/UX design.</p>
 
-          <p>When I&apos;m not coding, I enjoy crocheting, listening to podcasts, and playing D&amp;D with my friends.</p>
+          <p>When I&apos;m not coding, I enjoy drawing, listening to podcasts, and playing D&amp;D with my friends.</p>
           
           {/* Add more content as needed */}
     </div></section>

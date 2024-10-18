@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
       </div>
       <p className="mt-4">Interested in my experience? {" "}</p>
       <a
-      href="/September2024.docx" // Assuming the file is in the public folder
+      href="/Yael-Borger-Frontend-Resume.docx" // Assuming the file is in the public folder
       download="YaelBorger_Resume.docx" // This sets the download file name
       className="text-blue-500 hover:underline"
     >
