@@ -1,12 +1,12 @@
 import React from 'react';
-import Image from 'next/image';
 import Layout from '../layout';
+import PortfolioItem from './PortfolioItem';
 import styles from './portfolio.module.css';
 
 const projects = [
-  { id: 1, title: "Music Recommendation App", description: "im putting random text for now wooooooo", image: "/portfolio_imgs/music-app_phone concept 1.jpg" },
+  { id: 1, title: "Music Recommendation App", description: "Description for Project 1", image: "/portfolio_imgs/music-app_phone concept 1.jpg" },
   { id: 2, title: "Music Menu UI", description: "Description for Project 2", image: "/portfolio_imgs/music-menu ui basic pre-feedback.jpg" },
-  { id: 3, title: "Project 3", description: "Description for Project 3", image: "/portfolio_imgs/project3.jpg" },
+  { id: 3, title: "Plant Parenthood", description: "Description for Project 3", image: "/portfolio_imgs/plant parenthood button.png" },
 ];
 
 const Portfolio: React.FC = () => {
@@ -17,21 +17,7 @@ const Portfolio: React.FC = () => {
           <h2 className="text-xl font-bold">Portfolio</h2>
           <div className={styles.gridContainer}>
             {projects.map((project) => (
-              <div key={project.id} className={styles.projectCard}>
-                <div className={styles.imageContainer}>
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className={styles.projectImage}
-                  />
-                  <div className={styles.overlay}>
-                    <span className={styles.projectTitle}>{project.title}</span>
-                  </div>
-                </div>
-                <p className={styles.description}>{project.description}</p>
-              </div>
+              <PortfolioItem key={project.id} project={project} />
             ))}
           </div>
         </div>
