@@ -42,9 +42,10 @@ export default function RootLayout({
                 <Link href="/contact" className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300">
                   Contact
                 </Link>
-                <Link href="/portfolio" className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300">
+                {/*<Link href="/portfolio" className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300">
                   Portfolio
                 </Link>
+                */}
                 <Link href="/projects" className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300">
                   Projects
                 </Link>
