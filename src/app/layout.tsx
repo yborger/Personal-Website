@@ -23,7 +23,7 @@ export default function RootLayout({
           {/* Container of page content */}
           <div className=" rounded-lg  p-8 m-8 w-full max-w-4xl">
             {/* Signature-ish Image at the Top */}
-            <div className="bg-white shadow-xl">
+            <header role="banner" className="bg-white shadow-xl">
               <Link href="/" className=" flex justify-center mb-6">
                 <Image
                   src="/art sign.png"
@@ -35,7 +35,7 @@ export default function RootLayout({
               </Link>
 
               {/* Clickable Pages */}
-              <div className="grid grid-cols-3 ">
+              <nav role="navigation" className="grid grid-cols-3 ">
                 <Link href="/about" className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300">
                   About
                 </Link>
@@ -50,15 +50,15 @@ export default function RootLayout({
                   Projects
                 </Link>
                 
-              </div>
-            </div>
+              </nav>
+            </header>
             {/* Render children content here */}
-            <div className="bg-white p-8 shadow-xl">
+            <main role="maincontent" className="bg-white p-8 shadow-xl">
               {children}
-            </div>
+            </main>
              {/* Footer */}
             <div className=" ">
-              <footer className="text-black text-sm py-4">
+              <footer role="contentinfo" className="text-black text-sm py-4">
               <p>
                 &copy; {currentYear} Yael Borger. This project is 
                 <a href="https://github.com/yborger/website" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600"> open source </a> 
