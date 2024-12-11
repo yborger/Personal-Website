@@ -53,7 +53,7 @@ export default function RootLayout({
               </nav>
             </header>
             {/* Render children content here */}
-            <main role="maincontent" className="bg-white p-8 shadow-xl">
+            <main role="main" className="bg-white p-8 shadow-xl">
               {children}
             </main>
              {/* Footer */}
