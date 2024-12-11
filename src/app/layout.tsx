@@ -35,7 +35,7 @@ export default function RootLayout({
               </Link>
 
               {/* Clickable Pages */}
-              <div className="grid grid-cols-4 ">
+              <div className="grid grid-cols-3 ">
                 <Link href="/about" className="flex items-center justify-center h-12 bg-white-200 hover:underline hover:bg-gray-200 transition-all duration-300">
                   About
                 </Link>

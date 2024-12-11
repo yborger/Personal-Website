@@ -33,15 +33,9 @@ const Page: React.FC = () => {
           <h1 className="text-4xl font-bold">Hi, I&apos;m Yael Borger</h1>
 
           <p className="text-md mt-12">
-            I&apos;m a software developer passionate about creating innovative solutions and engaging user experiences. My journey spans various fields, including frontend, backend, and full-stack development. 
+            I&apos;m a software developer passionate about creating innovative solutions and engaging user experiences. 
           </p>
-          <p className="text-md mt-6">
-            Equipped with a strong foundation in JavaScript, Python, Java, HTML, CSS, and C++, I am committed to transforming ideas into dynamic applications that make a difference.
-          </p>
-
-          <p className="text-md mt-6">
-            Feel free to explore my projects and coursework to see how I apply my skills in real-world scenarios.
-          </p>
+          
         </div>
       </section>
     </>

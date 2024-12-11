@@ -15,7 +15,7 @@ const Coursework: React.FC = () => {
         {/* each image has special content */}
         <div className="relative flex flex-col items-end shadow-md transition-transform duration-300 hover:scale-105">
           <span className="w-full bg-white bg-opacity-90 border border-gray-300 p-1 rounded-tl-md rounded-tr-md shadow-md whitespace-nowrap text-center text-sm">
-            Artificial Intelligence CS63
+            Artificial Intelligence
           </span>
           <a href="https://github.com/yborger/Artificial-Intelligence-Class" target="_blank" rel="noopener noreferrer">
             <Image 
