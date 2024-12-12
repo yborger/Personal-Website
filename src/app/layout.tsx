@@ -24,7 +24,7 @@ export default function RootLayout({
           <div className=" rounded-lg  p-8 m-8 w-full max-w-4xl">
             {/* Signature-ish Image at the Top */}
             <header role="banner" className="bg-white shadow-xl">
-              {/*<Link href="/" className=" flex justify-center mb-6">*/}
+              <div>className=" flex justify-center mb-6"
                 <Image
                   src="/art sign.png"
                   className="w-24 h-24 rounded-lg"
@@ -32,6 +32,7 @@ export default function RootLayout({
                   height={50}
                   width={50}
                 />
+              </div>
               {/*</Link>*/}
 
               {/* Clickable Pages */}
