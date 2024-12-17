@@ -25,7 +25,7 @@ export default function RootLayout({
             {/* Signature-ish Image at the Top */}
             <header role="banner" className="bg-white shadow-xl">
               <Link href="/" className=" flex justify-center mb-6">
-                <Image
+                <Image 
                   src="/art sign.png"
                   className="w-24 h-24 rounded-lg"
                   alt="Signature"
