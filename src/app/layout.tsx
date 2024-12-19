@@ -3,7 +3,7 @@ import Link from 'next/link'; // Import the Link component from Next.js
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'Yael N Borger',
+  title: 'Yael N Borger Website',
   description: 'A portfolio website showcasing projects and coursework built with React, Next.js, and Tailwind CSS. View the code on GitHub.',
 };
 
