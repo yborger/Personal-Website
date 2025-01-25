@@ -1,3 +1,7 @@
+//THIS IS NOT CURRENTLY AN ISSUE BUT IT WILL PROBABLY BE ONE IN THE FUTURE
+//During reinstallation I would assume a specific file got lost, so it will probably just have to be recreated adjusted to the new format. 
+// Since that is not the current objective of this push, it is being ignored for the time being.
+
 import { ImageResponse } from 'next/og'
 
 export function GET(request: Request) {
