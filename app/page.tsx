@@ -1,3 +1,5 @@
+//This is the homepage, not the layout file!
+
 import { BlogPosts } from 'app/components/posts'
 
 export default function Page() {
