@@ -11,14 +11,14 @@ const navItems = {
     name: 'blog',
   },
   'https://vercel.com/templates/next.js/portfolio-starter-kit': {
-    name: '[template]', //will be moved elsewhere
+    name: '[template link]', //will be moved elsewhere
   },
 }
 
 export function Navbar() {
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
-      <div className="lg:sticky lg:top-20">
+      <div className="bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-400 ... rounded-lg lg:sticky lg:top-20">
         <nav
           className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
