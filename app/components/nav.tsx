@@ -4,10 +4,10 @@ const navItems = {
   '/': {
     name: 'home',
   },
-  '/about': { //will become portfolio section
-    name: 'about',
+  '/contact': { //about or contact
+    name: 'contact',
   }
-  ,'/blog': { //will become portfolio section
+  ,'/portfolio': { //will become portfolio section
     name: 'portfolio',
   },
   'https://vercel.com/templates/next.js/portfolio-starter-kit': {
