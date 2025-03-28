@@ -4,15 +4,16 @@ const navItems = {
   '/': {
     name: 'home',
   },
+  '/about': {
+    name: 'about', //will be moved elsewhere
+  },
   '/contact': { //about or contact
     name: 'contact',
   }
   ,'/portfolio': { //will become portfolio section
     name: 'portfolio',
   },
-  'https://vercel.com/templates/next.js/portfolio-starter-kit': {
-    name: '[template link]', //will be moved elsewhere
-  },
+  
 }
 
 export function Navbar() {
