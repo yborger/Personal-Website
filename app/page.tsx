@@ -5,7 +5,7 @@ import { Posts } from 'app/components/posts'
 export default function Page() {
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
+      <h1 className="ml-4 mb-8 text-2xl font-semibold tracking-tighter">
         HOME
       </h1>
       <p className="mb-4">
