@@ -1,6 +1,5 @@
 //This is the homepage, not the layout file!
 
-import { CaseStudies } from 'app/components/posts'
 
 export default function Page() {
   return (
@@ -12,9 +11,7 @@ export default function Page() {
       {'TEXT TEXT'}
       </p>
 
-      <div className="my-8">
-        <CaseStudies />
-      </div>
+      
     </section>
   )
 }

@@ -1,15 +1,21 @@
-import { CaseStudies } from 'app/components/posts'
-
-export const metadata = {
-  title: 'Portfolio',
-  description: 'Check out my Portfolio.',
-}
+import Link from 'next/link'
 
 export default function Page() {
+  const caseStudies = [
+    { slug: 'example', title: 'example' },
+    // Add more case studies here
+  ]
+
   return (
-    <section>
-      <h1 className="ml-4 font-semibold text-2xl mb-8 tracking-tighter">portfolio</h1>
-      <CaseStudies />
-    </section>
+    <div>
+      {caseStudies.map((caseStudy) => (
+        <Link key={caseStudy.slug} href={`/portfolio/cases/${caseStudy.slug}`}>
+          <div>
+            <h2>{caseStudy.title}</h2>
+            {/* You can render more metadata here */}
+          </div>
+        </Link>
+      ))}
+    </div>
   )
 }

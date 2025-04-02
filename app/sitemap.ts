@@ -15,20 +15,22 @@
 
 
 */
-
-import { getPosts } from 'app/portfolio/utils'
-
 export const baseUrl = 'https://portfolio-blog-starter.vercel.app'
 
 export default async function sitemap() {
-  let posts = getPosts().map((post) => ({
-    url: `${baseUrl}/portfolio/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
+  // Manually define case study folders here
+  const caseStudySlugs = [
+    'example',  // Add the slugs of each case study
+  ]
+
+  // Create URLs for each case study page
+  const posts = caseStudySlugs.map((slug) => ({
+    url: `${baseUrl}/portfolio/cases/${slug}`,
   }))
 
-  let routes = ['', '/portfolio'].map((route) => ({
+  // Define other routes (home and portfolio page)
+  const routes = ['', '/portfolio'].map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString().split('T')[0],
   }))
 
   return [...routes, ...posts]
