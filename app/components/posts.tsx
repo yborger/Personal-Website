@@ -1,33 +1,31 @@
-import Link from 'next/link'
-import { formatDate, getPosts } from 'app/portfolio/utils'
+//NOTE TO SELF: THIS IS NOT THE FINAL VERSION, 
+// THIS IS JUST SO THE SITE DOESN'T CRASH
 
-export function Posts() {
-  let allPosts = getPosts()
+import Link from 'next/link'
+import { getAllCaseStudies } from 'app/portfolio/utils'
+
+export function CaseStudies() {
+  let allCaseStudies = getAllCaseStudies()
 
   return (
-    <div>
-      {allPosts
-        .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1
-          }
-          return 1
-        })
-        .map((post) => (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {allCaseStudies
+        .sort((a, b) => a.title.localeCompare(b.title)) // Alphabetical sorting by title
+        .map((caseStudy) => (
           <Link
-            key={post.slug}
-            className="flex flex-col space-y-1 mb-4"
-            href={`/portfolio/${post.slug}`}
+            key={caseStudy.slug}
+            className="flex flex-col items-center space-y-2"
+            href={`/portfolio/${caseStudy.slug}`}
           >
-            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-              <p className="text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums">
-                {formatDate(post.metadata.publishedAt, false)}
-              </p>
-              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                {post.metadata.title}
-              </p>
+            <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+              {caseStudy.title}
+            </p>
+            <div className="w-full h-40 overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800">
+              <img
+                src={caseStudy.image}
+                alt={caseStudy.title}
+                className="w-full h-full object-cover"
+              />
             </div>
           </Link>
         ))}

@@ -1,6 +1,6 @@
 //This is the homepage, not the layout file!
 
-import { Posts } from 'app/components/posts'
+import { CaseStudies } from 'app/components/posts'
 
 export default function Page() {
   return (
@@ -13,7 +13,7 @@ export default function Page() {
       </p>
 
       <div className="my-8">
-        <Posts />
+        <CaseStudies />
       </div>
     </section>
   )

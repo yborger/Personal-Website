@@ -1,90 +1,70 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'fs';
+import path from 'path';
 
-type Metadata = {
+const CASE_STUDY_DIR = path.join(process.cwd(), 'app/portfolio/cases');
+
+export interface CaseStudyMetadata { 
   title: string
-  publishedAt: string
+  image: string
   summary: string
-  image?: string
+  slug: string
 }
 
-function parseFrontmatter(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/
-  let match = frontmatterRegex.exec(fileContent)
-  let frontMatterBlock = match![1]
-  let content = fileContent.replace(frontmatterRegex, '').trim()
+// Function to extract metadata (title, image, summary) from a case study file
+export function parseCaseStudy(fileContent) {
+  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
+  let match = frontmatterRegex.exec(fileContent);
+  let frontMatterBlock = match ? match[1] : '';
+  let content = fileContent.replace(frontmatterRegex, '').trim();
   let frontMatterLines = frontMatterBlock.trim().split('\n')
-  let metadata: Partial<Metadata> = {}
+  
+  let metadata: Partial<CaseStudyMetadata> = {}
 
   frontMatterLines.forEach((line) => {
     let [key, ...valueArr] = line.split(': ')
     let value = valueArr.join(': ').trim()
     value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value
+    metadata[key.trim() as keyof CaseStudyMetadata] = value
   })
-
-  return { metadata: metadata as Metadata, content }
+  return { metadata: metadata as CaseStudyMetadata, content }
 }
 
-function getMDXFiles(dir) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
-}
 
-function readMDXFile(filePath) {
-  let rawContent = fs.readFileSync(filePath, 'utf-8')
-  return parseFrontmatter(rawContent)
-}
-
-function getMDXData(dir) {
-  let mdxFiles = getMDXFiles(dir)
-  return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file))
-    let slug = path.basename(file, path.extname(file))
-
+// alphabetize by title
+export function getAllCaseStudies() {
+  if (!fs.existsSync(CASE_STUDY_DIR)) {
+    console.error(`Directory not found: ${CASE_STUDY_DIR}`);
+    return [];
+  }
+  const files = fs.readdirSync(CASE_STUDY_DIR);
+  let caseStudies = files.map((filename) => {
+    const filePath = path.join(CASE_STUDY_DIR, filename);
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const { metadata } = parseCaseStudy(fileContent);
     return {
-      metadata,
-      slug,
-      content,
-    }
-  })
+      title: metadata.title || 'Untitled',
+      image: metadata.image || '/default.jpg',
+      summary: metadata.summary || '',
+      slug: filename.replace(/\.mdx?$/, ''),
+    };
+  });
+
+  return caseStudies.sort((a, b) => a.title.localeCompare(b.title));
 }
 
-export function getPosts() {
-  return getMDXData(path.join(process.cwd(), 'app', 'portfolio', 'posts'))
-}
+// slug-based extract
+export function getCaseStudyBySlug(slug) {
+  const filePath = path.join(CASE_STUDY_DIR, `${slug}.mdx`);
+  if (!fs.existsSync(filePath)) return null;
 
-export function formatDate(date: string, includeRelative = false) {
-  let currentDate = new Date()
-  if (!date.includes('T')) {
-    date = `${date}T00:00:00`
-  }
-  let targetDate = new Date(date)
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const { metadata, content } = parseCaseStudy(fileContent);
 
-  let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear()
-  let monthsAgo = currentDate.getMonth() - targetDate.getMonth()
-  let daysAgo = currentDate.getDate() - targetDate.getDate()
-
-  let formattedDate = ''
-
-  if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`
-  } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`
-  } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`
-  } else {
-    formattedDate = 'Today'
-  }
-
-  let fullDate = targetDate.toLocaleString('en-us', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  })
-
-  if (!includeRelative) {
-    return fullDate
-  }
-
-  return `${fullDate} (${formattedDate})`
+  return {
+    slug,
+    title: metadata.title || 'Untitled',
+    image: metadata.image || '/default.jpg',
+    summary: metadata.summary || '',
+    content,
+  };
 }

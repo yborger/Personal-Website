@@ -1,60 +1,53 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
-import { formatDate, getPosts } from 'app/portfolio/utils'
+import { getAllCaseStudies, getCaseStudyBySlug } from 'app/portfolio/utils'
 import { baseUrl } from 'app/sitemap'
 
 export async function generateStaticParams() {
-  let posts = getPosts()
+  let caseStudies = getAllCaseStudies()  // Fetch all case studies, assuming you have this function
 
-  return posts.map((post) => ({
-    slug: post.slug,
+  return caseStudies.map((caseStudy) => ({
+    slug: caseStudy.slug,
   }))
 }
 
 export function generateMetadata({ params }) {
-  let post = getPosts().find((post) => post.slug === params.slug)
-  if (!post) {
+  let caseStudy = getCaseStudyBySlug(params.slug)  // Fetch the specific case study by slug
+  if (!caseStudy) {
     return
   }
 
   let {
     title,
-    publishedAt: publishedTime,
-    summary: description,
     image,
-  } = post.metadata
+    summary,
+  } = caseStudy
+
   let ogImage = image
     ? image
     : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
   return {
     title,
-    description,
+    description: summary,
     openGraph: {
       title,
-      description,
+      description: summary,
       type: 'article',
-      publishedTime,
-      url: `${baseUrl}/portfolio/${post.slug}`,
+      url: `${baseUrl}/portfolio/${caseStudy.slug}`,
       images: [
         {
           url: ogImage,
         },
       ],
     },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: [ogImage],
-    },
   }
 }
 
 export default function Portfolio({ params }) {
-  let post = getPosts().find((post) => post.slug === params.slug)
+  let caseStudy = getCaseStudyBySlug(params.slug)  // Fetch the case study by slug
 
-  if (!post) {
+  if (!caseStudy) {
     notFound()
   }
 
@@ -67,14 +60,12 @@ export default function Portfolio({ params }) {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Project',
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/portfolio/${post.slug}`,
+            headline: caseStudy.title,
+            description: caseStudy.summary,
+            image: caseStudy.image
+              ? `${baseUrl}${caseStudy.image}`
+              : `/og?title=${encodeURIComponent(caseStudy.title)}`,
+            url: `${baseUrl}/portfolio/${caseStudy.slug}`,
             author: {
               '@type': 'Person',
               name: 'My Portfolio',
@@ -83,15 +74,16 @@ export default function Portfolio({ params }) {
         }}
       />
       <h1 className="title font-semibold text-2xl tracking-tighter">
-        {post.metadata.title}
+        {caseStudy.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
+          {/* Render the publication date if you have it in metadata */}
         </p>
       </div>
       <article className="prose">
-        <CustomMDX source={post.content} />
+        {/* Render the case study content */}
+        <CustomMDX source={caseStudy.content} />
       </article>
     </section>
   )
