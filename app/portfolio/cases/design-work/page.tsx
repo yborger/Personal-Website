@@ -3,12 +3,14 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 
-export const metadata = {
-  "title": "EXAMPLE Title",
-  "image": "/art sign.png",
-  "summary": "This is a brief summary of case study 1.",
-  "slug": "example"
-}
+export const metadata =
+  {
+    "title": "Concept Designing",
+    "image": "/concept artwork/plant-parenthood/plant-v3.jpg",
+    "summary": "This is a brief summary of the case study.",
+    "slug": "design-work"
+  }
+  
 
 export default function Page() {
   const content = `
@@ -25,7 +27,7 @@ export default function Page() {
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         {/* You can add other metadata like date here */}
-        <p>Do you ever feel like a plastic bag</p>
+        <p>some writing in here</p>
       </div>
       
     </section>
