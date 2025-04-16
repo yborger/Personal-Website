@@ -1,36 +1,38 @@
 import { sign } from 'crypto'
 import Link from 'next/link'
-import { exampleData, okrData, musicData, designData } from './cases'
+import * as allcases from './cases'
+import  CaseCard  from 'app/components/caseCard'
 
 
 export default function Page() {
-  const caseStudies = [
-    exampleData, okrData, musicData, designData
-  ]
-  /* former metadata structure
-  const caseStudies = [
-    { slug: 'example', title: 'example', image: 'art sign.png' },
-    { slug: 'design_work', title: 'Concept Designing', image: "/concept artwork/plant-parenthood/plant-v3.jpg"},
-    { slug: 'music-app', title: 'Music App', image: "/music-app/watch concept 3.jpg" },
-    { slug: 'ourkidsread', title: 'Our Kids Read: Website Redesign', image: "art sign.png" },
+  /* PAGE LAYOUT IDEA -- perfect square dissection
+    It is late but I had an idea for the layout
+    Rather than make the page have to scroll, which I don't love I can make an algorithm that creates X amount of randomly sized squares, with the X amount being the amount of projects I have to show.
+    I think I could use the amount of cases I have and the size of the window, maybe I would use standard window sizes (tailwind has css breakpoints sm, md, lg, xl, 2xl, and mobile-size is good) to generate patterns of squares to take up the screen space
 
-    // Add more case studies here
-  ]
+    To do this I need to design the algorithm that takes dimensions at the breakpoints and quantity of cases.
+    This will be a whole design idea.
+
+    -This will incentivize me to increase project amount as well :)
+    
+    reminders for later:
+    --add padding to the casecard itself so the dimensions here don't get messed with
+    --consider adding a transition effect in the future to move the square nicely to the following screen?
+
   */
+  
   return (
     <div>
-      {caseStudies.map((caseStudy) => (
-        <Link key={caseStudy.slug} href={`/portfolio/cases/${caseStudy.slug}`}>
-          <div>
-            <h2>{caseStudy.title}</h2>
-            {/* You can render more metadata here */}
-            <img 
-              src={caseStudy.image} 
-              className="w-5 h-auto rounded-sm" />
-          </div>
-        </Link>
-
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      {Object.values(allcases).map((metadata, index) => (
+        <CaseCard key={index} 
+          title={metadata.title}
+          image={metadata.image}
+          summary={metadata.summary}
+          slug={metadata.slug}
+        />
       ))}
+      </div>
     </div>
   )
 }
