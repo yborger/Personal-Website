@@ -14,7 +14,7 @@ export default function Page() {
   
   return (
     <div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="gap-4 columns-3xs">
       {Object.values(allcases).map((metadata, index) => (
         <CaseCard key={index} 
           title={metadata.title}
