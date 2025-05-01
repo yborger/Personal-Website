@@ -3,6 +3,11 @@ import Link from 'next/link'
 import * as allcases from './cases'
 import  CaseCard  from 'app/components/caseCard'
 
+/*  probably will be needed for each page of the case:
+  https://examples.motion.dev/react/scroll-triggered
+
+  I like this transition format for the write-ups
+ */
 
 export default function Page() {
   return (
