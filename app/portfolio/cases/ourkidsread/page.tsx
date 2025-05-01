@@ -1,4 +1,3 @@
-// /portfolio/cases/case-study-1/page.tsx
 
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
@@ -9,7 +8,7 @@ export const metadata =
   "title": "Our Kids Read: Website Redesign",
   "image": "/art sign.png",
   "summary": "This is a brief summary of the case study.",
-  "slug": "ourkidsread"
+  "slug": "portfolio/cases/ourkidsread"
 }
 
 

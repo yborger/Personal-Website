@@ -1,4 +1,3 @@
-// /portfolio/cases/case-study-1/page.tsx
 
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
@@ -7,7 +6,7 @@ export const metadata = {
   "title": "MyStudyBuddy",
   "image": "/mystudybuddy.jpg",
   "summary": "This is a brief summary of case study 1.",
-  "slug": "mystudybuddy"
+  "slug": "portfolio/cases/mystudybuddy"
 }
 
 export default function Page() {

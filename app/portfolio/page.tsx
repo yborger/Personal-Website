@@ -5,13 +5,6 @@ import  CaseCard  from 'app/components/caseCard'
 
 
 export default function Page() {
-  /* 
-    reminders for later:
-    --add padding to the casecard itself so the dimensions here don't get messed with
-    --consider adding a transition effect in the future to move the square nicely to the following screen?
-
-  */
-  
   return (
     <div>
       <div className="gap-4 columns-3xs">
