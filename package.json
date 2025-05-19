@@ -13,6 +13,7 @@
     "@vercel/analytics": "^1.1.3",
     "@vercel/speed-insights": "^1.0.9",
     "autoprefixer": "^10.4.21",
+    "framer-motion": "^12.12.1",
     "next": "^15.2.4",
     "next-mdx-remote": "^4.4.1",
     "postcss": "^8.5.3",
