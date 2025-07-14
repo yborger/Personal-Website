@@ -1,7 +1,22 @@
 @import "tailwindcss";
 
+.logo{
+  animation: left-appears 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes left-appears{
+  0%{
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
 ::selection {
-  background-color: #47a3f3;
+  background-color: #b794f4;
   color: #fefefe;
 }
 
