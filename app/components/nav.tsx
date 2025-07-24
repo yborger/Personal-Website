@@ -22,7 +22,7 @@ export function Navbar() {
       <div className="w-full bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-400 ... rounded-full lg:sticky lg:top-12">
         
         <nav
-          className="container flex flex-row items-start relative md:overflow-auto scroll-pr-6 md:relative"
+          className="container navFull flex flex-row items-start relative md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
         >          
           <img src="/ybLogo.png" alt="logo" className="logo h-16 w-auto" />
