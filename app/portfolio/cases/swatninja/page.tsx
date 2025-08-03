@@ -1,13 +1,12 @@
 
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
-import  phaseCard  from 'app/components/phaseCard'
 
 export const metadata = {
-  "title": "EXAMPLE Title",
+  "title": "SwatNinja",
   "image": "/art sign.png",
-  "summary": "This is a brief summary of case study 1.",
-  "slug": "portfolio/cases/example"
+  "summary": "This is a brief summary of SwatNinja.",
+  "slug": "portfolio/cases/swatninja"
 }
 
 export default function Page() {

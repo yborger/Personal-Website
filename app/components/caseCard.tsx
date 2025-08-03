@@ -22,8 +22,7 @@ export default function CaseCard ({title, image, summary, slug}: CaseMetadata) {
             <div className="py-4 group relative overflow-hidden rounded-2xl transition-transform hover:-translate-y-1">
                 <img src={image} alt={title} className= "w-full h-auto rounded-xl" />
 
-                <div className="absolute inset-0 bg-purple-500 bg-opacity-50 opacity-0 group-hover:opacity-95 transition-opacity p-4 flex flex-col justify-center items-center text-center text-white">
-            
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-white bg-black/30 backdrop-blur-lg opacity-0 group-hover:opacity-95 transition-opacity ">
                     <h2 className="text-2xl font-bold mb-2">{title}</h2>
                     <p className="text-m">{summary}</p>
                 </div>
