@@ -1,7 +1,7 @@
 
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
-import  phaseCard  from 'app/components/phaseCard'
+import  PhaseCard  from 'app/components/phaseCard'
 
 export const metadata = {
   "title": "EXAMPLE Title",
@@ -26,8 +26,13 @@ export default function Page() {
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         {/* You can add other metadata like date here */}
         <p>Do you ever feel like a plastic bag</p>
+        <PhaseCard
+            title={metadata.title}
+            img={metadata.image}
+            descrip={"im typing in words for this example"}
+          />
+
       </div>
-      
     </section>
   )
 }
