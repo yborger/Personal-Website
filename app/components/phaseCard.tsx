@@ -24,10 +24,12 @@ interface CardProps {
 
 export default function PhaseCard({title, img, descrip}: CardProps){
     return(
-        <div className="py-4 group relative overflow-hidden rounded-2xl transition-transform hover:-translate-y-1">
-                <img src={img} alt={title} className= "w-full h-auto rounded-xl" />
-                <h2 className="text-2xl font-bold mb-2">{title}</h2>
-                <p className="text-m">{descrip}</p>
+        <div className="border-4 border-black gap-4 m-8 flex items-center justify-center">
+                <img src={img} alt={title} className= "w-1/2 h-auto rounded-xl m-8" />
+                <div className= "w=1/2 m-8">
+                        <h2 className="text-2xl font-bold">{title}</h2>
+                        <p className="text-m">{descrip}</p>
+                </div>
         </div>
     )
 }
