@@ -17,19 +17,19 @@
  */
 interface CardProps {
         title: string;
-        img: string;
-        descrip: string;
+        description: string;
+        image: string;
         bg: string;
 }
 
 
-export default function PhaseCard({title, img, descrip, bg}: CardProps){
+export default function PhaseCard({title, description, image, bg}: CardProps){
     return(
         <div className={`border-4 border-black rounded-md gap-4 m-8 flex items-center justify-center bg-gradient-to-b ${bg}`}>
-                <img src={img} alt={title} className= "w-1/2 h-auto rounded-xl m-8" />
+                <img src={image} alt={title} className= "w-1/2 h-auto rounded-xl m-8" />
                 <div className= "w=1/2 m-8">
                         <h2 className="text-2xl font-bold">{title}</h2>
-                        <p className="text-m">{descrip}</p>
+                        <p className="text-m">{description}</p>
                 </div>
         </div>
     )
