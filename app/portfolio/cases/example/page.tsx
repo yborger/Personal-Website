@@ -1,7 +1,7 @@
 
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
-import  PhaseCard  from 'app/components/phaseCard'
+import  PhaseCard  from 'app/components/PhaseCard'
 
 export const metadata = {
   "title": "EXAMPLE Title",
