@@ -23,14 +23,20 @@ export default function Page() {
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {metadata.title}
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        {/* You can add other metadata like date here */}
-        <p>Do you ever feel like a plastic bag</p>
+      <div className="flex justify-center items-center mt-2 mb-8 text-sm">
+
         <PhaseCard
-            title={metadata.title}
+            title="the first phase"
             img={metadata.image}
             descrip={"im typing in words for this example"}
+            bg='from-blue-200 to-blue-400'
           />
+        <PhaseCard
+          title="the second phase"
+          img={metadata.image}
+          descrip={"im typing in words for this example"}
+          bg='from-yellow-200 to-yellow-400'
+        />
 
       </div>
     </section>

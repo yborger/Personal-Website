@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-.phaseCard{
-  animation: left-appears 5s;
-  animation-iteration-count: 1;
-}
+
 
 @keyframes left-appears{
   0%{
