@@ -29,7 +29,11 @@ export default function SlideDeck() {
               : "opacity-0 scale-90 translate-y-10 z-0"}
           `}
         >
-          <PhaseCard {...slide} />
+
+
+
+
+          
         </div>
       ))}
 
@@ -42,3 +46,4 @@ export default function SlideDeck() {
     </div>
   );
 }
+    //      <PhaseCard {...slide} />
