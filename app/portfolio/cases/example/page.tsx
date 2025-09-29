@@ -1,7 +1,6 @@
 
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
-import SlideDeck from 'app/components/SlideDeck'
 
 export const metadata = {
   "title": "EXAMPLE Title",
@@ -25,7 +24,6 @@ export default function Page() {
       </h1>
       <div className="flex justify-center items-center mt-2 mb-8 text-sm">
 
-        <SlideDeck />
 
       </div>
     </section>
