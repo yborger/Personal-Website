@@ -3,6 +3,8 @@ Tasks to complete -- CODING
 [CHECK] --PROJECT CARDS component: project card display on projects page --> show one image, projectcard:hover for title, on click it's a new page w/ write-up
 [CHECK] --PORTFOLIO PAGE: display project card component for each project, flex style for easy mobile
 [     ]--LIGHT/DARK MODE: since i am set in dark mode and it has fully changed my website design
+		[CHECK] -- the switch exists
+		[     ] -- the switch controls whether in light or dark mode
 [     ]--ART: concept art is a project w/ a description of design process?
 [     ]--ART: general artwork is my miscellaneous art --> this can be displayed in the squares and rectangles method i want to organize with (descrip below)
     ^^-->the description of this idea is in the portfolio or component page for the projects, but it's better when the art can be randomized
