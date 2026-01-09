@@ -1,4 +1,7 @@
+'use client'
 import Link from 'next/link'
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 const navItems = {
   '/': {
@@ -17,6 +20,17 @@ const navItems = {
 }
 
 export function Navbar() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
       <div className="w-full bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-400 ... rounded-full lg:sticky lg:top-12">
@@ -33,7 +47,7 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all cursor-pointer hover:text-neutral-100 dark:hover:text-neutral-400 flex relative px-2 m-1"
+                  className="transition-all cursor-pointer hover:text-neutral-100  flex relative px-2 m-1"
                 >
                   {name}
                 </Link>
@@ -41,13 +55,16 @@ export function Navbar() {
             })}            
           </div>
   {/* the light/dark switch */}
-    <label className="lightdark py-4 m-1.5 mr-5 ml-auto cursor-pointer select-none text-dark dark:text-white group">
+    <label className="lightdark py-4 m-1.5 mr-5 ml-auto cursor-pointer select-none text-dark  group">
       <div className="relative">
-        <input type="checkbox" className="peer sr-only" />
+        <input type="checkbox" className="peer sr-only" 
+          checked={theme === 'dark'}
+          onChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        />
         {/* the track -- it's 20% transparent white for glass effect*/}
         <div className="h-5 rounded-full w-14 bg-white/20 shadow-lg ring-1 ring-black/5"></div>
         <div
-          className="absolute left-0 transition bg-white rounded-full dot shadow-switch-1 dark:bg-dark-4 -top-1 h-7 w-7 group-has-checked:translate-x-full group-has-checked:bg-primary">
+          className="absolute left-0 transition bg-white rounded-full dot shadow-switch-1 -top-1 h-7 w-7 group-has-checked:translate-x-full group-has-checked:bg-primary">
     {/* moon */}
           <span className="hidden group-has-checked:inline">
               <svg className="h-6 w-6 text-gray-500" fill="none" viewBox="-2 -1 24 24" stroke="currentColor"> 

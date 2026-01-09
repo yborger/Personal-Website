@@ -5,8 +5,11 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
-import RouteLoader from './components/RouteLoader';
+import { Providers } from './providers';
 
+{/*  RouteLoader component not implemented, uncomment when added:
+import RouteLoader from './components/RouteLoader';
+*/}
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
@@ -50,17 +53,19 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="en" suppressHydrationWarning
       className={cx(
-        'text-black bg-white dark:text-white dark:bg-black'      )}
+        'text-black bg-white'      )}
     >
       <body className="antialiased justify-center max-w-auto mx-4 mt-8">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-          <Navbar />
-          {children}
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
+          <Providers>
+            <Navbar />
+            {children}
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+          </Providers>
         </main>
       </body>
     </html>
