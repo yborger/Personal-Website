@@ -18,6 +18,7 @@ export default function ThemeSwitch() {
 
   if(resolvedTheme === 'dark'){
     //make dark
+    
   }
   if(resolvedTheme === 'light'){
     //make light
@@ -28,7 +29,7 @@ export default function ThemeSwitch() {
     <label className="lightdark py-4 m-1.5 mr-5 ml-auto cursor-pointer select-none text-dark  group">
       <div className="relative">
         <input type="checkbox" className="peer sr-only" 
-          onChange={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+          onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
         />
         {/* the track -- it's 20% transparent white for glass effect*/}
         <div className="h-5 rounded-full w-14 bg-white/20 shadow-lg ring-1 ring-black/5"></div>
