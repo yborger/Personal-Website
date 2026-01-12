@@ -54,10 +54,9 @@ export default function RootLayout({
   return (
     <html
       lang="en" suppressHydrationWarning
-      className={cx(
-        'text-black bg-white'      )}
+      
     >
-      <body className="antialiased justify-center max-w-auto mx-4 mt-8">
+      <body className="text-black bg-white antialiased justify-center max-w-auto mx-4 mt-8">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Providers>
             <Navbar />
