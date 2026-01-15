@@ -21,7 +21,7 @@ export default function Footer() {
       <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 ">
         <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800"
+            className="flex items-center transition-all hover:text-neutral-800 dark:text-neutral-600 dark:hover:text-neutral-200"
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/yborger"
@@ -32,7 +32,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 "
+            className="flex items-center transition-all hover:text-neutral-800 dark:text-neutral-600 dark:hover:text-neutral-200"
             rel="noopener noreferrer"
             target="_blank"
             href="https://www.linkedin.com/in/yael-borger/"
@@ -43,7 +43,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 "
+            className="flex items-center transition-all hover:text-neutral-800 dark:text-neutral-600 dark:hover:text-neutral-200"
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/yborger/Personal-Website"

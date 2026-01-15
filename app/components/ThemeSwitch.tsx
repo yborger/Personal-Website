@@ -16,20 +16,16 @@ export default function ThemeSwitch() {
     return null;
   }
 
-  if(resolvedTheme === 'dark'){
-    //make dark
-    
-  }
-  if(resolvedTheme === 'light'){
-    //make light
-  }
   return (
     <div className="flex items-center ml-auto">
       {/* the light/dark switch */}
     <label className="lightdark py-4 m-1.5 mr-5 ml-auto cursor-pointer select-none text-dark  group">
       <div className="relative">
-        <input type="checkbox" className="peer sr-only" 
-          onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+        <input 
+          type="checkbox" 
+          className="peer sr-only" 
+          checked={resolvedTheme === 'dark'}
+          onChange={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
         />
         {/* the track -- it's 20% transparent white for glass effect*/}
         <div className="h-5 rounded-full w-14 bg-white/20 shadow-lg ring-1 ring-black/5"></div>

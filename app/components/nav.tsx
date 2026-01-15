@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import ThemeSwitch from './ThemeSwitch';
-import ThemeSwitch2 from './ThemeSwitch2';
-import ThemeSwitch3 from './ThemeSwitch3';
 
 //import { useTheme } from 'next-themes';
 //import { useEffect, useState } from 'react';
@@ -56,23 +54,8 @@ export function Navbar() {
                 </Link>
               )
             })}            
-          </div>
-
-{/* Theme SWITCH component Options */}
-    
+          </div>    
     <ThemeSwitch/>
-    
-
-    {/*
-    <label className="lightdark py-4 m-1.5 mr-5 ml-auto cursor-pointer select-none text-dark  group">
-      <div className="relative">
-        <input type="checkbox" className="peer sr-only"         />
-        
-        <div className="h-5 rounded-full w-14 bg-white/20 shadow-lg ring-1 ring-black/5"></div>
-       <ThemeSwitch2/>
-      </div>
-    </label> 
-    */}
         </nav>
       </div>
     </aside>

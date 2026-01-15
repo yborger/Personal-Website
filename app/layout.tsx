@@ -5,7 +5,16 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
-import { Providers } from './providers';
+import  Providers  from './providers';
+
+import { Quicksand } from 'next/font/google'
+import { ThemeProvider } from 'next-themes'
+
+const quicksand = Quicksand({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-quicksand',
+});
 
 {/*  RouteLoader component not implemented, uncomment when added:
 import RouteLoader from './components/RouteLoader';
@@ -53,17 +62,18 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en" suppressHydrationWarning
-      
+      lang="en" className={'${quicksand.variable}'} suppressHydrationWarning 
     >
-      <body className="text-black bg-white antialiased justify-center max-w-auto mx-4 mt-8">
+      <body className="font-sans antialiased justify-center max-w-auto mx-4 mt-8">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Providers>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navbar />
             {children}
             <Footer />
             <Analytics />
             <SpeedInsights />
+            </ThemeProvider>
           </Providers>
         </main>
       </body>
