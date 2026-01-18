@@ -5,12 +5,13 @@ Tasks to complete -- CODING
 [CHECK]--LIGHT/DARK MODE: since i am set in dark mode and it has fully changed my website design
 		[CHECK] -- the switch exists
 		[CHECK] -- the switch controls whether in light or dark mode (toggle issues -- try js)
-[     ]--ART: concept art is a project w/ a description of design process?
+[     ]--HOME/ABOUT/CONTACT: combine the pages into one scroll-animated page on the home area
+[     ]--PROJECTS: add folder for each final project from swarthmore for projects portfolio -- I have "icons" for the course, I can use those for representation
 [     ]--ART: general artwork is my miscellaneous art --> this can be displayed in the squares and rectangles method i want to organize with (descrip below)
     ^^-->the description of this idea is in the portfolio or component page for the projects, but it's better when the art can be randomized
 	bc the big projects should be organized by
-[     ]--PROJECTS: add folder for each final project from swarthmore for projects portfolio -- I have "icons" for the course, I can use those for representation
-[     ]--HOME/ABOUT/CONTACT: combine the pages into one scroll-animated page
+
+
 
 Tasks to complete -- NOT CODING
 [     ]--WRITE-UPS: portfolio write-up descriptions for each phase of design process
