@@ -21,7 +21,7 @@ export default function Page() {
         home
       </h1>
       <p className="ml-4 mb-4 ">
-      {'custom fonts will not be employed until it starts working lol'}
+      {'home page content coming soon...'}
       </p>
     </section>
   )

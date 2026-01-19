@@ -22,19 +22,19 @@ interface CardProps {
         bg: string;
 }
 
+//not the final look, just a placeholder for now
 
 export default function PhaseCard({title, description, image, bg}: CardProps){
     return(
-        <div className={`border-4 border-black rounded-md gap-4 m-8 shadow-lg p-8 w-3/4 max-w-4xl bg-gradient-to-b ${bg}`}>
+        <div className={`rounded-md p-6 m-4 shadow-lg w-auto max-w-4xl bg-gradient-to-b ${bg}`}>
                 <h2 className="text-2xl font-bold mb-6 text-left">{title}</h2>
-                <div className="flex-1 flex justify-center">
+                <div className="m-4 flex flex-col items-start justify-center gap-4">
                         <img 
                                 src={image} 
                                 alt={title} 
-                                className= "w-1/2 h-auto object-contain rounded-xl m-4" />
-                </div>
-                <div className= "w=1/2 m-8">
-                <p className="flex-1 text-gray-700 text-lg text-left">{description}</p>
+                                className= "w-auto h-auto rounded-xl" />
+                
+                        <p className="w-auto text-lg text-left">{description}</p>
                 </div>
         </div>
     )
