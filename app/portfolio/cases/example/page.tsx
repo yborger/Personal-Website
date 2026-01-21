@@ -29,7 +29,7 @@ export default function Page() {
           <PhaseCard
             title="Phase 1: Design"
             description="In this phase, we focused on user experience and interface design, ensuring that the product is both functional and visually appealing."
-            image="/concept artwork/bee-leaf/bee-v3.jpg"
+            image="/artwork/bee-leaf.png"
             bg="from-purple-400 via-pink-500 to-red-500"
           />  
         </div>
@@ -37,7 +37,7 @@ export default function Page() {
           <PhaseCard 
             title="Phase 2: Development"
             description="This phase involved coding the core functionalities, integrating APIs, and ensuring the application is robust and scalable."
-            image="/concept artwork/orange/group_hug-v1.png"
+            image="/artwork/group-hug.png"
             bg="from-green-400 via-blue-500 to-purple-500"
           />
         </div>
