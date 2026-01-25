@@ -24,3 +24,12 @@ General Art PAGE LAYOUT IDEA -- perfect square dissection?
     -This will incentivize me to increase project amount as well :)
     
     While away from computer, this is the best way to convey my ideas for updates and reorganize for return.
+
+
+
+Plan of Action for Cards:
+Guide for stack + tilt of cards: https://codepen.io/manz/pen/YzRQMYW
+-uniform sizing of cards?
+-make cards tilt *slightly* on generation (20 degrees max? double check with use)
+-new concept art --> it's to use the scroll effect so they fly in and "timeline" scroll down
+^--this makes the perfect uniformity unnecessary, but I want a cleaner look so maybe worth anyway
