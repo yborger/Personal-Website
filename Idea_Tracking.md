@@ -13,15 +13,7 @@ Tasks to complete -- NOT CODING
 [     ]--WRITE-UPS: portfolio write-up descriptions for each phase of design process
 [     ]--WRITE-UPS: add the final projects from swarthmore with a description of the premise, the write-up from the project since I wrote those, and link to github
 
-General Art PAGE LAYOUT IDEA -- perfect square dissection?
-    It is late but I had an idea for the layout (for the future, not now)
-    Rather than make the page have to scroll, which I don't love I can make an algorithm that creates X amount of randomly sized squares, with the X amount being the amount of projects I have to show.
-    I think I could use the amount of cases I have and the size of the window, maybe I would use standard window sizes (tailwind has css breakpoints sm, md, lg, xl, 2xl, and mobile-size is good) to generate patterns of squares to take up the screen space
-    OR BENTO box style ?
-    To do this I need to design the algorithm that takes dimensions at the breakpoints and quantity of cases.
-    This will be a whole design idea.
-
-    -This will incentivize me to increase project amount as well :)
+General Art PAGE LAYOUT IDEA -- perfect square dissection or bento-box style
     
     While away from computer, this is the best way to convey my ideas for updates and reorganize for return.
 
