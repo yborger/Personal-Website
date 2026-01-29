@@ -10,7 +10,7 @@ Tasks to complete -- CODING
 
 
 Tasks to complete -- NOT CODING
-[     ]--WRITE-UPS: portfolio write-up descriptions for each phase of design process
+[     ]--WRITE-UPS: portfolio write-up descriptions for each phase of design process -- BY PHASES
 [     ]--WRITE-UPS: add the final projects from swarthmore with a description of the premise, the write-up from the project since I wrote those, and link to github
 
 General Art PAGE LAYOUT IDEA -- perfect square dissection or bento-box style
