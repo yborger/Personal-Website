@@ -5,6 +5,7 @@ Tasks to complete -- CODING
 [     ]--ART: general artwork is my miscellaneous art --> this can be displayed in the squares and rectangles method i want to organize with (descrip below)
     ^^-->the description of this idea is in the portfolio or component page for the projects, but it's better when the art can be randomized
 	bc the big projects should be organized by
+	^^-->i can make the program that gives a one sentence description of the artwork image? or i can pre-put them hmm
 [     ]--PORTFOLIO: finish phasecard stacking with scroll animation
 
 
