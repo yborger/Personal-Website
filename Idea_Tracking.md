@@ -1,3 +1,6 @@
+HIGH PRIORITY:
+[]--DEPENDABOT ALERTS, unclear how to fix it may just be a patch
+
 
 Tasks to complete -- CODING
 [     ]--HOME/ABOUT/CONTACT: combine the pages into one scroll-animated page on the home area
