@@ -1,3 +1,6 @@
+HIGH PRIORITY:
+[]--DEPENDABOT ALERTS, unclear how to fix it may just be a patch
+
 
 Tasks to complete -- CODING
 [     ]--HOME/ABOUT/CONTACT: combine the pages into one scroll-animated page on the home area
@@ -5,12 +8,13 @@ Tasks to complete -- CODING
 [     ]--ART: general artwork is my miscellaneous art --> this can be displayed in the squares and rectangles method i want to organize with (descrip below)
     ^^-->the description of this idea is in the portfolio or component page for the projects, but it's better when the art can be randomized
 	bc the big projects should be organized by
+	^^-->i can make the program that gives a one sentence description of the artwork image? or i can pre-put them hmm
 [     ]--PORTFOLIO: finish phasecard stacking with scroll animation
 
 
 
 Tasks to complete -- NOT CODING
-[     ]--WRITE-UPS: portfolio write-up descriptions for each phase of design process
+[     ]--WRITE-UPS: portfolio write-up descriptions for each phase of design process -- BY PHASES
 [     ]--WRITE-UPS: add the final projects from swarthmore with a description of the premise, the write-up from the project since I wrote those, and link to github
 
 General Art PAGE LAYOUT IDEA -- perfect square dissection or bento-box style
@@ -25,3 +29,8 @@ Guide for stack + tilt of cards: https://codepen.io/manz/pen/YzRQMYW
 -make cards tilt *slightly* on generation (20 degrees max? double check with use)
 -new concept art --> it's to use the scroll effect so they fly in and "timeline" scroll down
 ^--this makes the perfect uniformity unnecessary, but I want a cleaner look so maybe worth anyway
+
+Plan of Action for Home
+-combine the home and about pages,perhaps contact too
+-scroll-activated animation for information
+-consider new design for the front page? like something that slides along to make it nice to follow?
