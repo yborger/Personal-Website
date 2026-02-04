@@ -29,8 +29,3 @@ Guide for stack + tilt of cards: https://codepen.io/manz/pen/YzRQMYW
 -make cards tilt *slightly* on generation (20 degrees max? double check with use)
 -new concept art --> it's to use the scroll effect so they fly in and "timeline" scroll down
 ^--this makes the perfect uniformity unnecessary, but I want a cleaner look so maybe worth anyway
-
-Plan of Action for Home
--combine the home and about pages,perhaps contact too
--scroll-activated animation for information
--consider new design for the front page? like something that slides along to make it nice to follow?
