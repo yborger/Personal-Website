@@ -1,3 +1,7 @@
+HIGH PRIORITY:
+[]--DEPENDABOT ALERTS, unclear how to fix it may just be a patch
+
+
 Tasks to complete -- CODING
 [     ]--HOME/ABOUT/CONTACT: combine the pages into one scroll-animated page on the home area
 [     ]--PORTFOLIO - projects from college: add folder for each final project from swarthmore for projects portfolio -- I have "icons" for the course, I can use those for representation
