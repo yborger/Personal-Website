@@ -29,3 +29,8 @@ Guide for stack + tilt of cards: https://codepen.io/manz/pen/YzRQMYW
 -make cards tilt *slightly* on generation (20 degrees max? double check with use)
 -new concept art --> it's to use the scroll effect so they fly in and "timeline" scroll down
 ^--this makes the perfect uniformity unnecessary, but I want a cleaner look so maybe worth anyway
+
+
+
+Note:
+-v3 not v4 for tailwind, not updating to v4 until v4 is actually compatible with my code, or if I change my code to be compatible with the new requirements. At the moment it fully crashes my site.
