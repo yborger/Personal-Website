@@ -55,7 +55,7 @@ export function Navbar() {
               )
             })}            
           </div>    
-    <ThemeSwitch/>
+          <ThemeSwitch/>
         </nav>
       </div>
     </aside>

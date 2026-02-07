@@ -17,9 +17,9 @@ export default function ThemeSwitch() {
   }
 
   return (
-    <div className="flex items-center ml-auto">
+    <div className="flex ml-auto mr-5 py-1.5">
       {/* the light/dark switch */}
-    <label className="lightdark py-4 m-1.5 mr-5 ml-auto cursor-pointer select-none text-dark  group">
+    <label className="lightdark py-4 cursor-pointer select-none text-dark  group">
       <div className="relative">
         <input 
           type="checkbox" 
