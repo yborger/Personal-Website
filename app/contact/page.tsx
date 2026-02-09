@@ -16,10 +16,12 @@ export default function Page() {
         </div>
         <div className="w-full h-full md:w-full p-4 flex "> {/*md:w-1/3 but iframe is weird?*/}
           <div className="flex-row justify-items-center">
-            <iframe 
+            
+            {/*<iframe 
               src="/resumes/Yael-Borger-Frontend-Resume.pdf" 
               className="w-full h-auto rounded-sm border:none">
-            </iframe>
+            </iframe>*/}
+
             <a
               href="/Yael-Borger-Frontend-Resume.docx" // Assuming the file is in the public folder
               download="YaelBorger_Resume.docx" // This sets the download file name

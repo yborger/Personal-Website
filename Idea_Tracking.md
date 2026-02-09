@@ -1,7 +1,3 @@
-HIGH PRIORITY:
-[]--DEPENDABOT ALERTS, unclear how to fix it may just be a patch
-
-
 Tasks to complete -- CODING
 [     ]--HOME/ABOUT/CONTACT: combine the pages into one scroll-animated page on the home area
 [     ]--PORTFOLIO - projects from college: add folder for each final project from swarthmore for projects portfolio -- I have "icons" for the course, I can use those for representation
@@ -16,6 +12,7 @@ Tasks to complete -- CODING
 Tasks to complete -- NOT CODING
 [     ]--WRITE-UPS: portfolio write-up descriptions for each phase of design process -- BY PHASES
 [     ]--WRITE-UPS: add the final projects from swarthmore with a description of the premise, the write-up from the project since I wrote those, and link to github
+[     ]--WRITE-UPS: resume rework
 
 General Art PAGE LAYOUT IDEA -- perfect square dissection or bento-box style
     
