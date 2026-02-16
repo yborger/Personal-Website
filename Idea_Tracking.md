@@ -6,7 +6,7 @@ Tasks to complete -- CODING
 	bc the big projects should be organized by
 	^^-->i can make the program that gives a one sentence description of the artwork image? or i can pre-put them hmm
 [     ]--PORTFOLIO: finish phasecard stacking with scroll animation
-
+[     ]--PROJECT: new project concept -- the website accessibility checker? considering
 
 
 Tasks to complete -- NOT CODING
