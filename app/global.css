@@ -11,6 +11,14 @@
     transform: translateX(0);
   }
 }
+@keyframes right-appears{
+  0%{
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 
 
 ::selection {
@@ -166,3 +174,14 @@ html.dark {
   background-color: #131313;
   color: #f1f1f1;
 }
+
+.phaseOdd {
+  animation: right-appears 5s ease-in;
+  rotate: 3deg;
+}
+
+.phaseEven {
+  animation: left-appears 5s ease-in;
+  rotate: -3deg
+}
+
