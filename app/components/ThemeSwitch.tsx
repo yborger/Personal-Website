@@ -17,7 +17,7 @@ export default function ThemeSwitch() {
   }
 
   return (
-    <div className="flex ml-auto mr-5 py-1.5">
+    <div className="flex mr-5 py-1.5">
       {/* the light/dark switch */}
     <label className="lightdark py-4 cursor-pointer select-none text-dark  group">
       <div className="relative">

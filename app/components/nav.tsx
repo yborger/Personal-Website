@@ -8,9 +8,6 @@ const navItems = {
   '/': {
     name: 'home',
   },
-  '/about': {
-    name: 'about', //will be moved elsewhere
-  },
   '/contact': { //about or contact
     name: 'contact',
   }
@@ -55,7 +52,7 @@ export function Navbar() {
               )
             })}            
           </div>    
-          <ThemeSwitch/>
+          <div className="absolute right-0"><ThemeSwitch/></div>
         </nav>
       </div>
     </aside>
