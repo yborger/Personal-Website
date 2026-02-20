@@ -20,6 +20,11 @@
   }
 }
 
+@keyframes flip {
+            0% { transform: rotateY(-180deg) };
+            50% { transform: rotateY(-90deg) };
+            100% { transform: rotateY(0deg) };
+          }
 
 ::selection {
   background-color: #b794f4;
@@ -176,12 +181,12 @@ html.dark {
 }
 
 .phaseOdd {
-  animation: right-appears 5s ease-in;
+  animation: right-appears 4s ease-in;
   rotate: 3deg;
 }
 
 .phaseEven {
-  animation: left-appears 5s ease-in;
+  animation: left-appears 4s ease-in;
   rotate: -3deg
 }
 

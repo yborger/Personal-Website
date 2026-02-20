@@ -24,8 +24,8 @@ export default function Page() {
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {metadata.title}
       </h1>
-      <div className="grid gap-6 my-8 w-3/4 mx-auto place-items-center [grid-template-areas:'stack']">
-        <div className='[grid-area:stack] z-30 phaseOdd'>
+      <div className=" gap-6 my-8 w-3/4 mx-auto place-items-center">
+        <div className=' '>
           <PhaseCard
             title="Phase 1: Design"
             description="In this phase, we focused on user experience and interface design, ensuring that the product is both functional and visually appealing."
@@ -33,7 +33,7 @@ export default function Page() {
             bg="from-purple-400 via-pink-500 to-red-500"
           />  
         </div>
-        <div className='[grid-area:stack] z-20 phaseEven'>
+        <div className=' '>
           <PhaseCard 
             title="Phase 2: Development"
             description="This phase involved coding the core functionalities, integrating APIs, and ensuring the application is robust and scalable."
