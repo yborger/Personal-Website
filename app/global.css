@@ -43,11 +43,6 @@
   --sh-entity: #e25a1c;
 }
 
-
-html {
-  min-width: 360px;
-}
-
 .prose .anchor {
   @apply absolute invisible no-underline;
 
@@ -165,13 +160,14 @@ table {
 }
 
 html, body {
-  scroll-behavior: smooth;
   font-family: "var(--font-quicksand)", sans-serif;
 }
 
 html {
+  min-width: 360px;
   @apply bg-white text-black;   /* background + text */
   color-scheme: light dark;     /* for scrollbars, inputs, selection, etc. */
+  scroll-snap-type: y mandatory;
 }
 
 /* dark mode */
@@ -181,12 +177,11 @@ html.dark {
 }
 
 .phaseOdd {
-  animation: right-appears 4s ease-in;
-  rotate: 3deg;
+  animation:  4s ease-in;
+  rotate: 2deg;
 }
 
 .phaseEven {
-  animation: left-appears 4s ease-in;
-  rotate: -3deg
+  animation:  4s ease-in;
+  rotate: -2deg
 }
-
