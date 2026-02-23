@@ -4,25 +4,13 @@ import { CustomMDX } from 'app/components/mdx'
 import {motion} from "motion/react"
 import PhaseCard from 'app/components/PhaseCard'
 
-export const metadata = {
-  "title": "EXAMPLE Title",
-  "image": "/art sign.png",
-  "summary": "This is a brief summary of case study 1.",
-  "slug": "portfolio/cases/example"
-}
 
 export default function Page() {
-  const content = `
-    ## Case Study Title: ${metadata.title}
-    - Summary: ${metadata.summary}
-    - Image: ${metadata.image}
-    // Include additional MDX content here, or static HTML
-  `
-
+ 
   return (
     <section>
       <h1 className="title font-semibold text-2xl tracking-tighter">
-        {metadata.title}
+        EXAMPLE
       </h1>
       <div className=" gap-6 my-8 w-3/4 mx-auto place-items-center">
         <div className=' '>
