@@ -5,54 +5,29 @@ import {motion} from "motion/react"
 import PhaseCard from 'app/components/PhaseCard'
 
 
-export const metadata = {
-  "title": "EXAMPLE Title",
-  "image": "/art sign.png",
-  "summary": "This is a brief summary of case study 1.",
-  "slug": "portfolio/cases/example"
-}
-
 export default function Page() {
-  const content = `
-    ## Case Study Title: ${metadata.title}
-    - Summary: ${metadata.summary}
-    - Image: ${metadata.image}
-    // Include additional MDX content here, or static HTML
-  `
-
+ 
   return (
-    <section className="project-container">
+    <section>
       <h1 className="title font-semibold text-2xl tracking-tighter">
-        {metadata.title}
+        EXAMPLE
       </h1>
-      <div className=" phase-container gap-6 my-8 w-3/4 mx-auto place-items-center">
-          <div className="phaseOdd">
-            <PhaseCard 
-            number={1}
+      <div className=" gap-6 my-8 w-3/4 mx-auto place-items-center">
+        <div className=' '>
+          <PhaseCard
             title="Phase 1: Design"
             description="In this phase, we focused on user experience and interface design, ensuring that the product is both functional and visually appealing."
             image="/artwork/bee_leaf.png"
             bg="from-purple-400 via-pink-500 to-red-500"
-          /> 
-          </div>
-        <div className="phaseEven">
+          />  
+        </div>
+        <div className=' '>
           <PhaseCard 
-            number={2}
             title="Phase 2: Development"
             description="This phase involved coding the core functionalities, integrating APIs, and ensuring the application is robust and scalable."
             image="/artwork/group_hug.png"
             bg="from-green-400 via-blue-500 to-purple-500"
           />
-        </div>
-        <div className="phaseOdd">
-
-          <PhaseCard
-            number={3}
-            title="Phase 3: more"
-            description="In this phase, we focused on user experience and interface design, ensuring that the product is both functional and visually appealing."
-            image="/artwork/bee_leaf.png"
-            bg="from-purple-400 via-pink-500 to-red-500"
-          /> 
         </div>
         
       </div>
