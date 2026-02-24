@@ -1,35 +1,52 @@
-
+"use client"
 import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
-import {motion} from "motion/react"
 import PhaseCard from 'app/components/PhaseCard'
+ import {
+    motion,
+    MotionValue,
+    useScroll,
+    useSpring,
+    useTransform,
+} from "motion/react"
+import { useRef } from "react"
 
 
 export default function Page() {
- 
+ const containerRef = useRef<HTMLDivElement>(null)
   return (
-    <section>
+    <section className="">
       <h1 className="title font-semibold text-2xl tracking-tighter">
         EXAMPLE
       </h1>
       <div className=" gap-6 my-8 w-3/4 mx-auto place-items-center">
         <div className=' '>
           <PhaseCard
-            title="Phase 1: Design"
-            description="In this phase, we focused on user experience and interface design, ensuring that the product is both functional and visually appealing."
+            number={1}
+            title="Phase 1: Lorem ipsum"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             image="/artwork/bee_leaf.png"
             bg="from-purple-400 via-pink-500 to-red-500"
           />  
         </div>
         <div className=' '>
           <PhaseCard 
-            title="Phase 2: Development"
-            description="This phase involved coding the core functionalities, integrating APIs, and ensuring the application is robust and scalable."
+            number={2}
+            title="Phase 2: Nunc scelerisque"
+            description="Nunc scelerisque viverra mauris in aliquam sem fringilla ut. Donec et odio pellentesque diam volutpat commodo sed egestas."
             image="/artwork/group_hug.png"
             bg="from-green-400 via-blue-500 to-purple-500"
           />
         </div>
-        
+        <div className=' '>
+          <PhaseCard 
+            number={3}
+            title="Phase 3: Fusce blandit"
+            description="Fusce blandit odio nec enim volutpat, a efficitur nisl efficitur. Curabitur ac odio at enim efficitur commodo."
+            image="/artwork/BOOp.png"
+            bg="from-yellow-400 via-red-500 to-pink-500"
+          />
+        </div>
       </div>
     </section>
   )
