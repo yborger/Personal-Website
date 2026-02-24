@@ -13,7 +13,6 @@ import { useRef } from "react"
 
 
 export default function Page() {
- const containerRef = useRef<HTMLDivElement>(null)
   return (
     <section className="">
       <h1 className="title font-semibold text-2xl tracking-tighter">
