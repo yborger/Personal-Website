@@ -21,11 +21,11 @@ General Art PAGE LAYOUT IDEA -- perfect square dissection or bento-box style
 
 
 Plan of Action for Cards:
-Guide for stack + tilt of cards: https://codepen.io/manz/pen/YzRQMYW
--uniform sizing of cards?
--make cards tilt *slightly* on generation (20 degrees max? double check with use)
--new concept art --> it's to use the scroll effect so they fly in and "timeline" scroll down
-^--this makes the perfect uniformity unnecessary, but I want a cleaner look so maybe worth anyway
+Guide for tilt of cards: https://codepen.io/manz/pen/YzRQMYW
+-uniform sizing of cards? -> definitely needed else it looks *really* bad
+-card tilt added --> 2 or 3 deg max otherwise things are problems
+-parallax esque, it's currently being implemented
+-the stack did not look as nice as i'd hoped when implemented -- the images overlapping did not have the desired effect
 
 
 
