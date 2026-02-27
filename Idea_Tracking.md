@@ -31,3 +31,4 @@ Guide for tilt of cards: https://codepen.io/manz/pen/YzRQMYW
 
 Note:
 -v3 not v4 for tailwind, not updating to v4 until v4 is actually compatible with my code, or if I change my code to be compatible with the new requirements. At the moment it fully crashes my site.
+-receiving reminders whenever i run to check on compatibility issues in incoming updates
