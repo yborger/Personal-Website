@@ -2,8 +2,12 @@
 
 This website was originally developed by Vercel, and then redesigned and adapted to fit Yael's vision, by Yael. There will be many changes and updates to design, and the original template can be seen in the demo.
 
+## As a Portfolio
 
-## Demo
+This website is intended to showcase past projects and works by Yael. 
+
+
+## Original Demo
 
 https://portfolio-blog-starter.vercel.app
 
