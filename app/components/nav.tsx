@@ -20,16 +20,16 @@ const navItems = {
 export function Navbar() {
 
   return (
-    <aside className="-ml-[8px] mb-16 tracking-tight">
+    <aside className="mb-16 tracking-tight">
       <div className="w-full bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-400 ... rounded-full lg:sticky lg:top-12">
         
         <nav
-          className="container navFull flex flex-row items-start relative md:overflow-auto scroll-pr-6 md:relative"
+          className="navFull flex flex-row items-start relative scroll-pr-6 md:overflow-auto"
           id="nav"
         >          
           <img src="/ybLogo.png" alt="logo" className="logo h-16 w-auto" />
 
-          <div className="navMenu flex flex-row py-4 space-x-0 pr-0">
+          <div className="container navMenu flex flex-row py-4 space-x-0 pr-0">
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
@@ -42,7 +42,7 @@ export function Navbar() {
               )
             })}            
           </div>    
-          <div className="absolute right-0"><ThemeSwitch/></div>
+          <div className="ml-auto pr-6"><ThemeSwitch/></div>
         </nav>
       </div>
     </aside>
