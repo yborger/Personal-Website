@@ -185,3 +185,7 @@ html.dark {
   animation:  4s ease-in;
   rotate: -2deg
 }
+
+section {
+  scroll-snap-align: center;
+}

@@ -17,14 +17,15 @@ const navItems = {
   
 }
 
+//To add: make navbar responsive -- disappear on scroll down, reappear on scroll up
 export function Navbar() {
 
   return (
-    <aside className="mb-16 tracking-tight">
-      <div className="w-full bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-400 ... rounded-full lg:sticky lg:top-12">
+    <aside className="fixed z-50 w-full mb-16 tracking-tight">
+      <div className="mr-8 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-400 ... rounded-full lg:sticky lg:top-12">
         
         <nav
-          className="navFull flex flex-row items-start relative scroll-pr-6 md:overflow-auto"
+          className="navFull flex flex-row items-start relative md:overflow-auto"
           id="nav"
         >          
           <img src="/ybLogo.png" alt="logo" className="logo h-16 w-auto" />

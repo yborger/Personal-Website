@@ -2,7 +2,7 @@
 export default function Page() {
   return (
     <section>
-      <h1 className="ml-4 mb-8 text-2xl font-semibold tracking-tighter">
+      <h1 className="pt-10 ml-4 mb-8 text-2xl font-semibold tracking-tighter">
         contact
       </h1>
       

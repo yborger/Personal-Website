@@ -6,7 +6,7 @@ import { casesData } from './casesData'
 export default function Page() {
   return (
     <div>
-      <div className="gap-4 columns-3xs">
+      <div className="pt-10 gap-4 columns-3xs">
         {casesData.map((metadata, index) => (
           <CaseCard
             key={index}

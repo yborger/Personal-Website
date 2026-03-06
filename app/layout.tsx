@@ -69,7 +69,9 @@ export default function RootLayout({
           <Providers>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navbar />
-            {children}
+            <main className="pt-20">
+              {children}
+            </main>
             <Footer />
             <Analytics />
             <SpeedInsights />
