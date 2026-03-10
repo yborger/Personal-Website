@@ -19,12 +19,14 @@ function ParallaxCards({
   number,
   title,
   description,
+  details,
   image,
   bg
 }: {
   number: number
   title: string
   description: string
+  details: string
   image: string
   bg: string
 }){
@@ -40,6 +42,7 @@ function ParallaxCards({
             number={number}
             title={title}
             description={description}
+            details={details}
             image={image}
             bg={bg}
           />
@@ -69,6 +72,7 @@ export default function Page() {
             number={1}
             title="Phase 1: Lorem ipsum"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            details="back of the card"
             image="/artwork/bee_leaf.png"
             bg="from-purple-400 via-pink-500 to-red-500"
           />  
@@ -76,6 +80,7 @@ export default function Page() {
             number={2}
             title="Phase 2: Nunc scelerisque"
             description="Nunc scelerisque viverra mauris in aliquam sem fringilla ut. Donec et odio pellentesque diam volutpat commodo sed egestas."
+            details='back of the card 2'
             image="/artwork/group_hug.png"
             bg="from-green-400 via-blue-500 to-purple-500"
           />
@@ -83,6 +88,7 @@ export default function Page() {
             number={3}
             title="Phase 3: Fusce blandit"
             description="Fusce blandit odio nec enim volutpat, a efficitur nisl efficitur. Curabitur ac odio at enim efficitur commodo." 
+            details="back of the card 3"
             image="/artwork/BOOp.png"
             bg="from-yellow-400 via-red-500 to-pink-500"
           />

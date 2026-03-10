@@ -1,13 +1,21 @@
+"use client"
+import { useState } from "react"
 
 interface CardProps {
         number: number;
         title: string;
         description: string;
+        details: string;
         image: string;
         bg: string;
 }
 
- export default function PhaseCard({number, title, description, image, bg}: CardProps){
+//not yet checked: how to make sure show more is only when there are details
+
+ export default function PhaseCard({number, title, description, details, image, bg}: CardProps){
+    //some descriptions are too long, so we can add a "read more" button that expands the description
+    const [expanded, setExpanded] = useState(false)
+
     return(
         <section className="h-3/4 flex items-center justify-center relative">
             <div className={"rounded-md p-6 m-4 shadow-lg max-w-4xl bg-gradient-to-b " + bg}>
@@ -20,9 +28,21 @@ interface CardProps {
                         className="w-3/5 h-auto rounded-xl justify-self-center"
                     />
 
-                    <p className="text-lg text-left">
-                        {description}
-                    </p>
+                    <div className="text-lg text-left">
+                        <p>{description}</p>
+                        {expanded && (
+                            <p className="mt-4 text-base">
+                                {details}
+                            </p>
+                        )}
+
+                        <button
+                            onClick={() => setExpanded(!expanded)}
+                            className="mt-4 text-sm font-medium underline"
+                        >
+                            {expanded ? "Show less" : "Show more"}
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
