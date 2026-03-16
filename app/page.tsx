@@ -14,6 +14,19 @@
     - it's a landing page i don't know what else i may want on it
 */
 
+import Storyboard from "./components/storyboard"
+// once the storyboard is ready I can add it here -- this is so I have it ready
+
+const storyCards= [
+  {
+    label: 'text1',
+    title: 'title1',
+    body: 'body1',
+    pills: ['pill1', 'pill2']
+  }
+]
+
+
 export default function Page() {
   return (
     <section>
