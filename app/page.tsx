@@ -1,17 +1,14 @@
 //This is the homepage, not the layout file!
 /*
 
-  Concept for part of the homepage -- animate signature
-    https://examples.motion.dev/react/motion-path/tutorial
-    -animate signature
-    -"solidify" signature
-    -minimize and move it to the logo spot
+Concept, reworked
+- display a series of storyboard cards connected by a line/dotted line? 
+- cards will be title, body, tags
+- lines between cards will be the scroll progress
+    - sketching out design for this
+    - the outline of the cards can get filled as the user scrolls down the page? animation may be tricky here
+    - alt animation -- some kind of doodle traveling the page, the line is the "path" it leaves behind
 
-    
-  Other add-ons:
-    - 1 phrase describe my work 
-    - a featured project on the home page
-    - it's a landing page i don't know what else i may want on it
 */
 
 import Storyboard from "./components/storyboard"
