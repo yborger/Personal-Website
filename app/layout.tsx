@@ -16,9 +16,6 @@ const quicksand = Quicksand({
   variable: '--font-quicksand',
 });
 
-{/*  RouteLoader component not implemented, uncomment when added:
-import RouteLoader from './components/RouteLoader';
-*/}
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
