@@ -12,12 +12,6 @@ export const casesData = [
   slug: "portfolio/cases/example"
 },
 {
-  title: "Music App User Interface",
-  image: "/music-app/watch concept 3.jpg",
-  summary: "This is a brief summary of the case study.",
-  slug: "portfolio/cases/music-app"
-},
-{
   title: "MyStudyBuddy",
   image: "/mystudybuddy.jpg",
   summary: "This is a brief summary of case study 1.",
