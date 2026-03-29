@@ -26,6 +26,7 @@ Guide for tilt of cards: https://codepen.io/manz/pen/YzRQMYW
 -card tilt added --> 2 or 3 deg max otherwise things are problems
 -parallax esque, it's currently being implemented
 -the stack did not look as nice as i'd hoped when implemented -- the images overlapping did not have the desired effect
+--new art concepts considered for stylizing on procreate
 
 
 
