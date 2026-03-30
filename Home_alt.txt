@@ -1,0 +1,21 @@
+This is a Thinking File - I would like to weigh pros and cons on each design concept and its purpose.
+
+Alt 1:
+    + easier to svg path
+    + acknowledgement of international
+    - seems travel-blogger-esque
+    - the story may not make perfect sense
+
+Alt 2:
+    + very comp-sci-y
+    - not really much to it 
+    + super easy to animate comparatively
+
+Alt 3:
+    + super comp sci
+    + i personally think it will look cool
+    - annoying to svg path
+    - may be hard to animate with scroll bc speed control and the pathing?
+        --> if I remake but we animate the line drawing with no circle it may be better?
+            I can test with procreate animator?
+    
