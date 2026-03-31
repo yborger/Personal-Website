@@ -19,3 +19,10 @@ Alt 3:
         --> if I remake but we animate the line drawing with no circle it may be better?
             I can test with procreate animator?
     
+
+Alt 4 (not made, concept written out):
+    I really enjoy retro design and like 8-bit characters
+    So what if I make the combo scrolling but with a character?
+    Like maybe an 8-bit pixel character that hops up and/or scrolls down while scrolling
+    and has a little idle animation
+    idk I just like the idea of having a little animated character to play with bc it's very me-coded to have a secondary thing to do idly while actively doing another
