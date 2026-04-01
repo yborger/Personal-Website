@@ -26,3 +26,13 @@ Alt 4 (not made, concept written out):
     Like maybe an 8-bit pixel character that hops up and/or scrolls down while scrolling
     and has a little idle animation
     idk I just like the idea of having a little animated character to play with bc it's very me-coded to have a secondary thing to do idly while actively doing another
+
+		Thinking into Alt4 further:
+			-how do i animate the sprite itself? like how do i make the loop for the animation?
+					^^- idle loop, jump loop, fall loop, run/walk right, run/walk left
+			-js to make the platformer aspects
+					-i can make the "jump" or "fall" like up and down arrows that just fully go to the next open space
+						^-make the difference between open space and not open spaces
+					-defined speeds
+					-edgecase considerations: designate borders
+					-mobile doesn't get to play, so maybe a mobile version where you can only go up and down and it follows the scroll?
