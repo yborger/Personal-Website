@@ -36,3 +36,6 @@ Alt 4 (not made, concept written out):
 					-defined speeds
 					-edgecase considerations: designate borders
 					-mobile doesn't get to play, so maybe a mobile version where you can only go up and down and it follows the scroll?
+
+
+            -Developing this as a side project -- how well would it integrate
