@@ -14,7 +14,8 @@ Alt 2:
 Alt 3:
     + super comp sci
     + i personally think it will look cool
-    - annoying to svg path
+    - annoying to svg path?
+        --> I would have to make this path adjustable by screen size so maybe path based on box -- redraw?
     - may be hard to animate with scroll bc speed control and the pathing?
         --> if I remake but we animate the line drawing with no circle it may be better?
             I can test with procreate animator?
@@ -36,6 +37,12 @@ Alt 4 (not made, concept written out):
 					-defined speeds
 					-edgecase considerations: designate borders
 					-mobile doesn't get to play, so maybe a mobile version where you can only go up and down and it follows the scroll?
-
-
             -Developing this as a side project -- how well would it integrate
+    ^^
+    This is very platformer-game style and I love that, but I don't know how well the controls and everything would translate
+        So here's what I'll do to fix this and also incorporate:
+            -Alt 3 will probably look best and animate best
+            -at the top of the page, have a "Story Mode?" button that turns my box things into platforms to run across
+                -make a character run and jump like mario style running and jumping
+                -it's a climbing game maybe? or platformer with a finish line?
+                -each thing that's like a pill shaped thingy that are like "key terms" for me are the platforms
