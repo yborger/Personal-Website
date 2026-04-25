@@ -19,6 +19,10 @@ Alt 3:
     - may be hard to animate with scroll bc speed control and the pathing?
         --> if I remake but we animate the line drawing with no circle it may be better?
             I can test with procreate animator?
+    IDEA FOR RUNNING ALT 3
+        -how to make it compatible regardless of screen size -- algo for drawing the lines that goes against the text boxes specifically
+        -if i make the blocks act as box elements i can force the line to draw around them and exit in certain directions
+        -redraw concept with formula in mind
     
 
 Alt 4 (not made, concept written out):
