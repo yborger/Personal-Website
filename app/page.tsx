@@ -19,6 +19,7 @@ Concept, reworked
 */
 
 
+import { number } from "motion"
 import Storyboard from "./components/storyboard"
 // once the storyboard is ready I can add it here -- this is so I have it ready
 
@@ -27,7 +28,10 @@ const storyCards= [
     label: 'text1',
     title: 'title1',
     body: 'body1',
-    pills: ['pill1', 'pill2']
+    pills: ['pill1', 'pill2'],
+    index: 1,
+    color: "#ff0000",
+    cardRef: (el: HTMLDivElement | null) => void 0
   }
 ]
 
@@ -38,9 +42,8 @@ export default function Page() {
       <h1 className="pt-10 ml-4 mb-8 text-2xl font-semibold tracking-tighter">
         home
       </h1>
-      <p className="ml-4 mb-4 ">
-      {'home page content coming soon...'}
-      </p>
-    </section>
+      <p className="ml-4 mb-4 "></p>
+      
+      </section>
   )
 }
