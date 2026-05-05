@@ -31,82 +31,78 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
     if (!svg || !drawn || !track || !walker || !outer || !hint) return
 
     function buildPath(svg: SVGSVGElement): string {
-      const svgRect  = svg.getBoundingClientRect()
-      const scrollY  = window.scrollY        // current scroll offset
-      const swing    = 48
-      const outset   = 12
-      const r        = 16
-      const points: string[] = []
+  const swing   = 48
+  const outset  = 12
+  const r       = 16
+  const points: string[] = []
 
-      // total document height so the path ends at the bottom of the page
-      const docHeight = document.body.scrollHeight
+  const docHeight = document.body.scrollHeight
+  const docWidth  = document.body.clientWidth
 
-      points.push(`M ${svgRect.width / 2} 0`)
+  points.push(`M ${docWidth / 2} 0`)
 
-      cardRefs.current.forEach((card, i) => {
-        if (!card) return
+  cardRefs.current.forEach((card, i) => {
+    if (!card) return
 
-        const cardRect = card.getBoundingClientRect()
+    // offsetTop/Left give position relative to the document directly
+    // no scroll math needed at all
+    const top    = card.offsetTop    - outset
+    const bottom = card.offsetTop + card.offsetHeight + outset
+    const left   = card.offsetLeft   - outset
+    const right  = card.offsetLeft + card.offsetWidth  + outset
 
-        // add scrollY to convert viewport-relative to document-relative
-        const top    = (cardRect.top    + scrollY) - outset
-        const bottom = (cardRect.bottom + scrollY) + outset
-        const left   = (cardRect.left   - svgRect.left) - outset
-        const right  = (cardRect.right  - svgRect.left) + outset
+    const isRight   = i % 2 === 0
+    const approachX = isRight ? left - swing : right + swing
 
-        const isRight   = i % 2 === 0
-        const approachX = isRight ? left - swing : right + swing
+    const prevBottom = i === 0
+      ? 0
+      : (() => {
+          const prev = cardRefs.current[i - 1]
+          if (!prev) return top
+          return prev.offsetTop + prev.offsetHeight + outset
+        })()
 
-        const prevBottom = i === 0
-          ? 0
-          : (() => {
-              const prev = cardRefs.current[i - 1]
-              if (!prev) return top
-              const pr = prev.getBoundingClientRect()
-              return (pr.bottom + scrollY) + outset
-            })()
+    const travelMid = prevBottom + (top - prevBottom) * 0.5
 
-        const travelMid = prevBottom + (top - prevBottom) * 0.5
+    points.push(`C ${approachX} ${prevBottom + 40}, ${approachX} ${travelMid - 30}, ${approachX} ${travelMid}`)
+    points.push(`C ${approachX} ${travelMid + 30}, ${approachX} ${top - 20}, ${approachX} ${top - 20}`)
 
-        points.push(`C ${approachX} ${prevBottom + 40}, ${approachX} ${travelMid - 30}, ${approachX} ${travelMid}`)
-        points.push(`C ${approachX} ${travelMid + 30}, ${approachX} ${top - 20}, ${approachX} ${top - 20}`)
-
-        if (isRight) {
-          points.push(`L ${approachX} ${top + r}`)
-          points.push(`Q ${approachX} ${top}, ${left + r} ${top}`)
-          points.push(`L ${right - r} ${top}`)
-          points.push(`Q ${right} ${top}, ${right} ${top + r}`)
-          points.push(`L ${right} ${bottom - r}`)
-          points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
-          points.push(`L ${left + r} ${bottom}`)
-          points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
-          points.push(`L ${left} ${top + r}`)
-          points.push(`Q ${left} ${top}, ${left + r} ${top}`)
-          points.push(`L ${approachX} ${bottom + 20}`)
-        } else {
-          points.push(`L ${approachX} ${top + r}`)
-          points.push(`Q ${approachX} ${top}, ${right - r} ${top}`)
-          points.push(`L ${left + r} ${top}`)
-          points.push(`Q ${left} ${top}, ${left} ${top + r}`)
-          points.push(`L ${left} ${bottom - r}`)
-          points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
-          points.push(`L ${right - r} ${bottom}`)
-          points.push(`Q ${right} ${bottom}, ${right} ${bottom - r}`)
-          points.push(`L ${right} ${top + r}`)
-          points.push(`Q ${right} ${top}, ${right - r} ${top}`)
-          points.push(`L ${approachX} ${bottom + 20}`)
-        }
-      })
-
-      const lastCard   = cardRefs.current[cardRefs.current.length - 1]
-      const lastBottom = lastCard
-        ? (lastCard.getBoundingClientRect().bottom + scrollY) + outset
-        : docHeight
-
-      points.push(`C ${svgRect.width / 2} ${lastBottom + 60}, ${svgRect.width / 2} ${lastBottom + 120}, ${svgRect.width / 2} ${docHeight}`)
-
-      return points.join(' ')
+    if (isRight) {
+      points.push(`L ${approachX} ${top + r}`)
+      points.push(`Q ${approachX} ${top}, ${left + r} ${top}`)
+      points.push(`L ${right - r} ${top}`)
+      points.push(`Q ${right} ${top}, ${right} ${top + r}`)
+      points.push(`L ${right} ${bottom - r}`)
+      points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
+      points.push(`L ${left + r} ${bottom}`)
+      points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
+      points.push(`L ${left} ${top + r}`)
+      points.push(`Q ${left} ${top}, ${left + r} ${top}`)
+      points.push(`L ${approachX} ${bottom + 20}`)
+    } else {
+      points.push(`L ${approachX} ${top + r}`)
+      points.push(`Q ${approachX} ${top}, ${right - r} ${top}`)
+      points.push(`L ${left + r} ${top}`)
+      points.push(`Q ${left} ${top}, ${left} ${top + r}`)
+      points.push(`L ${left} ${bottom - r}`)
+      points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
+      points.push(`L ${right - r} ${bottom}`)
+      points.push(`Q ${right} ${bottom}, ${right} ${bottom - r}`)
+      points.push(`L ${right} ${top + r}`)
+      points.push(`Q ${right} ${top}, ${right - r} ${top}`)
+      points.push(`L ${approachX} ${bottom + 20}`)
     }
+  })
+
+  const lastCard   = cardRefs.current[cardRefs.current.length - 1]
+  const lastBottom = lastCard
+    ? lastCard.offsetTop + lastCard.offsetHeight + outset
+    : docHeight
+
+  points.push(`C ${docWidth / 2} ${lastBottom + 60}, ${docWidth / 2} ${lastBottom + 120}, ${docWidth / 2} ${docHeight}`)
+
+  return points.join(' ')
+}
 
     function applyPath(
       svg:   SVGSVGElement,
