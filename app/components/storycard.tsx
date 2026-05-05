@@ -1,28 +1,27 @@
 //This file will be to make the line in home alt 3, since the scroll data is client-side and i can't have that directly on the home page
+'use client'
 
-
-type CardData = {
-    label: string
-    title: string
-    body: string
-    pills: string[]
-    index: number
-    color: string
-    cardRef: (el: HTMLDivElement | null) => void
-
+type StoryCardProps = {
+  label: string
+  title: string
+  body: string
+  pills: string[]
+  index: number
+  color: string
+  cardRef: (el: HTMLDivElement | null) => void
 }
 
-
-export default function StoryCard({ label,
+export default function StoryCard({
+  label,
   title,
   body,
   pills,
   index,
   color,
   cardRef,
-}: CardData){
-    return (
-        <div
+}: StoryCardProps) {
+  return (
+    <div
       ref={cardRef}
       style={{
         borderColor: `${color}59`,
@@ -32,8 +31,13 @@ export default function StoryCard({ label,
         'relative z-10 mb-[280px]',
         index % 2 === 0
           ? 'ml-[100px] mr-8'
-          : 'ml-8 mr-[100px]','opacity-0 translate-y-3','transition-all duration-500 ease-out','border rounded-xl px-6 py-5',].join(' ')}
-    ><p className="text-[11px] tracking-widest uppercase text-neutral-400 mb-1">
+          : 'ml-8 mr-[100px]',
+        'opacity-0 translate-y-3',
+        'transition-all duration-500 ease-out',
+        'border rounded-xl px-6 py-5',
+      ].join(' ')}
+    >
+      <p className="text-[11px] tracking-widest uppercase text-neutral-400 mb-1">
         {label}
       </p>
       <p className="text-[17px] font-medium leading-snug mb-2 text-neutral-800 dark:text-neutral-100">

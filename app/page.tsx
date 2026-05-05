@@ -11,45 +11,43 @@ Concept, reworked
 
 */
 
+import Storyboard from './components/storyboard'
 
-/*
-{`Hi! I'm Yael Borger, and I am a software developer from New Jersey. My journey into the tech world began with a fascination for problem-solving and technology, leading me to explore various programming languages and frameworks`}            
-{'Throughout my career, I have honed my skills in JavaScript, Python, and HTML/CSS, and I enjoy working across the full stack, from frontend development to backend systems. I take pride in crafting engaging user experiences that not only look great but also function smoothly and seamlessly.'}
-{"I have worked on projects ranging from simple applications to complex software solutions, each teaching me something new. I'm particularly interested in web development and UI/UX design."}
-*/
-
-
-import { number } from "motion"
-import Storyboard from "./components/storyboard"
-// once the storyboard is ready I can add it here -- this is so I have it ready
-
-const storyCards= [
+const storyCards = [
   {
-    label: 'text1',
-    title: 'title1',
-    body: 'body1',
-    pills: ['pill1', 'pill2'],
-    index: 1,
-    color: "#ff0000",
-    cardRef: (el: HTMLDivElement | null) => void 0
+    label: 'Hello',
+    title: "Hi, I'm Yael Borger",
+    body: 'Software developer from New Jersey, building things for the web.',
+    pills: ['Full stack', 'UI / UX'],
+    color: '#7F77DD',
   },
   {
-    label: 'text1',
-    title: 'title1',
-    body: 'body1',
-    pills: ['pill1', 'pill2'],
-    index: 1,
-    color: "#ff0000",
-    cardRef: (el: HTMLDivElement | null) => void 0
-  }
+    label: 'Background',
+    title: 'Driven by problem-solving',
+    body: 'A curiosity for how things work led me across the full stack — backend systems to polished interfaces.',
+    pills: ['JavaScript', 'Python', 'React'],
+    color: '#D4537E',
+  },
+  {
+    label: 'Focus',
+    title: 'Crafting experiences that feel right',
+    body: 'Frontend craft meets UX thinking — the details that make interfaces feel intentional and alive.',
+    pills: ['Web dev', 'Animation', 'Design'],
+    color: '#1D9E75',
+  },
+  {
+    label: 'Work',
+    title: 'See the portfolio',
+    body: 'Projects ranging from small apps to complex software — each one teaching something new.',
+    pills: ['View projects'],
+    color: '#378ADD',
+  },
 ]
-
-//      <Storyboard cards={storyCards} where hte <p> is />
 
 export default function Page() {
   return (
-    <section>
-      <p>hi</p>
-      </section>
+    <section className="relative min-h-screen pt-10 px-4">
+      <Storyboard cards={storyCards} />
+    </section>
   )
 }

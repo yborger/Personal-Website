@@ -11,107 +11,15 @@ type CardData = {
 }
 
 export default function StoryBoard({ cards }: { cards: CardData[] }) {
-  const svgRef    = useRef<SVGSVGElement>(null)
-  const drawnRef  = useRef<SVGPathElement>(null)
-  const trackRef  = useRef<SVGPathElement>(null)
-  const walkerRef = useRef<SVGCircleElement>(null)
-  const outerRef  = useRef<SVGCircleElement>(null)
-  const hintRef   = useRef<HTMLDivElement>(null)
-  const cardRefs  = useRef<(HTMLDivElement | null)[]>([])
-  const ghostRef  = useRef<SVGPathElement | null>(null)
+  const svgRef      = useRef<SVGSVGElement>(null)
+  const drawnRef    = useRef<SVGPathElement>(null)
+  const trackRef    = useRef<SVGPathElement>(null)
+  const walkerRef   = useRef<SVGCircleElement>(null)
+  const outerRef    = useRef<SVGCircleElement>(null)
+  const hintRef     = useRef<HTMLDivElement>(null)
+  const cardRefs    = useRef<(HTMLDivElement | null)[]>([])
+  const ghostRef    = useRef<SVGPathElement | null>(null)
   const totalLenRef = useRef<number>(0)
-
-  function buildPath() {
-    const svg = svgRef.current
-    if (!svg) return ''
-
-    // the SVG bounding rect -- actual pixel dimensions
-    const svgRect = svg.getBoundingClientRect()
-
-    // margin from the far edge of each card to where the line swings out to
-    const swing = 32
-
-    const points: string[] = []
-    points.push(`M ${svgRect.width / 2} 0`)
-
-    cardRefs.current.forEach((card, i) => {
-      if (!card) return
-
-      const cardRect = card.getBoundingClientRect()
-
-      // convert card's viewport position into SVG-relative coordinates
-      const top    = cardRect.top    - svgRect.top
-      const bottom = cardRect.bottom - svgRect.top
-      const left   = cardRect.left   - svgRect.left
-      const right  = cardRect.right  - svgRect.left
-      const midY   = (top + bottom) / 2
-
-      const isRight = i % 2 === 0
-
-      // the far edge the line swings out to — opposite side from the card
-      const swingX = isRight
-        ? left - swing        // card is on the right, line swings left
-        : right + swing       // card is on the left, line swings right
-
-      const prevBottom = i === 0
-        ? 0
-        : (() => {
-            const prev = cardRefs.current[i - 1]
-            if (!prev) return top
-            const r = prev.getBoundingClientRect()
-            return r.bottom - svgRect.top
-          })()
-
-      const travelMid = prevBottom + (top - prevBottom) * 0.5
-
-      // curve from previous position, swing out to opposite side, approach card
-      points.push(`C ${swingX} ${prevBottom + 40}, ${swingX} ${travelMid - 30}, ${swingX} ${travelMid}`)
-      points.push(`C ${swingX} ${travelMid + 30}, ${swingX} ${top - 20}, ${swingX} ${top}`)
-
-      // run down the far edge of the card
-      points.push(`C ${swingX} ${top + 30}, ${swingX} ${midY - 20}, ${swingX} ${midY}`)
-      points.push(`C ${swingX} ${midY + 20}, ${swingX} ${bottom - 20}, ${swingX} ${bottom}`)
-    })
-
-    const lastCard = cardRefs.current[cardRefs.current.length - 1]
-    const lastBottom = lastCard
-      ? lastCard.getBoundingClientRect().bottom - svgRect.top
-      : svgRect.height
-
-    points.push(`C ${svgRect.width / 2} ${lastBottom + 60}, ${svgRect.width / 2} ${lastBottom + 120}, ${svgRect.width / 2} ${svgRect.height}`)
-
-    return points.join(' ')
-  }
-
-  function applyPath() {
-    const svg    = svgRef.current
-    const drawn  = drawnRef.current
-    const track  = trackRef.current
-    if (!svg || !drawn || !track) return
-
-    const PATH = buildPath()
-    if (!PATH) return
-
-    track.setAttribute('d', PATH)
-    drawn.setAttribute('d', PATH)
-
-    // remove old ghost if one exists
-    if (ghostRef.current) {
-      svg.removeChild(ghostRef.current)
-    }
-
-    const ghost = document.createElementNS('http://www.w3.org/2000/svg', 'path')
-    ghost.setAttribute('d', PATH)
-    ghost.setAttribute('fill', 'none')
-    ghost.style.visibility = 'hidden'
-    svg.appendChild(ghost)
-    ghostRef.current = ghost
-
-    const totalLen = ghost.getTotalLength()
-    totalLenRef.current = totalLen
-    drawn.style.strokeDasharray  = String(totalLen)
-    drawn.style.strokeDashoffset = String(totalLen)
-  }
 
   useEffect(() => {
     const svg    = svgRef.current
@@ -122,10 +30,114 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
     const hint   = hintRef.current
     if (!svg || !drawn || !track || !walker || !outer || !hint) return
 
-    // build path once on mount after cards have rendered
-    applyPath()
+    function buildPath(svg: SVGSVGElement): string {
+      const svgRect  = svg.getBoundingClientRect()
+      const scrollY  = window.scrollY        // current scroll offset
+      const swing    = 48
+      const outset   = 12
+      const r        = 16
+      const points: string[] = []
 
-    function lerpColor(a: string, b: string, t: number) {
+      // total document height so the path ends at the bottom of the page
+      const docHeight = document.body.scrollHeight
+
+      points.push(`M ${svgRect.width / 2} 0`)
+
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return
+
+        const cardRect = card.getBoundingClientRect()
+
+        // add scrollY to convert viewport-relative to document-relative
+        const top    = (cardRect.top    + scrollY) - outset
+        const bottom = (cardRect.bottom + scrollY) + outset
+        const left   = (cardRect.left   - svgRect.left) - outset
+        const right  = (cardRect.right  - svgRect.left) + outset
+
+        const isRight   = i % 2 === 0
+        const approachX = isRight ? left - swing : right + swing
+
+        const prevBottom = i === 0
+          ? 0
+          : (() => {
+              const prev = cardRefs.current[i - 1]
+              if (!prev) return top
+              const pr = prev.getBoundingClientRect()
+              return (pr.bottom + scrollY) + outset
+            })()
+
+        const travelMid = prevBottom + (top - prevBottom) * 0.5
+
+        points.push(`C ${approachX} ${prevBottom + 40}, ${approachX} ${travelMid - 30}, ${approachX} ${travelMid}`)
+        points.push(`C ${approachX} ${travelMid + 30}, ${approachX} ${top - 20}, ${approachX} ${top - 20}`)
+
+        if (isRight) {
+          points.push(`L ${approachX} ${top + r}`)
+          points.push(`Q ${approachX} ${top}, ${left + r} ${top}`)
+          points.push(`L ${right - r} ${top}`)
+          points.push(`Q ${right} ${top}, ${right} ${top + r}`)
+          points.push(`L ${right} ${bottom - r}`)
+          points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
+          points.push(`L ${left + r} ${bottom}`)
+          points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
+          points.push(`L ${left} ${top + r}`)
+          points.push(`Q ${left} ${top}, ${left + r} ${top}`)
+          points.push(`L ${approachX} ${bottom + 20}`)
+        } else {
+          points.push(`L ${approachX} ${top + r}`)
+          points.push(`Q ${approachX} ${top}, ${right - r} ${top}`)
+          points.push(`L ${left + r} ${top}`)
+          points.push(`Q ${left} ${top}, ${left} ${top + r}`)
+          points.push(`L ${left} ${bottom - r}`)
+          points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
+          points.push(`L ${right - r} ${bottom}`)
+          points.push(`Q ${right} ${bottom}, ${right} ${bottom - r}`)
+          points.push(`L ${right} ${top + r}`)
+          points.push(`Q ${right} ${top}, ${right - r} ${top}`)
+          points.push(`L ${approachX} ${bottom + 20}`)
+        }
+      })
+
+      const lastCard   = cardRefs.current[cardRefs.current.length - 1]
+      const lastBottom = lastCard
+        ? (lastCard.getBoundingClientRect().bottom + scrollY) + outset
+        : docHeight
+
+      points.push(`C ${svgRect.width / 2} ${lastBottom + 60}, ${svgRect.width / 2} ${lastBottom + 120}, ${svgRect.width / 2} ${docHeight}`)
+
+      return points.join(' ')
+    }
+
+    function applyPath(
+      svg:   SVGSVGElement,
+      drawn: SVGPathElement,
+      track: SVGPathElement,
+    ) {
+      const PATH = buildPath(svg)
+      if (!PATH) return
+
+      track.setAttribute('d', PATH)
+      drawn.setAttribute('d', PATH)
+
+      const existing = ghostRef.current
+      if (existing && svg.contains(existing)) {
+        svg.removeChild(existing)
+      }
+
+      const ghost = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+      ghost.setAttribute('d', PATH)
+      ghost.setAttribute('fill', 'none')
+      ghost.style.visibility = 'hidden'
+      svg.appendChild(ghost)
+      ghostRef.current = ghost
+
+      const totalLen       = ghost.getTotalLength()
+      totalLenRef.current  = totalLen
+      drawn.style.strokeDasharray  = String(totalLen)
+      drawn.style.strokeDashoffset = String(totalLen)
+    }
+
+    function coloration(a: string, b: string, t: number) {
       const ah = parseInt(a.slice(1), 16)
       const bh = parseInt(b.slice(1), 16)
       const ar = (ah >> 16) & 255, ag = (ah >> 8) & 255, ab = ah & 255
@@ -133,19 +145,24 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
       return '#' + [ar+(br-ar)*t, ag+(bg-ag)*t, ab+(bb-ab)*t]
         .map(v => Math.round(v).toString(16).padStart(2,'0')).join('')
     }
-
     const colorStops = cards.map(c => c.color)
 
     function gradColor(t: number) {
       const segments = colorStops.length - 1
       const scaled   = t * segments
       const i        = Math.min(Math.floor(scaled), segments - 1)
-      return lerpColor(colorStops[i], colorStops[i + 1], scaled - i)
+      return coloration(colorStops[i], colorStops[i + 1], scaled - i)
     }
 
-    function onScroll() {
+    function onScroll(
+      drawn:  SVGPathElement,
+      walker: SVGCircleElement,
+      outer:  SVGCircleElement,
+      hint:   HTMLDivElement,
+    ) {
       const totalLen = totalLenRef.current
-      if (!totalLen) return
+      const ghost    = ghostRef.current
+      if (!totalLen || !ghost) return
 
       const scrollTop = window.scrollY
       const maxScroll = document.body.scrollHeight - window.innerHeight
@@ -154,16 +171,11 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
 
       drawn.style.strokeDashoffset = String(totalLen - drawLen)
 
-      const ghost = ghostRef.current
-      if (ghost) {
-        const pt = ghost.getPointAtLength(drawLen)
-        const cx = String(pt.x)
-        const cy = String(pt.y)
-        walker.setAttribute('cx', cx)
-        walker.setAttribute('cy', cy)
-        outer.setAttribute('cx', cx)
-        outer.setAttribute('cy', cy)
-      }
+      const pt = ghost.getPointAtLength(drawLen)
+      walker.setAttribute('cx', String(pt.x))
+      walker.setAttribute('cy', String(pt.y))
+      outer.setAttribute('cx', String(pt.x))
+      outer.setAttribute('cy', String(pt.y))
 
       const col = gradColor(prog)
       walker.setAttribute('fill', col)
@@ -183,10 +195,11 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
       hint.style.opacity = prog > 0.04 ? '0' : '1'
     }
 
-    // rebuild path on resize so it always hugs the actual card positions
-    function onResize() {
-      applyPath()
-    }
+    // bind the guarded non-null values into the listeners at registration time
+    const handleScroll = () => onScroll(drawn, walker, outer, hint)
+    const handleResize = () => applyPath(svg, drawn, track)
+
+    applyPath(svg, drawn, track)
 
     const first = cardRefs.current[0]
     if (first) {
@@ -194,20 +207,28 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
       first.classList.remove('opacity-0', 'translate-y-3')
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onResize)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleResize)
     return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onResize)
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
     }
   }, [cards])
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" style={{ minHeight: '100%' }}>
+
       <svg
         ref={svgRef}
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        // no viewBox — coordinates are in real pixels now
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          overflow: 'visible',
+          pointerEvents: 'none',
+        }}
       >
         <defs>
           <linearGradient id="lg" x1="0" y1="0" x2="0" y2="1">
@@ -235,8 +256,8 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
           strokeLinejoin="round"
           style={{ transition: 'stroke-dashoffset 0.05s linear' }}
         />
-        <circle ref={walkerRef} r="7"  fill="#7F77DD" opacity="0" />
-        <circle ref={outerRef}  r="12" fill="none" stroke="#7F77DD" strokeWidth="1" opacity="0" />
+        <circle ref={walkerRef} r="10" fill="#7F77DD" opacity="0" />
+        <circle ref={outerRef}  r="16" fill="none" stroke="#7F77DD" strokeWidth="1.5" opacity="0" />
       </svg>
 
       {cards.map((card, i) => (
@@ -259,6 +280,7 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
         <span className="block w-2 h-2 border-r border-b border-neutral-400 rotate-45" />
         scroll
       </div>
+
     </div>
   )
 }
