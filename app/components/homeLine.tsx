@@ -1,1 +1,0 @@
-//This file will be to make the line in home alt 3, since the scroll data is client-side and i can't have that directly on the home page

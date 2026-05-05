@@ -32,18 +32,24 @@ const storyCards= [
     index: 1,
     color: "#ff0000",
     cardRef: (el: HTMLDivElement | null) => void 0
+  },
+  {
+    label: 'text1',
+    title: 'title1',
+    body: 'body1',
+    pills: ['pill1', 'pill2'],
+    index: 1,
+    color: "#ff0000",
+    cardRef: (el: HTMLDivElement | null) => void 0
   }
 ]
 
+//      <Storyboard cards={storyCards} where hte <p> is />
 
 export default function Page() {
   return (
     <section>
-      <h1 className="pt-10 ml-4 mb-8 text-2xl font-semibold tracking-tighter">
-        home
-      </h1>
-      <p className="ml-4 mb-4 "></p>
-      
+      <p>hi</p>
       </section>
   )
 }
