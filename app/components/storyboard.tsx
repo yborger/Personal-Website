@@ -10,6 +10,11 @@ type CardData = {
   color: string
 }
 
+//To Update:
+    // Buildpath --> add a randomization factor to add some hand-drawn-ness
+    // Buildpath --> the transition between cards is not great, give personality
+    
+
 export default function StoryBoard({ cards }: { cards: CardData[] }) {
   const svgRef      = useRef<SVGSVGElement>(null)
   const drawnRef    = useRef<SVGPathElement>(null)
@@ -31,78 +36,78 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
     if (!svg || !drawn || !track || !walker || !outer || !hint) return
 
     function buildPath(svg: SVGSVGElement): string {
-  const swing   = 48
-  const outset  = 12
-  const r       = 16
-  const points: string[] = []
+      const swing   = 48
+      const outset  = 12
+      const r       = 16
+      const points: string[] = []
 
-  const docHeight = document.body.scrollHeight
-  const docWidth  = document.body.clientWidth
+      const docHeight = document.body.scrollHeight
+      const docWidth  = document.body.clientWidth
 
-  points.push(`M ${docWidth / 2} 0`)
+      points.push(`M ${docWidth / 2} 0`)
 
-  cardRefs.current.forEach((card, i) => {
-    if (!card) return
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return
 
-    // offsetTop/Left give position relative to the document directly
-    // no scroll math needed at all
-    const top    = card.offsetTop    - outset
-    const bottom = card.offsetTop + card.offsetHeight + outset
-    const left   = card.offsetLeft   - outset
-    const right  = card.offsetLeft + card.offsetWidth  + outset
+        // offsetTop/Left give position relative to the document directly
+        const top    = card.offsetTop    - outset
+        const bottom = card.offsetTop + card.offsetHeight + outset
+        const left   = card.offsetLeft   - outset
+        const right  = card.offsetLeft + card.offsetWidth  + outset
 
-    const isRight   = i % 2 === 0
-    const approachX = isRight ? left - swing : right + swing
+        const isRight   = i % 2 === 0
+        const approachX = isRight ? left - swing : right + swing
 
-    const prevBottom = i === 0
-      ? 0
-      : (() => {
-          const prev = cardRefs.current[i - 1]
-          if (!prev) return top
-          return prev.offsetTop + prev.offsetHeight + outset
-        })()
+        const prevBottom = i === 0
+          ? 0
+          : (() => {
+              const prev = cardRefs.current[i - 1]
+              if (!prev) return top
+              return prev.offsetTop + prev.offsetHeight + outset
+            })()
 
-    const travelMid = prevBottom + (top - prevBottom) * 0.5
+        const travelMid = prevBottom + (top - prevBottom) * 0.5
+        
+        points.push(`C ${approachX} ${prevBottom + 40}, ${approachX} ${travelMid - 30}, ${approachX} ${travelMid}`)
+        points.push(`C ${approachX} ${travelMid + 30}, ${approachX} ${top - 20}, ${approachX} ${top - 20}`)
 
-    points.push(`C ${approachX} ${prevBottom + 40}, ${approachX} ${travelMid - 30}, ${approachX} ${travelMid}`)
-    points.push(`C ${approachX} ${travelMid + 30}, ${approachX} ${top - 20}, ${approachX} ${top - 20}`)
+        if (isRight) {
+          points.push(`L ${approachX} ${top + r}`)
+          points.push(`Q ${approachX} ${top}, ${left + r} ${top}`)
+          points.push(`L ${right - r} ${top}`)
+          points.push(`Q ${right} ${top}, ${right} ${top + r}`)
+          points.push(`L ${right} ${bottom - r}`)
+          points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
+          points.push(`L ${left + r} ${bottom}`)
+          points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
+          points.push(`L ${left} ${top + r}`)
+          points.push(`Q ${left} ${top}, ${left + r} ${top}`)
+          points.push(`L ${approachX} ${bottom + 20}`)
+        } 
+        else {
+          points.push(`L ${approachX} ${top + r}`)
+          points.push(`Q ${approachX} ${top}, ${right - r} ${top}`)
+          points.push(`L ${left + r} ${top}`)
+          points.push(`Q ${left} ${top}, ${left} ${top + r}`)
+          points.push(`L ${left} ${bottom - r}`)
+          points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
+          points.push(`L ${right - r} ${bottom}`)
+          points.push(`Q ${right} ${bottom}, ${right} ${bottom - r}`)
+          points.push(`L ${right} ${top + r}`)
+          points.push(`Q ${right} ${top}, ${right - r} ${top}`)
+          points.push(`L ${approachX} ${bottom + 20}`)
+        }
+      })
 
-    if (isRight) {
-      points.push(`L ${approachX} ${top + r}`)
-      points.push(`Q ${approachX} ${top}, ${left + r} ${top}`)
-      points.push(`L ${right - r} ${top}`)
-      points.push(`Q ${right} ${top}, ${right} ${top + r}`)
-      points.push(`L ${right} ${bottom - r}`)
-      points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
-      points.push(`L ${left + r} ${bottom}`)
-      points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
-      points.push(`L ${left} ${top + r}`)
-      points.push(`Q ${left} ${top}, ${left + r} ${top}`)
-      points.push(`L ${approachX} ${bottom + 20}`)
-    } else {
-      points.push(`L ${approachX} ${top + r}`)
-      points.push(`Q ${approachX} ${top}, ${right - r} ${top}`)
-      points.push(`L ${left + r} ${top}`)
-      points.push(`Q ${left} ${top}, ${left} ${top + r}`)
-      points.push(`L ${left} ${bottom - r}`)
-      points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
-      points.push(`L ${right - r} ${bottom}`)
-      points.push(`Q ${right} ${bottom}, ${right} ${bottom - r}`)
-      points.push(`L ${right} ${top + r}`)
-      points.push(`Q ${right} ${top}, ${right - r} ${top}`)
-      points.push(`L ${approachX} ${bottom + 20}`)
+      const lastCard   = cardRefs.current[cardRefs.current.length - 1]
+      const lastBottom = lastCard
+        ? lastCard.offsetTop + lastCard.offsetHeight + outset
+        : docHeight
+
+      points.push(`C ${docWidth / 2} ${lastBottom + 60}, ${docWidth / 2} ${lastBottom + 120}, ${docWidth / 2} ${docHeight}`)
+
+      return points.join(' ')
     }
-  })
-
-  const lastCard   = cardRefs.current[cardRefs.current.length - 1]
-  const lastBottom = lastCard
-    ? lastCard.offsetTop + lastCard.offsetHeight + outset
-    : docHeight
-
-  points.push(`C ${docWidth / 2} ${lastBottom + 60}, ${docWidth / 2} ${lastBottom + 120}, ${docWidth / 2} ${docHeight}`)
-
-  return points.join(' ')
-}
 
     function applyPath(
       svg:   SVGSVGElement,
@@ -160,10 +165,39 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
       const ghost    = ghostRef.current
       if (!totalLen || !ghost) return
 
-      const scrollTop = window.scrollY
-      const maxScroll = document.body.scrollHeight - window.innerHeight
-      const prog      = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0
-      const drawLen   = prog * totalLen
+      const scrollTop    = window.scrollY
+      const viewHeight   = window.innerHeight
+      const cardCount    = cardRefs.current.filter(Boolean).length
+
+      // figure out how far through the page we are on a per-card basis
+      const segmentLen = totalLen / cardCount
+
+      let drawLen = 0
+
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return
+
+        const cardTop    = card.offsetTop
+        const cardHeight = card.offsetHeight
+
+        // center of the card in document space
+        const cardCenter = cardTop + cardHeight / 2
+
+        // -1 = card is one viewport below, 0 = card is centered, 1 = card is one viewport above
+        const viewCenter  = scrollTop + viewHeight / 2
+        const distFromCenter = (viewCenter - cardCenter) / viewHeight
+
+        // clamp to -0.5 to 0.5 -- each card owns exactly its viewport window
+        const clamped = Math.max(-0.5, Math.min(0.5, distFromCenter))
+
+        // convert to 0-1 progress for this card's segment
+        // 0 when card is below center, 1 when card is above center
+        const segProg = clamped + 0.5
+
+        drawLen += segProg * segmentLen
+      })
+
+      drawLen = Math.min(drawLen, totalLen)
 
       drawn.style.strokeDashoffset = String(totalLen - drawLen)
 
@@ -173,11 +207,12 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
       outer.setAttribute('cx', String(pt.x))
       outer.setAttribute('cy', String(pt.y))
 
-      const col = gradColor(prog)
+      const globalProg = drawLen / totalLen
+      const col = gradColor(globalProg)
       walker.setAttribute('fill', col)
       outer.setAttribute('stroke', col)
-      walker.setAttribute('opacity', prog > 0.005 ? '1' : '0')
-      outer.setAttribute('opacity',  prog > 0.005 ? '0.35' : '0')
+      walker.setAttribute('opacity', drawLen > 10 ? '1' : '0')
+      outer.setAttribute('opacity',  drawLen > 10 ? '0.35' : '0')
 
       cardRefs.current.forEach(card => {
         if (!card) return
@@ -188,7 +223,7 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
         }
       })
 
-      hint.style.opacity = prog > 0.04 ? '0' : '1'
+      hint.style.opacity = drawLen > 10 ? '0' : '1'
     }
 
     // bind the guarded non-null values into the listeners at registration time
@@ -217,7 +252,7 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
       <svg
         ref={svgRef}
         style={{
-          position: 'absolute',
+          position: 'relative',
           top: 0,
           left: 0,
           width: '100%',
