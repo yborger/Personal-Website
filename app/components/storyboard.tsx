@@ -35,81 +35,135 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
     const hint   = hintRef.current
     if (!svg || !drawn || !track || !walker || !outer || !hint) return
 
+
+//isolating the path-building logic
+
+
+
+
+
+
+
+
+
+
+
+
     function buildPath(svg: SVGSVGElement): string {
-      const swing   = 48
-      const outset  = 12
-      const r       = 16
-      const points: string[] = []
+  const swing   = 48
+  const outset  = 12
+  const r       = 16
+  const points: string[] = []
 
-      const docHeight = document.body.scrollHeight
-      const docWidth  = document.body.clientWidth
+  const docHeight = document.body.scrollHeight
+  const docWidth  = document.body.clientWidth
 
-      points.push(`M ${docWidth / 2} 0`)
+  const firstCard = cardRefs.current[0]
+  const firstTop  = firstCard ? firstCard.offsetTop - outset : 0
+  const firstLeft = firstCard ? (firstCard.offsetLeft - outset) - swing : 0
 
-      cardRefs.current.forEach((card, i) => {
-        if (!card) return
+  // start from top-right corner and wave across to the first card's approach point
+  points.push(`M ${docWidth} 0`)
+  points.push(`C ${docWidth * 0.75} 0, ${docWidth * 0.6} ${firstTop * 0.25}, ${docWidth * 0.5} ${firstTop * 0.25}`)
+  points.push(`C ${docWidth * 0.4} ${firstTop * 0.25}, ${docWidth * 0.25} ${firstTop * 0.5}, ${docWidth * 0.15} ${firstTop * 0.5}`)
+  points.push(`C ${docWidth * 0.05} ${firstTop * 0.5}, ${firstLeft - 40} ${firstTop * 0.75}, ${firstLeft} ${firstTop}`)
 
-        // offsetTop/Left give position relative to the document directly
-        const top    = card.offsetTop    - outset
-        const bottom = card.offsetTop + card.offsetHeight + outset
-        const left   = card.offsetLeft   - outset
-        const right  = card.offsetLeft + card.offsetWidth  + outset
+  cardRefs.current.forEach((card, i) => {
+    if (!card) return
 
-        const isRight   = i % 2 === 0
-        const approachX = isRight ? left - swing : right + swing
+    const top    = card.offsetTop    - outset
+    const bottom = card.offsetTop + card.offsetHeight + outset
+    const left   = card.offsetLeft   - outset
+    const right  = card.offsetLeft + card.offsetWidth  + outset
 
-        const prevBottom = i === 0
-          ? 0
-          : (() => {
-              const prev = cardRefs.current[i - 1]
-              if (!prev) return top
-              return prev.offsetTop + prev.offsetHeight + outset
-            })()
+    const isRight   = i % 2 === 0
+    const approachX = isRight ? left - swing : right + swing
 
-        const travelMid = prevBottom + (top - prevBottom) * 0.5
-        
-        points.push(`C ${approachX} ${prevBottom + 40}, ${approachX} ${travelMid - 30}, ${approachX} ${travelMid}`)
-        points.push(`C ${approachX} ${travelMid + 30}, ${approachX} ${top - 20}, ${approachX} ${top - 20}`)
+    const prevBottom = i === 0
+      ? 0
+      : (() => {
+          const prev = cardRefs.current[i - 1]
+          if (!prev) return top
+          return prev.offsetTop + prev.offsetHeight + outset
+        })()
 
-        if (isRight) {
-          points.push(`L ${approachX} ${top + r}`)
-          points.push(`Q ${approachX} ${top}, ${left + r} ${top}`)
-          points.push(`L ${right - r} ${top}`)
-          points.push(`Q ${right} ${top}, ${right} ${top + r}`)
-          points.push(`L ${right} ${bottom - r}`)
-          points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
-          points.push(`L ${left + r} ${bottom}`)
-          points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
-          points.push(`L ${left} ${top + r}`)
-          points.push(`Q ${left} ${top}, ${left + r} ${top}`)
-          points.push(`L ${approachX} ${bottom + 20}`)
-        } 
-        else {
-          points.push(`L ${approachX} ${top + r}`)
-          points.push(`Q ${approachX} ${top}, ${right - r} ${top}`)
-          points.push(`L ${left + r} ${top}`)
-          points.push(`Q ${left} ${top}, ${left} ${top + r}`)
-          points.push(`L ${left} ${bottom - r}`)
-          points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
-          points.push(`L ${right - r} ${bottom}`)
-          points.push(`Q ${right} ${bottom}, ${right} ${bottom - r}`)
-          points.push(`L ${right} ${top + r}`)
-          points.push(`Q ${right} ${top}, ${right - r} ${top}`)
-          points.push(`L ${approachX} ${bottom + 20}`)
-        }
-      })
+    const travelMid = prevBottom + (top - prevBottom) * 0.5
+    const travelHeight = top - prevBottom
 
-      const lastCard   = cardRefs.current[cardRefs.current.length - 1]
-      const lastBottom = lastCard
-        ? lastCard.offsetTop + lastCard.offsetHeight + outset
-        : docHeight
+    if (i === 0) {
+      // already arrived at firstLeft, firstTop — just drop into the card trace
+    } else {
+      // wavy transition between cards
+      // the line exits the previous card on one side and waves across to the next
+      const prevCard    = cardRefs.current[i - 1]
+      const prevIsRight = (i - 1) % 2 === 0
+      const prevApproachX = prevCard
+        ? prevIsRight
+          ? (prevCard.offsetLeft - outset) - swing
+          : (prevCard.offsetLeft + prevCard.offsetWidth + outset) + swing
+        : approachX
 
-      points.push(`C ${docWidth / 2} ${lastBottom + 60}, ${docWidth / 2} ${lastBottom + 120}, ${docWidth / 2} ${docHeight}`)
-
-      return points.join(' ')
+      // wave across: exit previous side, bow out to center, arrive at next side
+      points.push(`C ${prevApproachX} ${prevBottom + travelHeight * 0.15}, ${docWidth * 0.5} ${travelMid - travelHeight * 0.1}, ${docWidth * 0.5} ${travelMid}`)
+      points.push(`C ${docWidth * 0.5} ${travelMid + travelHeight * 0.1}, ${approachX} ${top - travelHeight * 0.15}, ${approachX} ${top - 20}`)
     }
 
-    function applyPath(
+    if (isRight) {
+      points.push(`L ${approachX} ${top + r}`)
+      points.push(`Q ${approachX} ${top}, ${left + r} ${top}`)
+      points.push(`L ${right - r} ${top}`)
+      points.push(`Q ${right} ${top}, ${right} ${top + r}`)
+      points.push(`L ${right} ${bottom - r}`)
+      points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
+      points.push(`L ${left + r} ${bottom}`)
+      points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
+      points.push(`L ${left} ${top + r}`)
+      points.push(`Q ${left} ${top}, ${left + r} ${top}`)
+      points.push(`L ${approachX} ${bottom + 20}`)
+    } else {
+      points.push(`L ${approachX} ${top + r}`)
+      points.push(`Q ${approachX} ${top}, ${right - r} ${top}`)
+      points.push(`L ${left + r} ${top}`)
+      points.push(`Q ${left} ${top}, ${left} ${top + r}`)
+      points.push(`L ${left} ${bottom - r}`)
+      points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
+      points.push(`L ${right - r} ${bottom}`)
+      points.push(`Q ${right} ${bottom}, ${right} ${bottom - r}`)
+      points.push(`L ${right} ${top + r}`)
+      points.push(`Q ${right} ${top}, ${right - r} ${top}`)
+      points.push(`L ${approachX} ${bottom + 20}`)
+    }
+  })
+
+  const lastCard   = cardRefs.current[cardRefs.current.length - 1]
+  const lastBottom = lastCard
+    ? lastCard.offsetTop + lastCard.offsetHeight + outset
+    : docHeight
+
+  points.push(`C ${docWidth / 2} ${lastBottom + 60}, ${docWidth / 2} ${lastBottom + 120}, ${docWidth / 2} ${docHeight}`)
+
+  return points.join(' ')
+}
+
+//isolating path-building logic
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function applyPath(
       svg:   SVGSVGElement,
       drawn: SVGPathElement,
       track: SVGPathElement,
