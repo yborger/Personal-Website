@@ -62,11 +62,14 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
   const firstTop  = firstCard ? firstCard.offsetTop - outset : 0
   const firstLeft = firstCard ? (firstCard.offsetLeft - outset) - swing : 0
 
-  // start from top-right corner and wave across to the first card's approach point
-  points.push(`M ${docWidth} 0`)
-  points.push(`C ${docWidth * 0.75} 0, ${docWidth * 0.6} ${firstTop * 0.25}, ${docWidth * 0.5} ${firstTop * 0.25}`)
-  points.push(`C ${docWidth * 0.4} ${firstTop * 0.25}, ${docWidth * 0.25} ${firstTop * 0.5}, ${docWidth * 0.15} ${firstTop * 0.5}`)
-  points.push(`C ${docWidth * 0.05} ${firstTop * 0.5}, ${firstLeft - 40} ${firstTop * 0.75}, ${firstLeft} ${firstTop}`)
+  points.push(`M 0 0`) //this is top left, this is 0,0
+  /* points.push options:
+      'M x y' = move pen to x,y without drawing
+      'L x y' = draw straight line to x,y
+      'Q cx cy, x y' = draw quadratic bezier to x,y with control point cx,cy
+      'C cx1 cy1, cx2 cy2, x y' = draw cubic bezier to x,y with control points cx1,cy1 and cx2,cy2
+      'A rx ry large-arc sweep x y' = draw arc to x,y with radii rx,ry and flags large-arc and sweep
+  */
 
   cardRefs.current.forEach((card, i) => {
     if (!card) return
@@ -93,8 +96,6 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
     if (i === 0) {
       // already arrived at firstLeft, firstTop — just drop into the card trace
     } else {
-      // wavy transition between cards
-      // the line exits the previous card on one side and waves across to the next
       const prevCard    = cardRefs.current[i - 1]
       const prevIsRight = (i - 1) % 2 === 0
       const prevApproachX = prevCard
