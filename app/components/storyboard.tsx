@@ -48,8 +48,14 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
 
 
 
-
-    function buildPath(svg: SVGSVGElement): string {
+/* points.push options:
+      'M x y' = move pen to x,y without drawing
+      'L x y' = draw straight line to x,y
+      'Q cx cy, x y' = draw quadratic bezier to x,y with control point cx,cy
+      'C cx1 cy1, cx2 cy2, x y' = draw cubic bezier to x,y with control points cx1,cy1 and cx2,cy2
+      'A rx ry large-arc sweep x y' = draw arc to x,y with radii rx,ry and flags large-arc and sweep
+  */
+  function buildPath(svg: SVGSVGElement): string {
   const swing   = 48
   const outset  = 12
   const r       = 16
@@ -62,14 +68,8 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
   const firstTop  = firstCard ? firstCard.offsetTop - outset : 0
   const firstLeft = firstCard ? (firstCard.offsetLeft - outset) - swing : 0
 
-  points.push(`M 0 0`) //this is top left, this is 0,0
-  /* points.push options:
-      'M x y' = move pen to x,y without drawing
-      'L x y' = draw straight line to x,y
-      'Q cx cy, x y' = draw quadratic bezier to x,y with control point cx,cy
-      'C cx1 cy1, cx2 cy2, x y' = draw cubic bezier to x,y with control points cx1,cy1 and cx2,cy2
-      'A rx ry large-arc sweep x y' = draw arc to x,y with radii rx,ry and flags large-arc and sweep
-  */
+    points.push(`M ${docWidth / 2} ${-100}`)
+    points.push(`C ${docWidth / 2} ${firstTop * 0.4}, ${docWidth / 2} ${firstTop * 0.8}, ${firstLeft} ${firstTop}`)  
 
   cardRefs.current.forEach((card, i) => {
     if (!card) return
@@ -95,21 +95,29 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
 
     if (i === 0) {
       // already arrived at firstLeft, firstTop — just drop into the card trace
-    } else {
-      const prevCard    = cardRefs.current[i - 1]
-      const prevIsRight = (i - 1) % 2 === 0
-      const prevApproachX = prevCard
-        ? prevIsRight
-          ? (prevCard.offsetLeft - outset) - swing
-          : (prevCard.offsetLeft + prevCard.offsetWidth + outset) + swing
-        : approachX
+    } else // TRANSITION BETWEEN THE BOXES
+      {
+        const prevCard    = cardRefs.current[i - 1]
+        const prevIsRight = (i - 1) % 2 === 0
+        const exitX       = prevIsRight
+          ? (prevCard ? prevCard.offsetLeft - outset - swing : approachX)
+          : (prevCard ? prevCard.offsetLeft + prevCard.offsetWidth + outset + swing : approachX)
 
-      // wave across: exit previous side, bow out to center, arrive at next side
-      points.push(`C ${prevApproachX} ${prevBottom + travelHeight * 0.15}, ${docWidth * 0.5} ${travelMid - travelHeight * 0.1}, ${docWidth * 0.5} ${travelMid}`)
-      points.push(`C ${docWidth * 0.5} ${travelMid + travelHeight * 0.1}, ${approachX} ${top - travelHeight * 0.15}, ${approachX} ${top - 20}`)
+        const gapHeight = top - prevBottom
+        const stepY1    = prevBottom + gapHeight * 0.2
+        const stepY2    = prevBottom + gapHeight * 0.4
+        const stepY3    = prevBottom + gapHeight * 0.6
+        const stepY4    = prevBottom + gapHeight * 0.8
+
+        // zigzag between cards
+        points.push(`C ${exitX} ${prevBottom + gapHeight * 0.1}, ${exitX} ${stepY1}, ${exitX} ${stepY1}`)
+        points.push(`C ${exitX} ${prevBottom + gapHeight * 0.3}, ${approachX} ${prevBottom + gapHeight * 0.3}, ${approachX} ${stepY2}`)
+        points.push(`C ${approachX} ${prevBottom + gapHeight * 0.5}, ${exitX} ${prevBottom + gapHeight * 0.5}, ${exitX} ${stepY3}`)
+        points.push(`C ${exitX} ${prevBottom + gapHeight * 0.7}, ${approachX} ${prevBottom + gapHeight * 0.7}, ${approachX} ${stepY4}`)
+        points.push(`C ${approachX} ${prevBottom + gapHeight * 0.9}, ${approachX} ${top - 20}, ${approachX} ${top - 20}`)
     }
 
-    if (isRight) {
+    if (isRight) { // right boxes
       points.push(`L ${approachX} ${top + r}`)
       points.push(`Q ${approachX} ${top}, ${left + r} ${top}`)
       points.push(`L ${right - r} ${top}`)
@@ -121,7 +129,8 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
       points.push(`L ${left} ${top + r}`)
       points.push(`Q ${left} ${top}, ${left + r} ${top}`)
       points.push(`L ${approachX} ${bottom + 20}`)
-    } else {
+    } 
+    else { // left boxes
       points.push(`L ${approachX} ${top + r}`)
       points.push(`Q ${approachX} ${top}, ${right - r} ${top}`)
       points.push(`L ${left + r} ${top}`)
@@ -345,7 +354,7 @@ function applyPath(
         <circle ref={walkerRef} r="10" fill="#7F77DD" opacity="0" />
         <circle ref={outerRef}  r="16" fill="none" stroke="#7F77DD" strokeWidth="1.5" opacity="0" />
       </svg>
-
+      <div className="h-[60vh]"/>
       {cards.map((card, i) => (
         <StoryCard
           key={card.label}
