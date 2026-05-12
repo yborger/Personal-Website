@@ -18,9 +18,11 @@ interface CardProps {
 
     return(
         <section className="h-3/4 flex items-center justify-center relative">
-            <div className={"rounded-md p-6 m-4 shadow-lg max-w-4xl bg-gradient-to-b " + bg}>
+            <div className="rounded-md p-6 m-4 shadow-lg max-w-4xl border px-6 py-5" style={{
+                    borderColor: `${bg}59`,
+                    background: `${bg}14`,
+                }}>
                 <h2 className="text-2xl font-bold mb-6 text-left">{title}</h2>
-
                 <div className="m-4 grid grid-cols md:grid-cols-[3fr_2fr] items-start gap-4">
                     <img 
                         src={image} 
@@ -30,11 +32,6 @@ interface CardProps {
 
                     <div className="text-lg text-left">
                         <p>{description}</p>
-                        {expanded && (
-                            <p className="mt-4 text-base">
-                                {details}
-                            </p>
-                        )}
 
                         <button
                             onClick={() => setExpanded(!expanded)}
@@ -43,7 +40,13 @@ interface CardProps {
                             {expanded ? "Show less" : "Show more"}
                         </button>
                     </div>
+                    
                 </div>
+                {expanded && (
+                    <p className="mt-4 text-sm">
+                        {details}
+                    </p>
+                )}
             </div>
         </section>
     )

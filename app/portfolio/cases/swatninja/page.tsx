@@ -37,7 +37,7 @@ function ParallaxCards({
     return (
       <section className="card-container h-screen snap-start flex items-center justify-center relative">
         <div ref={ref}
-          className="card-content overflow-hidden">
+          className="card-content relative overflow-hidden">
           <PhaseCard
             number={number}
             title={title}
@@ -50,8 +50,8 @@ function ParallaxCards({
         <motion.h2
           initial={{visibility:"hidden"}}
           animate={{visibility:"visible"}}
-          style={{ y }}
-          >{`#00${number}`}
+          style={{ y , fontSize: "4rem", fontWeight: "bold", color: `${bg}37`, zIndex: -1}}
+          >{`#${number}`}
           </motion.h2>
       </section>
     )
@@ -66,7 +66,7 @@ export default function Page() {
   })
 
   return (
-    <section className="">
+    <section className="relative">
       <div className=" gap-2 my-8 w-3/4 mx-auto place-items-center">
          <ParallaxCards 
             number={1}

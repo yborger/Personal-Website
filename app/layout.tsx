@@ -61,7 +61,7 @@ export default function RootLayout({
     <html
       lang="en" className={'${quicksand.variable}'} suppressHydrationWarning 
     >
-      <body className="font-sans antialiased justify-center max-w-auto mx-4 mt-8">
+      <body className="relative font-sans antialiased justify-center max-w-auto mx-4 mt-8">
         <main className="flex-auto min-w-0 mt-6 flex flex-col">
           <Providers>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
