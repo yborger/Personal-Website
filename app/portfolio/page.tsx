@@ -12,7 +12,7 @@ export default function Page() {
             image={metadata.image}
             summary={metadata.summary}
             slug={metadata.slug}
-            pills={metadata.pills}
+            tags={metadata.tags}
           />
         ))}
       </div>

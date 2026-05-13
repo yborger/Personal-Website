@@ -6,7 +6,7 @@ type CardData = {
   label: string
   title: string
   body: string
-  pills: string[]
+  tags: string[]
   color: string
 }
 
@@ -362,7 +362,7 @@ function applyPath(
           label={card.label}
           title={card.title}
           body={card.body}
-          pills={card.pills}
+          tags={card.tags}
           color={card.color}
           cardRef={el => { cardRefs.current[i] = el }}
         />

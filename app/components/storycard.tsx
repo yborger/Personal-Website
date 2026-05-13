@@ -5,7 +5,7 @@ type StoryCardProps = {
   label: string
   title: string
   body: string
-  pills: string[]
+  tags: string[]
   index: number
   color: string
   cardRef: (el: HTMLDivElement | null) => void
@@ -15,7 +15,7 @@ export default function StoryCard({
   label,
   title,
   body,
-  pills,
+  tags,
   index,
   color,
   cardRef,
@@ -47,9 +47,9 @@ export default function StoryCard({
         {body}
       </p>
       <div className="flex flex-wrap gap-1.5 mt-3">
-        {pills.map(pill => (
+        {tags.map(tag => (
           <span
-            key={pill}
+            key={tag}
             style={{
               borderColor: `${color}66`,
               background: `${color}1a`,
@@ -57,7 +57,7 @@ export default function StoryCard({
             }}
             className="text-[11px] px-2.5 py-0.5 rounded-full border"
           >
-            {pill}
+            {tag}
           </span>
         ))}
       </div>
