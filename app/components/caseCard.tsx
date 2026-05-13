@@ -26,6 +26,16 @@ export default function CaseCard ({title, image, summary, slug, pills = []}: Cas
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-white bg-black/30 backdrop-blur-lg opacity-0 group-hover:opacity-95 transition-opacity ">
                     <h2 className="text-2xl font-bold mb-2">{title}</h2>
                     <p className="text-m">{summary}</p>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                        {pills.map(pill => (
+                            <span
+                                key={pill}
+                                className="text-xs px-2 py-1 rounded-full bg-white/30 border backdrop-blur-sm"
+                            >
+                                {pill}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
         </Link>
