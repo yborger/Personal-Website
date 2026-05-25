@@ -6,7 +6,8 @@ interface CardProps {
         title: string;
         description: string;
         details: string;
-        image: string;
+        image?: string;
+        embed?: string;
         bg: string;
 }
 
