@@ -22,8 +22,8 @@ export const casesData = [
     },
     {
         title: "Our Kids Read: Website Redesign",
-        image: "/art sign.png",
-        summary: "This is a brief summary of the case study.",
+        image: "/okr_imgs/preferred.png",
+        summary: "Leading a full redesign of the Our Kids Read website.",
         slug: "portfolio/cases/ourkidsread",
         tags: ["UI / UX", "Frontend"],
     },

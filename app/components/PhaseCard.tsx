@@ -28,7 +28,7 @@ interface CardProps {
                     <img 
                         src={image} 
                         alt={title} 
-                        className="w-3/5 h-auto rounded-xl justify-self-center"
+                        className="w-auto h-auto rounded-xl max-h-64 object-cover justify-self-center"
                     />
 
                     <div className="text-lg text-left">
