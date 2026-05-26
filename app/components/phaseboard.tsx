@@ -5,73 +5,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import PhaseCard from './PhaseCard'
-/* HOLD
-import {
-  color,
-    motion,
-    MotionValue,
-    useScroll,
-    useSpring,
-    useTransform,
-} from "motion/react"
-import { useRef } from "react"
-
-function useParallax(value: MotionValue<number>, distance: number) {
-    return useTransform(value, [0, 1], [-distance, distance])
-}
-
-function ParallaxCards({
-  number,
-  title,
-  description,
-  details,
-  image, embed,
-  bg
-}: {
-  number: number
-  title: string
-  description: string
-  details: string
-  image?: string
-  embed?: string
-  bg: string
-}){
-    const ref = useRef(null)
-    const { scrollYProgress } = useScroll({ target: ref })
-    const y = useParallax(scrollYProgress, 300)
-
-    return (
-      <section className="card-container relative h-screen snap-start flex items-center justify-center ">
-        <div ref={ref}
-          className="card-content relative overflow-hidden">
-          <PhaseCard
-            number={number}
-            title={title}
-            description={description}
-            details={details}
-            image={image}
-            bg={bg}
-          />
-        </div>
-        <motion.h2
-          initial={{visibility:"hidden"}}
-          animate={{visibility:"visible"}}
-          style={{ y , fontSize: "4rem", fontWeight: "bold", color: `${bg}37`, zIndex: -1}}
-          >{`#${number}`}
-          </motion.h2>
-      </section>
-    )
-  }
-
-export default function Page() {
-  const {scrollYProgress} = useScroll()
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  })
-
- */
+import { motion, useScroll, useTransform } from 'motion/react'
 type CardData = {
   number: number
   title: string
@@ -80,6 +14,24 @@ type CardData = {
   image?: string
   embed?: string
   bg: string
+}
+function CardNumber({number, bg}:{number:number,bg:string}){
+  const ref = useRef<HTMLDivElement>(null)
+  const {scrollYProgress} = useScroll({ target: ref })
+  const y = useTransform(scrollYProgress, [0, 1], ['-40', '40'])
+  return(
+    <div ref={ref} className="relative">
+      <motion.div
+      initial={{ opacity: 0}}
+      whileInView={{opacity: 1}}
+      transition={{duration: 0.6}}
+      style={{y, color: `${bg}37`}}
+      className="absolute -right-4 -top-10 text-[4rem] font-bold translate-x-full p-4 translate-y-1/2"
+      >
+      #{number}
+      </motion.div>
+    </div>
+  )
 }
 
 export default function PhaseBoard({ cards }: { cards: CardData[] }) {
@@ -158,7 +110,7 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
     points.push(`Q ${entryX} ${top}, ${entryX} ${top + r}`)
     // retrace back down left side to bottom-left
     points.push(`L ${left} ${top + r}`)
-    points.push(`Q ${left} ${top}, ${left} ${top + r}`)
+    //points.push(`Q ${left} ${top + r}, ${left} ${top + r}`)
     points.push(`L ${left} ${bottom - r}`)
     points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
     // → right along bottom to exitX
@@ -304,8 +256,10 @@ function applyPath(
 
     // bind the guarded non-null values into the listeners at registration time
     const handleScroll = () => onScroll(drawn, walker, outer, hint)
-    const handleResize = () => applyPath(svg, drawn, track)
-
+    const handleResize = () => {
+      applyPath(svg, drawn, track)
+      onScroll(drawn, walker, outer, hint)
+    }
     applyPath(svg, drawn, track)
  
     const first = cardRefs.current[0]
@@ -334,6 +288,7 @@ function applyPath(
           height: '100%',
           overflow: 'visible',
           pointerEvents: 'none',
+          zIndex: -1,
         }}
       >
         <defs>
@@ -373,6 +328,7 @@ function applyPath(
             'transition-all duration-500 ease-out',
           ].join(' ')}
         >
+          <CardNumber number={card.number} bg={card.bg} />
           <PhaseCard
             number={card.number}
             title={card.title}

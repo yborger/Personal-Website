@@ -35,7 +35,10 @@ interface CardProps {
                         <p>{description}</p>
 
                         <button
-                            onClick={() => setExpanded(!expanded)}
+                            onClick={() => {
+                                setExpanded(!expanded)
+                                setTimeout(() => window.dispatchEvent(new Event('resize')), 0)
+                            }}
                             className="mt-4 text-sm font-medium underline"
                         >
                             {expanded ? "Show less" : "Show more"}

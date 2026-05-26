@@ -176,14 +176,4 @@ html.dark {
   color: #f1f1f1;
 }
 
-.phaseOdd {
-  animation:  4s ease-in;
-  rotate: 2deg;
-}
-
-.phaseEven {
-  animation:  4s ease-in;
-  rotate: -2deg
-}
-
 
