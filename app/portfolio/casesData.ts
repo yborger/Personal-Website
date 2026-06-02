@@ -1,3 +1,5 @@
+import { summary } from "motion/react-client";
+
 export const casesData = [
     {
         title: "Ablockalypse",
@@ -33,5 +35,19 @@ export const casesData = [
         summary: "This is a brief summary of SwatNinja.",
         slug: "portfolio/cases/swatninja",
         tags: ["Backend", "Full Stack"],
+    },
+    {
+        title: "Snap.Nutrition",
+        image: "/art sign.png",
+        summary: "This is a brief summary of Snap.Nutrition.",
+        slug: "portfolio/cases/snapnutrition",
+        tags: ["Product Builder", "AI"],
+    },
+    {
+        title: "Find My Restroom",
+        image: "/art sign.png",
+        summary: "This is a brief summary of Find My Restroom.",
+        slug: "portfolio/cases/findmyrestroom",
+        tags: ["Product Builder", "AI"],
     },
 ]
