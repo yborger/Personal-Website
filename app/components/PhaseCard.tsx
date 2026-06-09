@@ -18,7 +18,7 @@ interface CardProps {
     const [expanded, setExpanded] = useState(false)
 
     return(
-        <section className="h-3/4 flex items-center justify-center relative">
+        <section className="h-3/4 flex ml-[50px] mr-[50px] items-center justify-center relative">
             <div className="rounded-md p-6 m-4 shadow-lg max-w-4xl border px-6 py-5" style={{
                     borderColor: `${bg}59`,
                     background: `${bg}14`,

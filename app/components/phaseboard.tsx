@@ -88,7 +88,8 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
     const exitX = left + width * exitFrac
 
     if (i === 0){ //if first card
-      points.push(`M ${entryX} ${-100}`)
+      points.push(`M ${firstTop} ${-100}`)
+      points.push(`L ${firstTop} ${top + r}`)
     }
     //TRACE CARD:
     // → go R to top right
@@ -260,7 +261,10 @@ function applyPath(
       applyPath(svg, drawn, track)
       onScroll(drawn, walker, outer, hint)
     }
-    applyPath(svg, drawn, track)
+    setTimeout(() => {
+      applyPath(svg, drawn, track)
+      onScroll(drawn, walker, outer, hint)
+    }, 100)
  
     const first = cardRefs.current[0]
     if (first) {

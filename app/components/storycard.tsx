@@ -29,9 +29,7 @@ export default function StoryCard({
       }}
       className={[
         'relative z-10 mb-[280px]',
-        index % 2 === 0
-          ? 'ml-[100px] mr-8'
-          : 'ml-8 mr-[100px]',
+          'ml-[100px] mr-[100px]',
         'opacity-0 translate-y-3',
         'transition-all duration-500 ease-out',
         'border rounded-xl px-6 py-5',
