@@ -7,7 +7,6 @@ type CardData = {
   title: string
   body: string
   tags: string[],
-  index: number
   color: string
 }
 
