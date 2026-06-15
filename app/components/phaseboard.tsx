@@ -14,6 +14,12 @@ type CardData = {
   image?: string
   embed?: string
   bg: string
+  slides?: {
+    description: string
+    details?: string
+    image?: string
+    embed?: string
+  }[]
 }
 function CardNumber({number, bg}:{number:number,bg:string}){
   const ref = useRef<HTMLDivElement>(null)
@@ -341,6 +347,7 @@ function applyPath(
             image={card.image}
             embed={card.embed}
             bg={card.bg}
+            slides={card.slides}
           />
         </div>
       ))}
