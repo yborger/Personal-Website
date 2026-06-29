@@ -1,99 +1,62 @@
 "use client"
-import { notFound } from 'next/navigation'
-import { CustomMDX } from 'app/components/mdx'
-import PhaseCard from 'app/components/PhaseCard'
-import {
-    motion,
-    MotionValue,
-    useScroll,
-    useSpring,
-    useTransform,
-} from "motion/react"
-import { useRef } from "react"
+import PhaseBoard from 'app/components/phaseboard'
 
-function useParallax(value: MotionValue<number>, distance: number) {
-    return useTransform(value, [0, 1], [-distance, distance])
-}
-
-function ParallaxCards({
-  number,
-  title,
-  description,
-  details,
-  image,
-  bg
-}: {
-  number: number
-  title: string
-  description: string
-  details: string
-  image: string
-  bg: string
-}){
-    const ref = useRef(null)
-    const { scrollYProgress } = useScroll({ target: ref })
-    const y = useParallax(scrollYProgress, 300)
-
-    return (
-      <section className="card-container h-screen snap-start flex items-center justify-center relative">
-        <div ref={ref}
-          className="card-content relative overflow-hidden">
-          <PhaseCard
-            number={number}
-            title={title}
-            description={description}
-            details={details}
-            image={image}
-            bg={bg}
-          />
-        </div>
-        <motion.h2
-          initial={{visibility:"hidden"}}
-          animate={{visibility:"visible"}}
-          style={{ y , fontSize: "4rem", fontWeight: "bold", color: `${bg}37`, zIndex: -1}}
-          >{`#${number}`}
-          </motion.h2>
-      </section>
-    )
-  }
+const phases = [
+  {
+    number: 1,
+    title: "Intro",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    details: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    image: "/artwork/bee_leaf.png",
+    bg: "#7F77DD",
+  },
+  {
+    number: 2,
+    title: "Goals",
+    description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    details: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    image: "/artwork/bee_leaf.png",
+    bg: "#A066D3",
+  },
+  {
+    number: 3,
+    title: "What I Did",
+    description: "",
+    details: "",
+    image: "/artwork/bee_leaf.png",
+    bg: "#D4537E",
+    slides: [
+      {
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        details: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        image: "/artwork/bee_leaf.png",
+      },
+      {
+        description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        details: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        image: "/artwork/bee_leaf.png",
+      },
+      {
+        description: "Nunc scelerisque viverra mauris in aliquam sem fringilla ut morbi tincidunt augue.",
+        details: "Donec et odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus.",
+        image: "/artwork/bee_leaf.png",
+      },
+    ],
+  },
+  {
+    number: 4,
+    title: "Takeaways",
+    description: "Fusce blandit odio nec enim volutpat, a efficitur nisl efficitur. Curabitur ac odio at enim efficitur commodo.",
+    details: "Nunc scelerisque viverra mauris in aliquam sem fringilla ut. Donec et odio pellentesque diam volutpat commodo sed egestas.",
+    image: "/artwork/bee_leaf.png",
+    bg: "#1D9E75",
+  },
+]
 
 export default function Page() {
-  const {scrollYProgress} = useScroll()
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  })
-
   return (
-    <section className="relative">
-      <div className=" gap-2 my-8 w-3/4 mx-auto place-items-center">
-         <ParallaxCards 
-            number={1}
-            title="Phase 1: Lorem ipsum"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            details="back of the card"
-            image="/artwork/bee_leaf.png"
-            bg="from-purple-400 via-pink-500 to-red-500"
-          />  
-          <ParallaxCards 
-            number={2}
-            title="Phase 2: Nunc scelerisque"
-            description="Nunc scelerisque viverra mauris in aliquam sem fringilla ut. Donec et odio pellentesque diam volutpat commodo sed egestas."
-            details='back of the card 2'
-            image="/artwork/group_hug.png"
-            bg="from-green-400 via-blue-500 to-purple-500"
-          />
-          <ParallaxCards 
-            number={3}
-            title="Phase 3: Fusce blandit"
-            description="Fusce blandit odio nec enim volutpat, a efficitur nisl efficitur. Curabitur ac odio at enim efficitur commodo." 
-            details="back of the card 3"
-            image="/artwork/BOOp.png"
-            bg="from-yellow-400 via-red-500 to-pink-500"
-          />
-          <motion.div className="fixed left-0 right-0 bottom-12 h-[5px] bg-emerald-300" style={{ scaleX }} />
-      </div>
+    <section className="relative min-h-screen pt-10 px-4">
+      <PhaseBoard cards={phases} />
     </section>
   )
 }
