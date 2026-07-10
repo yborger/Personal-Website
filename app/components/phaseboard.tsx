@@ -16,6 +16,7 @@ type CardData = {
   embed?: string
   bg: string
   slides?: {
+    title: string
     description: string
     details?: string
     image?: string
