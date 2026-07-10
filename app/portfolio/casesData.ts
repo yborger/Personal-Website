@@ -1,5 +1,3 @@
-import { summary } from "motion/react-client";
-
 export const casesData = [
     {
         title: "Ablockalypse",

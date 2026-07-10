@@ -8,6 +8,7 @@
 import { useState } from "react"
 
 interface Slide{
+    title: string;
     description: string;
     details?: string;
     image?: string;
@@ -30,7 +31,7 @@ interface CardProps {
     const [expanded, setExpanded] = useState(false)
     const [currSlide, setCurrSlide] = useState(0)
 
-    const activeContent: Slide = slides ? slides[currSlide] : {description, details, image, embed}
+    const activeContent: Slide = slides ? slides[currSlide] : {title, description, details, image, embed}
 
     const hasMultipleSlides = slides && slides.length > 1
 
@@ -50,7 +51,7 @@ interface CardProps {
           background: `${bg}14`,
         }}
       >
-        <h2 className="text-2xl font-bold mb-6 text-left">{title}</h2>
+        <h2 className="text-2xl font-bold mb-6 text-left">{activeContent.title}</h2>
  
         <div className="m-4 grid grid-cols md:grid-cols-[3fr_2fr] items-start gap-4">
           {activeContent.embed ? (
