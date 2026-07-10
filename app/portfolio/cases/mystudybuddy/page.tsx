@@ -27,16 +27,19 @@ const phases = [
     bg: "#D4537E",
     slides: [
       {
+        title: "Slide 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         details: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         image: "/artwork/bee_leaf.png",
       },
       {
+        title: "Slide 2",
         description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
         details: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         image: "/artwork/bee_leaf.png",
       },
       {
+        title: "Slide 3",
         description: "Nunc scelerisque viverra mauris in aliquam sem fringilla ut morbi tincidunt augue.",
         details: "Donec et odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus.",
         image: "/artwork/bee_leaf.png",
