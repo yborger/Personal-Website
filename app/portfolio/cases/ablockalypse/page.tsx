@@ -27,18 +27,19 @@ const phases = [
     bg: "#D4537E",
     slides: [
       {
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        details: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        //conceptualizing + drawing inspo
+        description: "We learned many different types of games and the history of video games. We chose a platformer kind of game on the Tic80 engine.",
+        details: "After learning the mechanics behind the original tetris game development, we decided to have the tetris-type logic to build the platforms as part of the level.",
         image: "/artwork/bee_leaf.png",
       },
-      {
-        description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        details: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      { //explaining
+        description: "Levels that have an odd number are basic platforms that are pre-designed, with the cat player character jumping onto each platform on the map to get across the screen.",
+        details: "Even numbered levels were the tetris-style builder, where the first X amount of seconds were meant for the player to stack-up a series of blocks to create a path for the cat to cross. Once time was over, the level transitioned back into basic-platformer logic and the player can jump across the path. The time decreases as levels continue.",
         image: "/artwork/bee_leaf.png",
       },
-      {
-        description: "Nunc scelerisque viverra mauris in aliquam sem fringilla ut morbi tincidunt augue.",
-        details: "Donec et odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus.",
+      { //making
+        description: "The basic platformer was designed on the Map section of Tic80, since we assigned a specific “Sprite” as solid blocks in the code itself.",
+        details: "The solid block sprite was necessary to create the four-block shapes and efficiently rotate them using matrix operations. Tic80 works off of counting “tics” as a looping time function, and these tics were counted as part of the timed tetris-styled levels so there was a clear “finished” point.",
         image: "/artwork/bee_leaf.png",
       },
     ],
@@ -46,10 +47,23 @@ const phases = [
   {
     number: 4,
     title: "Takeaways",
-    description: "Fusce blandit odio nec enim volutpat, a efficitur nisl efficitur. Curabitur ac odio at enim efficitur commodo.",
-    details: "Nunc scelerisque viverra mauris in aliquam sem fringilla ut. Donec et odio pellentesque diam volutpat commodo sed egestas.",
+    description: "",
+    details: "",
     image: "/artwork/bee_leaf.png",
     bg: "#1D9E75",
+    slides: [
+      {
+        description: "Remote work is absolutely possible and can be done efficiently.",
+        details: "I unfortunately wound up getting COVID right before this project was due. My partner and I were in constant communication to make sure we stayed on pace (after the worst of my sickness had passed) and completed the project on time, and we managed to set up a fully remote workspace in less than a day’s time.", 
+        image: "/artwork/bee_leaf.png",
+      },
+      {
+        description: "Pixel-style animation looks... off... but once it becomes a loop, it all makes sense.",
+        details: "Depending on the speed and the desired frames, the sprite looked really strange but because of the phase in the movement it actually smoothed out the animation. If I plan to continue working with pixel-style animation I need to make sure to have enough frames to make smooth movement.", 
+        image: "/artwork/bee_leaf.png",
+
+      }
+    ]
   },
 ]
 
