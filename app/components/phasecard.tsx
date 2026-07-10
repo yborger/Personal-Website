@@ -1,3 +1,9 @@
+/*
+  PHASE CARD -- individual cards for each phase of the project
+    includes the title, description, details (further description), image/embed option, background, and carousel ability via slides
+    appears in individual projects *through* phaseboard
+*/
+
 "use client"
 import { useState } from "react"
 

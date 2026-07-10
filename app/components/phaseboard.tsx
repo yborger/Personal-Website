@@ -1,10 +1,11 @@
-//This is the phasecard equivalent of the landing page
-// the main reason for this difference is that I want want a consistent through-line in the layout but I do not want to change the customizations in each 
-// I like the parallax effect of phasecards but I don't want that in the landing page at all, for example
-
+/*
+  PHASE BOARD -- scrolling line that take the PHASE CARDS into consideration and traces the scrollable path around them
+    appears in individual projects
+  */
+ 
 'use client'
 import { useEffect, useRef } from 'react'
-import PhaseCard from './PhaseCard'
+import PhaseCard from './phasecard'
 import { motion, useScroll, useTransform } from 'motion/react'
 type CardData = {
   number: number

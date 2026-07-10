@@ -1,3 +1,8 @@
+/* 
+  STORY BOARD -- makes the scrolling line that ties together the individual cards on the landing page
+    appears on landing/home page
+*/
+
 'use client'
 import { useEffect, useRef } from 'react'
 import StoryCard from './storycard'

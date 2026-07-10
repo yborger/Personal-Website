@@ -1,4 +1,10 @@
-//This file will be to make the line in home alt 3, since the scroll data is client-side and i can't have that directly on the home page
+/*
+  STORY CARD -- the individual cards that make up the story board
+    includes title, description, tags, and color specifics
+    appears on home/landing page *through* storyboard
+*/
+
+
 'use client'
 
 type StoryCardProps = {
