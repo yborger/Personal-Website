@@ -1,7 +1,7 @@
 export const casesData = [
     {
         title: "Ablockalypse",
-        image: "/ablockalypse.png",
+        image: "/ablock_pics/ablockalypse.png",
         summary: "A pixel platformer with tetris-style platform building",
         slug: "portfolio/cases/ablockalypse",
         tags: ["Software", "Design", "Lua", "Tic80"],
