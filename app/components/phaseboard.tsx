@@ -96,8 +96,8 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
     const exitX = left + width * exitFrac
 
     if (i === 0){ //if first card
-      points.push(`M ${firstTop} ${-100}`)
-      points.push(`L ${firstTop} ${top + r}`)
+      points.push(`M ${entryX} ${0}`)
+      points.push(`L ${entryX} ${top + r}`)
     }
     //TRACE CARD:
     // → go R to top right
