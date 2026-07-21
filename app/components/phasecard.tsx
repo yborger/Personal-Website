@@ -56,7 +56,7 @@ interface CardProps {
         <div className="m-4 grid grid-cols md:grid-cols-[3fr_2fr] items-start gap-4">
           {activeContent.embed ? (
             <div className="w-full rounded-xl overflow-hidden justify-self-center" style={{ aspectRatio: '4/3' }}>
-              <iframe src={activeContent.embed} allowFullScreen frameBorder="0" className="w-full h-full" />
+              <iframe src={activeContent.embed} allowFullScreen className="w-full h-full" />
             </div>
           ) : activeContent.image ? (
             <img
@@ -75,7 +75,7 @@ interface CardProps {
                   setExpanded(!expanded)
                   setTimeout(() => window.dispatchEvent(new Event('resize')), 0)
                 }}
-                className="mt-4 text-sm font-medium underline"
+                className="mt-4 text-m font-medium underline"
               >
                 {expanded ? "Show less" : "Show more"}
               </button>
