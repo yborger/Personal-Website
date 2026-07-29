@@ -1,10 +1,10 @@
 # Preface
 
-This website was originally developed by Vercel, and then redesigned and adapted to fit Yael's vision, by Yael. There will be many changes and updates to design, and the original template can be seen in the demo.
+This website was originally developed by Vercel, and then redesigned and adapted to fit Yael's vision, by Yael. There will be many changes and updates to design, and the original template can be seen in the demo linked below.
 
 ## As a Portfolio
 
-This website is intended to showcase past projects and works by Yael. 
+This website is intended to showcase projects and works by Yael. 
 
 
 ## Original Demo
