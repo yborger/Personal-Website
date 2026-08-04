@@ -288,6 +288,42 @@ function applyPath(
     }
   }, [cards])
  
+  //force the initial scrolling to the first element
+    useEffect(() => {
+    const timer = setTimeout(() => {
+      const first = cardRefs.current[0]
+      if (!first) return
+  
+      const targetY  = first.offsetTop - window.innerHeight * 0.5
+      const startY   = window.scrollY
+      const distance = targetY - startY
+      const duration = 2000  // ms — increase to slow down further
+      let startTime: number | null = null
+  
+      function easeInOut(t: number): number {
+        return t < 0.5
+          ? 2 * t * t
+          : -1 + (4 - 2 * t) * t
+      }
+  
+      function step(timestamp: number) {
+        if (!startTime) startTime = timestamp
+        const elapsed  = timestamp - startTime
+        const progress = Math.min(elapsed / duration, 1)
+        const eased    = easeInOut(progress)
+  
+        window.scrollTo(0, startY + distance * eased)
+  
+        if (progress < 1) {
+          requestAnimationFrame(step)
+        }
+      }
+  
+      requestAnimationFrame(step)
+    }, 100)
+  
+    return () => clearTimeout(timer)
+  }, [])
   return (
     <div className="relative w-full" style={{ minHeight: '100%' }}>
       <svg
