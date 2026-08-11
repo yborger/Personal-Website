@@ -6,13 +6,13 @@ export const casesData = [
         slug: "portfolio/cases/ablockalypse",
         tags: ["Software", "Design", "Lua", "Tic80"],
     },
-    {
-        title: "EXAMPLE Title",
-        image: "/art sign.png",
-        summary: "This is a brief summary of case study 1.",
-        slug: "portfolio/cases/example",
-        tags: ["EX"],
-    },
+    //{
+        //title: "EXAMPLE Title",
+        //image: "/art sign.png",
+        //summary: "This is a brief summary of case study 1.",
+        //slug: "portfolio/cases/example",
+        //tags: ["EX"],
+    //},
     {
         title: "MyStudyBuddy",
         image: "/mystudybuddy.jpg",
