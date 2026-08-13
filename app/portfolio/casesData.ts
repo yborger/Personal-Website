@@ -48,4 +48,11 @@ export const casesData = [
         slug: "portfolio/cases/findmyrestroom",
         tags: ["Product Builder", "AI"],
     },
+    /*{
+        title: "Pocket Triage",
+        image: "/art sign.png",
+        summary: "An AI-powered application for assessing and prioritizing medical cases in emergency situations",
+        slug: "portfolio/cases/pockettriage",
+        tags: ["UI / UX", "Design"],
+    }*/
 ]
