@@ -36,7 +36,6 @@ function CardNumber({number, bg}:{number:number,bg:string}){
       style={{y, color: `${bg}37`}}
       className="absolute -right-4 -top-10 text-[4rem] font-bold translate-x-full p-4 translate-y-1/2"
       >
-      #{number}
       </motion.div>
     </div>
   )
