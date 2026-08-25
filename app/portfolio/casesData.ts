@@ -39,14 +39,14 @@ export const casesData = [
         image: "/art sign.png",
         summary: "An AI-coded application for recognizing food from images and reporting back nutrition information",
         slug: "portfolio/cases/snapnutrition",
-        tags: ["Product Builder", "AI", "UI / UX"],
+        tags: ["Software", "AI", "UI / UX"],
     },
     {
         title: "Find My Restroom",
         image: "/art sign.png",
         summary: "An AI-coded demo application for finding publicly available restrooms based on accessibility and distance",
         slug: "portfolio/cases/findmyrestroom",
-        tags: ["Product Builder", "AI"],
+        tags: ["Software", "AI"],
     },
     /*{
         title: "Pocket Triage",
