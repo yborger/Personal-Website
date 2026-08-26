@@ -52,8 +52,8 @@ interface CardProps {
         }}
       >
         <h2 className="text-2xl font-bold mb-6 text-left">{activeContent.title}</h2>
- 
-        <div className="m-4 grid grid-cols md:grid-cols-[3fr_2fr] items-start gap-4">
+
+        <div className={`m-4 items-start gap-4 ${activeContent.embed || activeContent.image ? 'grid md:grid-cols-[3fr_2fr]' : ''}`}>
           {activeContent.embed ? (
             <div className="w-full rounded-xl overflow-hidden justify-self-center" style={{ aspectRatio: '4/3' }}>
               <iframe src={activeContent.embed} allowFullScreen className="w-full h-full" />

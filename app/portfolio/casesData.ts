@@ -43,7 +43,7 @@ export const casesData = [
     },
     {
         title: "Find My Restroom",
-        image: "/art sign.png",
+        image: "/findmyrestroom.png",
         summary: "An AI-coded demo application for finding publicly available restrooms based on accessibility and distance",
         slug: "portfolio/cases/findmyrestroom",
         tags: ["Software", "AI"],
