@@ -32,6 +32,7 @@ export default function StoryCard({
       style={{
         borderColor: `${color}59`,
         background: `${color}14`,
+        transform: `translateX(${index % 2 === 0 ? '20px' : '-20px'})`
       }}
       className={[
         'relative z-10 mb-[280px]',

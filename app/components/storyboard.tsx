@@ -57,8 +57,9 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
 
     const top    = card.offsetTop    - outset
     const bottom = card.offsetTop + card.offsetHeight + outset
-    const left   = card.offsetLeft   - outset
-    const right  = card.offsetLeft + card.offsetWidth  + outset
+    const offset = i % 2 === 0 ? 20: -20
+    const left   = card.offsetLeft   - outset + offset
+    const right  = card.offsetLeft + card.offsetWidth  + outset + offset
     const width = right - left
 
     const entryFrac = exitOffsetsRef.current[i] ?? 0.5

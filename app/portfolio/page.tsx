@@ -12,14 +12,15 @@ export default function Page() {
     ? casesData
     : casesData.filter(c => c.tags.includes(activeFilter))
 
+  const columnClass = filtered.length >= 9 ? 'columns-3' : 'columns-2'
+
   return (
     <div className="flex flex-col items-center pt-10">
       <div className="flex items-center gap-3 mb-10">
-        <h1 className="text-2xl font-semibold tracking-tight"></h1>
         <select
           value={activeFilter}
           onChange={e => setActiveFilter(e.target.value)}
-          className=" text-2xl bg-transparent focus:outline-none cursor-grab"
+          className="text-2xl bg-transparent focus:outline-none cursor-grab"
         >
           {filterOptions.map(opt => (
             <option key={opt} value={opt}>{opt}</option>
@@ -27,7 +28,7 @@ export default function Page() {
         </select>
       </div>
 
-      <div className="relative pt-10 gap-4 columns-3xs">
+      <div className={`w-full max-w-5xl mx-auto px-4 gap-4 ${columnClass}`}>
         {filtered.map((metadata, index) => (
           <CaseCard
             key={index}
