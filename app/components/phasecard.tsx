@@ -19,7 +19,7 @@ interface CardProps {
         number: number;
         title: string;
         description: string;
-        details: string;
+        details?: string;
         image?: string;
         embed?: string;
         bg: string;
@@ -31,7 +31,7 @@ interface CardProps {
     const [expanded, setExpanded] = useState(false)
     const [currSlide, setCurrSlide] = useState(0)
 
-    const activeContent: Slide = slides ? slides[currSlide] : {title, description, details, image, embed}
+    const activeContent: Slide = slides ? slides[currSlide] : {title, description, details: details, image, embed}
 
     const hasMultipleSlides = slides && slides.length > 1
 

@@ -11,7 +11,7 @@ type CardData = {
   number: number
   title: string
   description: string
-  details: string
+  details?: string
   image?: string
   embed?: string
   bg: string
