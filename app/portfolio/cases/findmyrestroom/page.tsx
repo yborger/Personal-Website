@@ -7,7 +7,7 @@ const phases = [
     title: "Find My Restroom: Intro",
     description: "Walking around New York City one random day, I suddenly had to use the restroom. I turned into the first cafe I could find (naturally, a Starbucks), and had to buy a drink so I could use the restroom. And this gave the idea for a “Find my Restroom” application.",
     details: "The main purpose of this is to make the restroom-finding process more convenient for users. After considering the different possible users, I realized there were significantly more details to take into account and therefore actual potential in something like this.",
-    image: "/findmyrestroom.png",
+    image: "/demo_screens/findmyrestroom.png",
     bg: "#7F77DD",
   },
   {

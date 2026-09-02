@@ -36,14 +36,14 @@ export const casesData = [
     },
     {
         title: "Snap.Nutrition",
-        image: "/art sign.png",
+        image: "/demo_screens/snap.nutrition opener screen.png",
         summary: "An AI-coded application for recognizing food from images and reporting back nutrition information",
         slug: "portfolio/cases/snapnutrition",
         tags: ["Software", "AI", "UI / UX"],
     },
     {
         title: "Find My Restroom",
-        image: "/findmyrestroom.png",
+        image: "/demo_screens/findmyrestroom.png",
         summary: "An AI-coded demo application for finding publicly available restrooms based on accessibility and distance",
         slug: "portfolio/cases/findmyrestroom",
         tags: ["Software", "AI"],
