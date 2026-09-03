@@ -1,4 +1,18 @@
 export const casesData = [
+        {
+        title: "Pocket Triage",
+        image: "/pocket_triage/main_screen.png",
+        summary: "An application for assessing and prioritizing medical cases in emergency situations",
+        slug: "portfolio/cases/pockettriage",
+        tags: ["UI / UX", "Design"],
+    },
+    {
+        title: "Our Kids Read: Website Redesign",
+        image: "/okr_imgs/preferred.png",
+        summary: "Leading a full redesign of the Our Kids Read website",
+        slug: "portfolio/cases/ourkidsread",
+        tags: ["UI / UX", "Design"],
+    },
     {
         title: "Ablockalypse",
         image: "/ablock_imgs/ablockalypse.png",
@@ -21,13 +35,6 @@ export const casesData = [
         tags: ["Software", "UI / UX", "JavaScript", "HTML", "CSS"],
     },
     {
-        title: "Our Kids Read: Website Redesign",
-        image: "/okr_imgs/preferred.png",
-        summary: "Leading a full redesign of the Our Kids Read website",
-        slug: "portfolio/cases/ourkidsread",
-        tags: ["UI / UX", "Design"],
-    },
-    {
         title: "SwatNinja",
         image: "/art sign.png",
         summary: "An augmented reality (AR) game based on 'Fruit Ninja' including hand-recognition technology and custom sprites",
@@ -48,11 +55,4 @@ export const casesData = [
         slug: "portfolio/cases/findmyrestroom",
         tags: ["Software", "AI"],
     },
-    /*{
-        title: "Pocket Triage",
-        image: "/art sign.png",
-        summary: "An application for assessing and prioritizing medical cases in emergency situations",
-        slug: "portfolio/cases/pockettriage",
-        tags: ["UI / UX", "Design"],
-    }*/
 ]
