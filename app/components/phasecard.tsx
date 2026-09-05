@@ -26,13 +26,20 @@ interface CardProps {
         slides?: Slide[];
 }
 
+const peekRotations = [2, -3, 1.5]
+
 export default function PhaseCard({number, title, description, details, image, embed, bg, slides}: CardProps){
     const [expanded, setExpanded] = useState(false)
     const [currSlide, setCurrSlide] = useState(0)
 
-    const activeContent: Slide = slides ? slides[currSlide] : {title, description, details: details, image, embed}
+    const allSlides: Slide[] = slides ?? [{title, description, details, image, embed}]
+    const hasMultipleSlides = allSlides.length > 1
+    const activeContent = allSlides[currSlide]
 
-    const hasMultipleSlides = slides && slides.length > 1
+    const peekCount = Math.min(3, allSlides.length - 1)
+    const peekSlides = Array.from({ length: peekCount }, (_, i) =>
+        allSlides[(currSlide + i + 1) % allSlides.length]
+    )
 
     function goToSlide(index: number) {
         setCurrSlide(index)
@@ -42,84 +49,116 @@ export default function PhaseCard({number, title, description, details, image, e
 
     return (
     <section className="h-3/4 flex ml-[50px] mr-[50px] items-center justify-center relative">
-      <div
-        className="relative rounded-md p-6 m-4 shadow-lg max-w-4xl w-full border px-6 py-5"
-        style={{
-          borderColor: `${bg}59`,
-          background: `${bg}14`,
-        }}
-      >
-        {hasMultipleSlides && (
-          <button
-            onClick={() => goToSlide(currSlide === 0 ? slides.length - 1 : currSlide - 1)}
-            className="absolute left-2 top-1/2 -translate-y-1/2 text-7xl font-bold transition-opacity opacity-20 hover:opacity-60"
-            style={{ color: bg }}
-          >
-            ‹
-          </button>
-        )}
+      <div className="relative w-full max-w-4xl mx-4">
 
-        {hasMultipleSlides && (
-          <button
-            onClick={() => goToSlide(currSlide === slides.length - 1 ? 0 : currSlide + 1)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-7xl font-bold transition-opacity opacity-20 hover:opacity-60"
-            style={{ color: bg }}
-          >
-            ›
-          </button>
-        )}
+        {/* peek cards behind, rendered back to front */}
+        {hasMultipleSlides && [...peekSlides].reverse().map((_, rawI) => {
+            const i = peekCount - 1 - rawI
+            return (
+                <div
+                    key={i}
+                    className="absolute inset-0 rounded-md border bg-white dark:bg-[#131313]"
+                    style={{
+                        borderColor: `${bg}59`,
+                        transform: `rotate(${peekRotations[i]}deg) translateY(${(i + 1) * 6}px)`,
+                        zIndex: peekCount - i,
+                        opacity: 1 - (i + 1) * 0.12,
+                    }}
+                >
+                    <div
+                        className="absolute inset-0 rounded-md"
+                        style={{ background: `${bg}14` }}
+                    />
+                </div>
+            )
+        })}
 
-        <h2 className="text-2xl font-bold mb-6 text-left">{activeContent.title}</h2>
-
-        <div className={`m-4 items-start gap-4 ${activeContent.embed || activeContent.image ? 'grid md:grid-cols-[3fr_2fr]' : ''}`}>
-          {activeContent.embed ? (
-            <div className="w-full rounded-xl overflow-hidden justify-self-center" style={{ aspectRatio: '4/3' }}>
-              <iframe src={activeContent.embed} allowFullScreen className="w-full h-full" />
-            </div>
-          ) : activeContent.image ? (
-            <img
-              src={activeContent.image}
-              alt={title}
-              className="w-auto h-auto rounded-xl max-h-64 object-cover justify-self-center"
+        {/* active card */}
+        <div
+            className="relative rounded-md p-6 shadow-lg border px-6 py-5 bg-white dark:bg-[#131313]"
+            style={{
+                borderColor: `${bg}59`,
+                zIndex: peekCount + 1,
+            }}
+        >
+            {/* color overlay */}
+            <div
+                className="absolute inset-0 rounded-md pointer-events-none"
+                style={{ background: `${bg}14` }}
             />
-          ) : null}
 
-          <div className="text-lg text-left">
-            <p>{activeContent.description}</p>
-
-            {activeContent.details && (
-              <button
-                onClick={() => {
-                  setExpanded(!expanded)
-                  setTimeout(() => window.dispatchEvent(new Event('resize')), 0)
-                }}
-                className="mt-4 text-m font-medium underline"
-              >
-                {expanded ? "Show less" : "Show more"}
-              </button>
+            {hasMultipleSlides && (
+                <button
+                    onClick={() => goToSlide(currSlide === 0 ? allSlides.length - 1 : currSlide - 1)}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 text-7xl font-bold transition-opacity opacity-20 hover:opacity-60 z-10"
+                    style={{ color: bg }}
+                >
+                    ‹
+                </button>
             )}
-          </div>
+
+            {hasMultipleSlides && (
+                <button
+                    onClick={() => goToSlide(currSlide === allSlides.length - 1 ? 0 : currSlide + 1)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-7xl font-bold transition-opacity opacity-20 hover:opacity-60 z-10"
+                    style={{ color: bg }}
+                >
+                    ›
+                </button>
+            )}
+
+            <h2 className="text-2xl font-bold mb-6 text-left">{activeContent.title}</h2>
+
+            <div className={`m-4 items-start gap-4 ${activeContent.embed || activeContent.image ? 'grid md:grid-cols-[3fr_2fr]' : ''}`}>
+                {activeContent.embed ? (
+                    <div className="w-full rounded-xl overflow-hidden justify-self-center" style={{ aspectRatio: '4/3' }}>
+                        <iframe src={activeContent.embed} allowFullScreen className="w-full h-full" />
+                    </div>
+                ) : activeContent.image ? (
+                    <img
+                        src={activeContent.image}
+                        alt={title}
+                        className="w-auto h-auto rounded-xl max-h-64 object-cover justify-self-center"
+                    />
+                ) : null}
+
+                <div className="text-lg text-left">
+                    <p>{activeContent.description}</p>
+
+                    {activeContent.details && (
+                        <button
+                            onClick={() => {
+                                setExpanded(!expanded)
+                                setTimeout(() => window.dispatchEvent(new Event('resize')), 0)
+                            }}
+                            className="mt-4 text-m font-medium underline"
+                        >
+                            {expanded ? "Show less" : "Show more"}
+                        </button>
+                    )}
+                </div>
+            </div>
+
+            {expanded && activeContent.details && (
+                <p className="mt-4 text-sm">{activeContent.details}</p>
+            )}
+
+            {hasMultipleSlides && (
+                <div className="flex justify-center items-center gap-3 mt-4">
+                    {allSlides.map((_, i) => (
+                        <button
+                            key={i}
+                            onClick={() => goToSlide(i)}
+                            className="w-2 h-2 rounded-full transition-all"
+                            style={{
+                                background: i === currSlide ? bg : `${bg}40`,
+                                transform: i === currSlide ? 'scale(1.3)' : 'scale(1)',
+                            }}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
-
-        {expanded && activeContent.details && (
-          <p className="mt-4 text-sm">{activeContent.details}</p>
-        )}
-
-        {hasMultipleSlides && (
-          <div className="flex justify-center items-center gap-3 mt-4">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goToSlide(i)}
-                className="w-2 h-2 rounded-full transition-all"
-                style={{
-                  background: i === currSlide ? bg : `${bg}40`,
-                  transform: i === currSlide ? 'scale(1.3)' : 'scale(1)',
-                }}
-              />
-            ))}
-          </div>
-        )}
       </div>
     </section>
   )
