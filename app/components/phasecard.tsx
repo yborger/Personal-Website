@@ -26,8 +26,7 @@ interface CardProps {
         slides?: Slide[];
 }
 
- export default function PhaseCard({number, title, description, details, image, embed, bg, slides}: CardProps){
-    //some descriptions are too long, so we can add a "read more" button that expands the description
+export default function PhaseCard({number, title, description, details, image, embed, bg, slides}: CardProps){
     const [expanded, setExpanded] = useState(false)
     const [currSlide, setCurrSlide] = useState(0)
 
@@ -35,7 +34,6 @@ interface CardProps {
 
     const hasMultipleSlides = slides && slides.length > 1
 
-    //reset fn
     function goToSlide(index: number) {
         setCurrSlide(index)
         setExpanded(false)
@@ -45,12 +43,32 @@ interface CardProps {
     return (
     <section className="h-3/4 flex ml-[50px] mr-[50px] items-center justify-center relative">
       <div
-        className="rounded-md p-6 m-4 shadow-lg max-w-4xl border px-6 py-5"
+        className="relative rounded-md p-6 m-4 shadow-lg max-w-4xl w-full border px-6 py-5"
         style={{
           borderColor: `${bg}59`,
           background: `${bg}14`,
         }}
       >
+        {hasMultipleSlides && (
+          <button
+            onClick={() => goToSlide(currSlide === 0 ? slides.length - 1 : currSlide - 1)}
+            className="absolute left-2 top-1/2 -translate-y-1/2 text-7xl font-bold transition-opacity opacity-20 hover:opacity-60"
+            style={{ color: bg }}
+          >
+            ‹
+          </button>
+        )}
+
+        {hasMultipleSlides && (
+          <button
+            onClick={() => goToSlide(currSlide === slides.length - 1 ? 0 : currSlide + 1)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-7xl font-bold transition-opacity opacity-20 hover:opacity-60"
+            style={{ color: bg }}
+          >
+            ›
+          </button>
+        )}
+
         <h2 className="text-2xl font-bold mb-6 text-left">{activeContent.title}</h2>
 
         <div className={`m-4 items-start gap-4 ${activeContent.embed || activeContent.image ? 'grid md:grid-cols-[3fr_2fr]' : ''}`}>
@@ -65,10 +83,10 @@ interface CardProps {
               className="w-auto h-auto rounded-xl max-h-64 object-cover justify-self-center"
             />
           ) : null}
- 
+
           <div className="text-lg text-left">
             <p>{activeContent.description}</p>
- 
+
             {activeContent.details && (
               <button
                 onClick={() => {
@@ -82,39 +100,26 @@ interface CardProps {
             )}
           </div>
         </div>
- 
+
         {expanded && activeContent.details && (
           <p className="mt-4 text-sm">{activeContent.details}</p>
         )}
+
         {hasMultipleSlides && (
-  <div className="flex justify-center items-center gap-3 mt-4">
-    <button
-      onClick={() => goToSlide(currSlide === 0 ? slides.length - 1 : currSlide - 1)}
-      className="text-2xl font-bold transition-opacity opacity-20 hover:opacity-60"
-      style={{ color: bg }}
-    >
-      ‹
-    </button>
-    {slides.map((_, i) => (
-      <button
-        key={i}
-        onClick={() => goToSlide(i)}
-        className="w-2 h-2 rounded-full transition-all"
-        style={{
-          background: i === currSlide ? bg : `${bg}40`,
-          transform: i === currSlide ? 'scale(1.3)' : 'scale(1)',
-        }}
-      />
-    ))}
-    <button
-      onClick={() => goToSlide(currSlide === slides.length - 1 ? 0 : currSlide + 1)}
-      className="text-2xl font-bold transition-opacity opacity-20 hover:opacity-60"
-      style={{ color: bg }}
-    >
-      ›
-    </button>
-  </div>
-)}
+          <div className="flex justify-center items-center gap-3 mt-4">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goToSlide(i)}
+                className="w-2 h-2 rounded-full transition-all"
+                style={{
+                  background: i === currSlide ? bg : `${bg}40`,
+                  transform: i === currSlide ? 'scale(1.3)' : 'scale(1)',
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )
