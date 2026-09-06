@@ -48,8 +48,8 @@ export default function PhaseCard({number, title, description, details, image, e
     }
 
     return (
-    <section className="h-3/4 flex ml-[50px] mr-[50px] items-center justify-center relative">
-      <div className="relative w-full max-w-4xl mx-4">
+    <section className="h-3/4 flex mx-2 md:ml-[50px] md:mr-[50px] items-center justify-center relative">
+      <div className="relative w-full max-w-4xl mx-1 md:mx-4">
 
         {/* peek cards behind, rendered back to front */}
         {hasMultipleSlides && [...peekSlides].reverse().map((_, rawI) => {
@@ -75,7 +75,7 @@ export default function PhaseCard({number, title, description, details, image, e
 
         {/* active card */}
         <div
-            className="relative rounded-md p-6 shadow-lg border px-6 py-5 bg-white dark:bg-[#131313]"
+            className="relative rounded-md p-3 md:p-6 shadow-lg border px-3 md:px-6 py-3 md:py-5 bg-white dark:bg-[#131313]"
             style={{
                 borderColor: `${bg}59`,
                 zIndex: peekCount + 1,
@@ -90,7 +90,7 @@ export default function PhaseCard({number, title, description, details, image, e
             {hasMultipleSlides && (
                 <button
                     onClick={() => goToSlide(currSlide === 0 ? allSlides.length - 1 : currSlide - 1)}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 text-7xl font-bold transition-opacity opacity-20 hover:opacity-60 z-10"
+                    className="absolute left-1 md:left-2 top-1/2 -translate-y-1/2 text-4xl md:text-7xl font-bold transition-opacity opacity-20 hover:opacity-60 z-10"
                     style={{ color: bg }}
                 >
                     ‹
@@ -100,16 +100,16 @@ export default function PhaseCard({number, title, description, details, image, e
             {hasMultipleSlides && (
                 <button
                     onClick={() => goToSlide(currSlide === allSlides.length - 1 ? 0 : currSlide + 1)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-7xl font-bold transition-opacity opacity-20 hover:opacity-60 z-10"
+                    className="absolute right-1 md:right-2 top-1/2 -translate-y-1/2 text-4xl md:text-7xl font-bold transition-opacity opacity-20 hover:opacity-60 z-10"
                     style={{ color: bg }}
                 >
                     ›
                 </button>
             )}
 
-            <h2 className="text-2xl font-bold mb-6 text-left">{activeContent.title}</h2>
+            <h2 className="text-lg md:text-2xl font-bold mb-3 md:mb-6 text-left">{activeContent.title}</h2>
 
-            <div className={`m-4 items-start gap-4 ${activeContent.embed || activeContent.image ? 'grid md:grid-cols-[3fr_2fr]' : ''}`}>
+            <div className={`m-2 md:m-4 items-start gap-2 md:gap-4 ${activeContent.embed || activeContent.image ? 'grid md:grid-cols-[3fr_2fr]' : ''}`}>
                 {activeContent.embed ? (
                     <div className="w-full rounded-xl overflow-hidden justify-self-center" style={{ aspectRatio: '4/3' }}>
                         <iframe src={activeContent.embed} allowFullScreen className="w-full h-full" />
@@ -118,11 +118,11 @@ export default function PhaseCard({number, title, description, details, image, e
                     <img
                         src={activeContent.image}
                         alt={title}
-                        className="w-auto h-auto rounded-xl max-h-64 object-cover justify-self-center"
+                        className="w-auto h-auto rounded-xl max-h-40 md:max-h-64 object-cover justify-self-center"
                     />
                 ) : null}
 
-                <div className="text-lg text-left">
+                <div className="text-sm md:text-lg text-left">
                     <p>{activeContent.description}</p>
 
                     {activeContent.details && (
@@ -131,7 +131,7 @@ export default function PhaseCard({number, title, description, details, image, e
                                 setExpanded(!expanded)
                                 setTimeout(() => window.dispatchEvent(new Event('resize')), 0)
                             }}
-                            className="mt-4 text-m font-medium underline"
+                            className="mt-2 md:mt-4 text-xs md:text-sm font-medium underline"
                         >
                             {expanded ? "Show less" : "Show more"}
                         </button>
@@ -140,16 +140,16 @@ export default function PhaseCard({number, title, description, details, image, e
             </div>
 
             {expanded && activeContent.details && (
-                <p className="mt-4 text-sm">{activeContent.details}</p>
+                <p className="mt-2 md:mt-4 text-xs md:text-sm">{activeContent.details}</p>
             )}
 
             {hasMultipleSlides && (
-                <div className="flex justify-center items-center gap-3 mt-4">
+                <div className="flex justify-center items-center gap-3 mt-3 md:mt-4">
                     {allSlides.map((_, i) => (
                         <button
                             key={i}
                             onClick={() => goToSlide(i)}
-                            className="w-2 h-2 rounded-full transition-all"
+                            className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all"
                             style={{
                                 background: i === currSlide ? bg : `${bg}40`,
                                 transform: i === currSlide ? 'scale(1.3)' : 'scale(1)',

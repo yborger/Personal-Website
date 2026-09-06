@@ -336,43 +336,52 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
   return (
     <div className="relative w-full" style={{ minHeight: '100%' }}>
 
-      {/* sticky nav */}
-      <div
-        ref={navRef}
-        className="fixed top-32 left-0 right-0 z-50 flex justify-center pointer-events-none"
-        style={{ opacity: 0 }}
-      >
-        <div className="flex gap-2 flex-wrap justify-center max-w-3xl px-4 pointer-events-auto">
-          {cards.map((card, i) => {
-            const color = cardColor(i)
-            const hasSlides = card.slides && card.slides.length > 1
-            return (
-              <div key={card.number} className="relative group">
+    {/* sticky nav */}
+    <div
+      ref={navRef}
+      className="fixed top-32 left-0 right-0 z-50 flex justify-center pointer-events-none"
+      style={{ opacity: 0 }}
+    >
+      <div className="flex gap-2 flex-wrap justify-center max-w-3xl px-4 pointer-events-auto">
+        {cards.map((card, i) => {
+          const color = cardColor(i)
+          const hasSlides = card.slides && card.slides.length > 1
+          return (
+            <div key={card.number} className="relative group">
+              {/* solid base + color overlay wrapper */}
+              <div className="relative rounded-full bg-white dark:bg-[#131313] overflow-hidden">
+                <div
+                  className="absolute inset-0 rounded-full pointer-events-none"
+                  style={{ background: `${card.bg}14` }}
+                />
                 <button
                   ref={el => { navBtnRefs.current[i] = el }}
                   onClick={() => scrollToCard(i)}
-                  className="text-m px-3 py-1 rounded-full border transition-all duration-300 "
+                  className="relative text-sm md:text-base px-3 py-1 rounded-full border bg-transparent transition-all duration-300 z-10"
                   style={{
                     borderColor: `${card.bg}59`,
                     borderWidth: '1px',
                     color: card.bg,
                     opacity: 0.5,
-                    background: 'transparent',
                   }}
                 >
                   {card.title}
-                  {hasSlides && <span className="ml-1 opacity-60">▾</span>}
+                  {hasSlides && <span className="ml-1 opacity-60 hidden md:inline">▾</span>}
                 </button>
+              </div>
 
-                {/* dropdown — hidden on mobile, hover on desktop */}
-                {hasSlides && (
-                  <div className="hidden md:block absolute top-full left-0 mt-1 z-50 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 bg-white dark:bg-[#131313]">
+              {/* dropdown — hidden on mobile, hover on desktop */}
+              {hasSlides && (
+                <div className="hidden md:block absolute top-full left-0 mt-1 z-50 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200">
+                  <div className="relative rounded-lg overflow-hidden">
+                    <div className="absolute inset-0 bg-white dark:bg-[#131313]" />
                     <div
-                      className="rounded-lg border px-3 py-2 text-sm flex flex-col gap-1 min-w-max backdrop-blur-sm"
-                      style={{
-                        borderColor: `${card.bg}40`,
-                        background: `${card.bg}14`,
-                      }}
+                      className="absolute inset-0"
+                      style={{ background: `${card.bg}14` }}
+                    />
+                    <div
+                      className="relative border rounded-lg px-3 py-2 text-sm flex flex-col gap-1 min-w-max"
+                      style={{ borderColor: `${card.bg}40` }}
                     >
                       {card.slides!.map((slide, si) => (
                         <span
@@ -385,12 +394,13 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
                       ))}
                     </div>
                   </div>
-                )}
-              </div>
-            )
-          })}
-        </div>
+                </div>
+              )}
+            </div>
+          )
+        })}
       </div>
+    </div>
 
       <svg
         ref={svgRef}
