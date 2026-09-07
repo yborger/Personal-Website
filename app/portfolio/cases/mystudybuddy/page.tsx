@@ -15,7 +15,7 @@ const phases = [
     title: "Goal",
     description: "The assignment goal was to create a project that we fully developed from scratch. The group's goal on the project was to create a buddy that would improve focus and productivity while also giving self-care reminders, as we were college students and that was a definite issue we faced.",
     image: "/artwork/bee_leaf.png",
-    bg: "#A066D3",
+    bg: "#B065AD",
   },
   {
     number: 3,
@@ -23,7 +23,7 @@ const phases = [
     description: "",
     details: "",
     image: "/artwork/bee_leaf.png",
-    bg: "#D4537E",
+    bg: "#1DC49E",
     slides: [
       {
         title: "Slide 1",
@@ -51,7 +51,7 @@ const phases = [
     description: "Fusce blandit odio nec enim volutpat, a efficitur nisl efficitur. Curabitur ac odio at enim efficitur commodo.",
     details: "Nunc scelerisque viverra mauris in aliquam sem fringilla ut. Donec et odio pellentesque diam volutpat commodo sed egestas.",
     image: "/artwork/bee_leaf.png",
-    bg: "#1D9E75",
+    bg: "#2E9EC4",
   },
 ]
 

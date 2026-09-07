@@ -17,20 +17,20 @@ const phases = [
     title: "Goals",
     description: "Overall, the project is redesigning and “re-vamping” the website to appeal more towards his current audience, and to modernize the pages. The website was created years ago, and the design was not updated to reflect the new content.",
     image: "/okr_imgs/preferred.png",
-    bg: "#A066D3",
+    bg: "#9D6ACC",
   },
   {
     number: 3,
     title: "Empathize",
     description: "Jahmal needed a website that looks modern, but is still interesting. Based on his inspiration websites, he likes animated and clean design. The users need something simple and easy to follow, since the target audience is volunteers and company partnership.",
     details: "",
-    bg: "#D4537E",
+    bg: "#BC5D9E",
   },
   {
     number: 4,
     title: "Define the Problem",
     description: "",
-    bg: "#C4895A",
+    bg: "#D4537E",
     slides: [
       {
         title: "Messy Navigation",

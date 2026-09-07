@@ -16,7 +16,7 @@ const phases = [
     description: "Create a game with a unique concept behind it. My partner and I were drawn to the idea of bringing a classic into a more modern context.",
     details: "We made custom sprites and tiles, fully diving into the mechanics of the game and how they work within the storyline. Our final write up includes background lore for the game, a gameplay guide, and explanation of the controls ",
     image: "/ablock_imgs/writeup_pg.png",
-    bg: "#A066D3",
+    bg: "#B065AD",
   },
   {
     number: 3,
@@ -24,7 +24,7 @@ const phases = [
     description: "", //doesn't show
     details: "", //doesn't show
     image: "", //doesn't show
-    bg: "#D4537E",
+    bg: "#1DC49E",
     slides: [
       {
         //conceptualizing + drawing inspo
@@ -53,7 +53,7 @@ const phases = [
     description: "",
     details: "",
     image: "",
-    bg: "#1D9E75",
+    bg: "#2E9EC4",
     slides: [
       {
         title: "Remote Work?",

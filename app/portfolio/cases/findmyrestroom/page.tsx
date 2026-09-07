@@ -15,7 +15,7 @@ const phases = [
     title: "Goals",
     description: "Originally, it was just to create a web application that would find a restroom near me and tell me if I had to buy something ahead of time. As I thought more, I came up with more criteria like accessibility of the restroom, whether it was a clean restroom, among others.",
     details: "This was never meant to be an application to show my software development skill, but rather an experimental use of AI as a programming tool",
-    bg: "#A066D3",
+    bg: "#B065AD",
   },
   {
     number: 3,
@@ -23,7 +23,7 @@ const phases = [
     description: "",
     details: "",
     image: "",
-    bg: "#D4537E",
+    bg: "#1DC49E",
     slides: [
       {
         title: "Experimenting with AI",
@@ -54,7 +54,7 @@ const phases = [
     description: "",
     details: "",
     image: "",
-    bg: "#1D9E75",
+    bg: "#2E9EC4",
     slides: [
       {
         title: "Strengths",

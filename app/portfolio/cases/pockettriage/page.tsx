@@ -15,7 +15,7 @@ const phases = [
     title: "Goal",
     description: "Design a user friendly mobile interface for the mental health section of a first aid application. I was given a lot of creative control over this section, including the styling and user flow.",
     image: "/pocket_triage/goal nav options.png",
-    bg: "#A066D3",
+    bg: "#AF65AD",
   },
   {
     number: 3,
@@ -84,7 +84,7 @@ const phases = [
     title: "Demo",
     description: "This is a demo of the pages I specifically created for Pocket Triage.",
     embed: "https://embed.figma.com/proto/rijIcQxNm2704hV0qV8pQy/Mental-Health-Hub---Pocket-Triage?node-id=2098-38376&scaling=scale-down&content-scaling=fixed&page-id=2003%3A1270&starting-point-node-id=2098%3A38376&embed-host=share",
-    bg: "#1D9E75"
+    bg: "#2E9EC4"
   },
 ]
 
