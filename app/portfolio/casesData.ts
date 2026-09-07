@@ -29,7 +29,7 @@ export const casesData = [
     //},
     {
         title: "MyStudyBuddy",
-        image: "/mystudybuddy.jpg",
+        image: "/msb_imgs/mystudybuddy.jpg",
         summary: "A Google Chrome extension for reminders that are often forgotten by busy college students",
         slug: "portfolio/cases/mystudybuddy",
         tags: ["Software", "UI / UX", "JavaScript", "HTML", "CSS"],

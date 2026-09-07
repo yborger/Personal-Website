@@ -12,7 +12,7 @@ const phases = [
   },
   {
     number: 2,
-    title: "Goal",
+    title: "Goals",
     description: "Create a game with a unique concept behind it. My partner and I were drawn to the idea of bringing a classic into a more modern context.",
     details: "We made custom sprites and tiles, fully diving into the mechanics of the game and how they work within the storyline. Our final write up includes background lore for the game, a gameplay guide, and explanation of the controls ",
     image: "/ablock_imgs/writeup_pg.png",
