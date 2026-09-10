@@ -56,3 +56,21 @@ export const casesData = [
         tags: ["Software", "AI"],
     },
 ]
+
+/*
+Links of Demos/Githubs for future application
+MSB - https://github.com/yborger/mystudybuddy
+Restroom - https://github.com/yborger/find-my-restroom
+    - Demo: https://find-my-restroom.vercel.app/
+Ablockalypse - https://github.com/yborger/Ablockalypse
+OKR - https://ourkidsread.org/
+Pocket Triage has the demo already
+
+
+
+Neural Network - https://github.com/yborger/Neural-Network---Flowers
+Snap - https://github.com/yborger/Snap.Nutrition
+Color Palettes - https://github.com/yborger/Color-Palettes
+SwatNinja - https://github.com/yborger/SwatNinja
+
+*/
