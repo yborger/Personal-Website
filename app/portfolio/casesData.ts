@@ -34,6 +34,13 @@ export const casesData = [
         slug: "portfolio/cases/mystudybuddy",
         tags: ["Software", "UI / UX", "JavaScript", "HTML", "CSS"],
     },
+	{
+        title: "Neural Network: Flowers",
+        image: "/demo_screens/findmyrestroom.png",
+        summary: "A neural network developed to identify between 5 types of flowers.",
+        slug: "portfolio/cases/neural_network",
+        tags: ["Software", "AI"],
+    },
     {
         title: "SwatNinja",
         image: "/art sign.png",
