@@ -36,7 +36,7 @@ export const casesData = [
     },
 	{
         title: "Neural Network: Flowers",
-        image: "/demo_screens/findmyrestroom.png",
+        image: "/neural_network/ai.png",
         summary: "A neural network developed to identify between 5 types of flowers.",
         slug: "portfolio/cases/neural_network",
         tags: ["Software", "AI"],
