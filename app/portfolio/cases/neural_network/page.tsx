@@ -6,7 +6,7 @@ const phases = [
     number: 1,
     title: "Neural Network for Flowers",
     description: "As part of the final project for the Artificial Intelligence course taught at Swarthmore College, my lab partner and I created a Neural Network that can identify flowers through image recognition. I also presented it as part of my senior capstone",
-    image: "neural_network/senior_poster.png",
+    image: "/neural_network/senior_poster.png",
     bg: "#7F77DD",
   },
   {
@@ -47,7 +47,7 @@ const phases = [
       {
         title: "Understanding AI",
         description: "Considering the era we are in, I am so grateful to have had this background in artificial intelligence.",
-        embed: "neural_network/write-up.pdf"
+        embed: "/neural_network/write-up.pdf"
       },
       {
         title: "The Importance of the Write-up",

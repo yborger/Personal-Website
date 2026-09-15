@@ -28,7 +28,7 @@ const phases = [
   },
   {
     number: 4,
-    title: "Define the Problem",
+    title: "Define Problem",
     description: "",
     bg: "#D4537E",
     slides: [
@@ -52,7 +52,7 @@ const phases = [
 
   {
     number: 5,
-    title: "Ideate and Prototype",
+    title: "Ideate & Prototype",
     description: "",
     bg: "#1D9E75",
     slides: [
