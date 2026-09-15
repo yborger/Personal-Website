@@ -43,7 +43,7 @@ export const casesData = [
     },
     {
         title: "SwatNinja",
-        image: "/art sign.png",
+        image: "/swat_imgs/fly.png",
         summary: "An augmented reality (AR) game based on 'Fruit Ninja' including hand-recognition technology and custom sprites",
         slug: "portfolio/cases/swatninja",
         tags: ["Software", "Design", "JavaScript"],
