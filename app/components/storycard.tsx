@@ -42,13 +42,10 @@ export default function StoryCard({
         'border rounded-xl px-6 py-5',
       ].join(' ')}
     >
-      <p className="text-[11px] tracking-widest uppercase text-neutral-400 mb-1">
-        {label}
-      </p>
-      <p className="text-[17px] font-medium leading-snug mb-2 text-neutral-800 dark:text-neutral-100">
+      <p className="text-[20px] font-medium leading-snug mb-2 text-neutral-800 dark:text-neutral-100">
         {title}
       </p>
-      <p className="text-[13px] text-neutral-500 dark:text-neutral-400 leading-relaxed mb-0">
+      <p className="text-[17px] text-neutral-500 dark:text-neutral-400 leading-relaxed mb-0">
         {body}
       </p>
       <div className="flex flex-wrap gap-1.5 mt-3">

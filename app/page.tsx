@@ -15,31 +15,31 @@ import Storyboard from './components/storyboard'
 
 const storyCards = [
   {
-    label: 'Hello',
+    label: 'Greeting',
     title: "Hi, I'm Yael Borger",
-    body: 'Software developer from New Jersey, building things for the web.',
-    tags: ['Full stack', 'UI / UX'],
+    body: 'should i put the focus here like a tagline.',
+    tags: ['Front End', 'Full Stack', 'UI / UX'],
     color: '#7F77DD',
   },
   {
     label: 'Background',
     title: 'Driven by problem-solving',
-    body: 'A curiosity for how things work led me across the full stack — backend systems to polished interfaces.',
-    tags: ['JavaScript', 'Python', 'React'],
+    body: 'A curiosity for how things work led .',
+    tags: ['JavaScript', 'Python', 'React', 'HTML/CSS'],
     color: '#D4537E',
   },
   {
     label: 'Focus',
     title: 'Crafting experiences that feel right',
     body: 'Frontend craft meets UX thinking — the details that make interfaces feel intentional and alive.',
-    tags: ['Web dev', 'Animation', 'Design'],
+    tags: ['Web dev', 'Design'],
     color: '#1D9E75',
   },
   {
     label: 'Work',
     title: 'See the portfolio',
-    body: 'Projects ranging from small apps to complex software — each one teaching something new.',
-    tags: ['View projects'],
+    body: 'lorem ipsum dolor sit amet.',
+    tags: ['lorem ipsum'],
     color: '#378ADD',
   },
 ]
