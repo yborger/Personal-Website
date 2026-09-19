@@ -48,13 +48,13 @@ export const casesData = [
         slug: "portfolio/cases/swatninja",
         tags: ["Software", "Design", "JavaScript"],
     },
-    {
-        title: "Snap.Nutrition",
-        image: "/demo_screens/snap.nutrition opener screen.png",
-        summary: "An AI-coded application for recognizing food from images and reporting back nutrition information",
-        slug: "portfolio/cases/snapnutrition",
-        tags: ["Software", "AI", "UI / UX"],
-    },
+    //{
+        //title: "Snap.Nutrition",
+        //image: "/demo_screens/snap.nutrition opener screen.png",
+        //summary: "An AI-coded application for recognizing food from images and reporting back nutrition information",
+        //slug: "portfolio/cases/snapnutrition",
+        //tags: ["Software", "AI", "UI / UX"],
+    //},
     {
         title: "Find My Restroom",
         image: "/demo_screens/findmyrestroom.png",
