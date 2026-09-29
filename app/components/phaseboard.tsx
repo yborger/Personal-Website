@@ -119,65 +119,80 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
     }
 
     function buildPath(svg: SVGSVGElement): string {
-      const outset  = 12
-      const r       = 16
-      const points: string[] = []
-      const docHeight = document.body.scrollHeight
+  const outset       = 12
+  const bottomOutset = 32
+  const r            = 16
+  const points: string[] = []
+  const docHeight = document.body.scrollHeight
 
-      const firstCard = cardRefs.current[0]
-      const firstTop  = firstCard ? firstCard.offsetTop - outset : 0
+  cardRefs.current.forEach((card, i) => {
+    if (!card) return
 
-      cardRefs.current.forEach((card, i) => {
-        if (!card) return
+    const cardData = cards[i]
+    const hasStack = cardData.slides && cardData.slides.length > 1
 
-        const top    = card.offsetTop    - outset
-        const bottom = card.offsetTop + card.offsetHeight + outset
-        const left   = card.offsetLeft   - outset
-        const right  = card.offsetLeft + card.offsetWidth  + outset
-        const width  = right - left
+    const top    = card.offsetTop    - outset
+    const bottom = card.offsetTop + card.offsetHeight + (hasStack ? bottomOutset : outset)
+    const left   = card.offsetLeft   - outset
+    const right  = card.offsetLeft + card.offsetWidth  + outset
+    const width  = right - left
 
-        const entryFrac = exitOffsetsRef.current[i] ?? 0.5
-        const entryX = left + width * entryFrac
-        const exitFrac = exitOffsetsRef.current[i+1] ?? 0.5
-        const exitX = left + width * exitFrac
+    const entryFrac = exitOffsetsRef.current[i] ?? 0.5
+    const entryX = left + width * entryFrac
+    const exitFrac = exitOffsetsRef.current[i+1] ?? 0.5
+    const exitX = left + width * exitFrac
 
-        if (i === 0){
-          points.push(`M ${entryX} ${0}`)
-          points.push(`L ${entryX} ${top + r}`)
-        }
+    const clockwise = i % 2 === 0
 
-        points.push(`L ${entryX} ${top + r}`)
-        points.push(`Q ${entryX} ${top}, ${entryX + r} ${top}`)
-        points.push(`L ${right - r} ${top}`)
-        points.push(`Q ${right} ${top}, ${right} ${top + r}`)
-        points.push(`L ${right} ${bottom - r}`)
-        points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
-        points.push(`L ${left + r} ${bottom}`)
-        points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
-        points.push(`L ${left} ${top + r}`)
-        points.push(`Q ${left} ${top}, ${left + r} ${top}`)
-        points.push(`L ${entryX - r} ${top}`)
-        points.push(`Q ${entryX} ${top}, ${entryX} ${top + r}`)
-        points.push(`L ${left} ${top + r}`)
-        points.push(`L ${left} ${bottom - r}`)
-        points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
-        points.push(`L ${exitX} ${bottom}`)
-
-        const nextCard = cardRefs.current[i + 1]
-        if (nextCard){
-          const nextTop   = nextCard.offsetTop - outset
-          const nextLeft  = nextCard.offsetLeft - outset
-          const nextRight = nextCard.offsetLeft + nextCard.offsetWidth + outset
-          const nextWidth = nextRight - nextLeft
-          const nextEntryX = nextLeft + nextWidth * (exitOffsetsRef.current[i+1] ?? 0.5)
-          points.push(`L ${nextEntryX} ${nextTop}`)
-        } else {
-          points.push(`L ${exitX} ${docHeight}`)
-        }
-      })
-
-      return points.join(' ')
+    if (i === 0){
+      points.push(`M ${entryX} ${0}`)
+      points.push(`C ${entryX} ${top * 0.4}, ${entryX} ${top * 0.8}, ${entryX} ${top + r}`)
+    } else {
+      const prevCard = cardRefs.current[i - 1]
+      const prevBottom = prevCard ? prevCard.offsetTop + prevCard.offsetHeight + outset : top
+      points.push(`C ${exitX} ${prevBottom + (top - prevBottom) * 0.3}, ${entryX} ${top - (top - prevBottom) * 0.3}, ${entryX} ${top + r}`)
     }
+
+    if (clockwise) {
+      points.push(`Q ${entryX} ${top}, ${entryX + r} ${top}`)
+      points.push(`L ${right - r} ${top}`)
+      points.push(`Q ${right} ${top}, ${right} ${top + r}`)
+      points.push(`L ${right} ${bottom - r}`)
+      points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
+      points.push(`L ${left + r} ${bottom}`)
+      points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
+      points.push(`L ${left} ${top + r}`)
+      points.push(`Q ${left} ${top}, ${left + r} ${top}`)
+      points.push(`L ${right - r} ${top + 8}`)
+      points.push(`Q ${right} ${top + 8}, ${right} ${top + r + 8}`)
+      points.push(`L ${right - 5} ${bottom - r}`)
+      points.push(`Q ${right - 5} ${bottom + 2}, ${right - r - 5} ${bottom + 2}`)
+      points.push(`L ${exitX} ${bottom + 2}`)
+    } else {
+      points.push(`Q ${entryX} ${top}, ${entryX - r} ${top}`)
+      points.push(`L ${left + r} ${top}`)
+      points.push(`Q ${left} ${top}, ${left} ${top + r}`)
+      points.push(`L ${left} ${bottom - r}`)
+      points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
+      points.push(`L ${right - r} ${bottom}`)
+      points.push(`Q ${right} ${bottom}, ${right} ${bottom - r}`)
+      points.push(`L ${right} ${top + r}`)
+      points.push(`Q ${right} ${top}, ${right - r} ${top}`)
+      points.push(`L ${left + r} ${top + 8}`)
+      points.push(`Q ${left} ${top + 8}, ${left} ${top + r + 8}`)
+      points.push(`L ${left + 5} ${bottom - r}`)
+      points.push(`Q ${left + 5} ${bottom + 2}, ${left + r + 5} ${bottom + 2}`)
+      points.push(`L ${exitX} ${bottom + 2}`)
+    }
+
+    const nextCard = cardRefs.current[i + 1]
+    if (!nextCard){
+      points.push(`L ${exitX} ${docHeight}`)
+    }
+  })
+
+  return points.join(' ')
+}
 
     function applyPath(svg: SVGSVGElement, drawn: SVGPathElement, track: SVGPathElement) {
       const PATH = buildPath(svg)

@@ -46,11 +46,6 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
   const points: string[] = []
 
   const docHeight = document.body.scrollHeight
-  const docWidth  = document.body.clientWidth
-
-  const firstCard = cardRefs.current[0]
-  const firstTop  = firstCard ? firstCard.offsetTop - outset : 0
-  const firstLeft = firstCard ? (firstCard.offsetLeft - outset): 0
 
   cardRefs.current.forEach((card, i) => {
     if (!card) return
@@ -60,7 +55,7 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
     const offset = i % 2 === 0 ? 20: -20
     const left   = card.offsetLeft   - outset + offset
     const right  = card.offsetLeft + card.offsetWidth  + outset + offset
-    const width = right - left
+    const width  = right - left
 
     const entryFrac = exitOffsetsRef.current[i] ?? 0.5
     const entryX = left + width * entryFrac
@@ -68,55 +63,61 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
     const exitFrac = exitOffsetsRef.current[i+1] ?? 0.5
     const exitX = left + width * exitFrac
 
-    if (i === 0){ //if first card
-      points.push(`M ${firstTop} ${-100}`)
-      points.push(`L ${firstTop} ${top + r}`)
+    const clockwise = i % 2 === 0
+
+    if (i === 0){
+      points.push(`M ${entryX} ${-100}`)
+      points.push(`C ${entryX} ${top * 0.4}, ${entryX} ${top * 0.8}, ${entryX} ${top + r}`)
+    } else {
+      const prevCard = cardRefs.current[i - 1]
+      const prevBottom = prevCard ? prevCard.offsetTop + prevCard.offsetHeight + outset : top
+      // control points stay between the two cards, not pushing into the next
+      points.push(`C ${exitX} ${prevBottom + (top - prevBottom) * 0.3}, ${entryX} ${top - (top - prevBottom) * 0.3}, ${entryX} ${top + r}`)
     }
-    //TRACE CARD:
-    // → go R to top right
-    points.push(`L ${entryX} ${top + r}`)
-    points.push(`Q ${entryX} ${top}, ${entryX + r} ${top}`)
-    points.push(`L ${right - r} ${top}`)
-    points.push(`Q ${right} ${top}, ${right} ${top + r}`)
-    // → go down to bottom right
-    points.push(`L ${right} ${bottom - r}`)
-    points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
-    // → turn left in bottom right to bottom left
-    points.push(`L ${left + r} ${bottom}`)
-    points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
-    // → turn left in bottom left to top left
-    points.push(`L ${left} ${top + r}`)
-    points.push(`Q ${left} ${top}, ${left + r} ${top}`)
-    // → turn right in top left to entry point
-    points.push(`L ${entryX - r} ${top}`)
-    points.push(`Q ${entryX} ${top}, ${entryX} ${top + r}`)
-    // retrace back down left side to bottom-left
-    points.push(`L ${left} ${top + r}`)
-    //points.push(`Q ${left} ${top + r}, ${left} ${top + r}`)
-    points.push(`L ${left} ${bottom - r}`)
-    points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
-    // → right along bottom to exitX
-    points.push(`L ${exitX} ${bottom}`)
+
+    if (clockwise) {
+      // CLOCKWISE: entry → right along top → down right → left along bottom → up left → second pass
+      points.push(`Q ${entryX} ${top}, ${entryX + r} ${top}`)
+      points.push(`L ${right - r} ${top}`)
+      points.push(`Q ${right} ${top}, ${right} ${top + r}`)
+      points.push(`L ${right} ${bottom - r}`)
+      points.push(`Q ${right} ${bottom}, ${right - r} ${bottom}`)
+      points.push(`L ${left + r} ${bottom}`)
+      points.push(`Q ${left} ${bottom}, ${left} ${bottom - r}`)
+      points.push(`L ${left} ${top + r}`)
+      points.push(`Q ${left} ${top}, ${left + r} ${top}`)
+      // second pass clockwise, offset
+      points.push(`L ${right - r} ${top + 8}`)
+      points.push(`Q ${right} ${top + 8}, ${right} ${top + r + 8}`)
+      points.push(`L ${right - 5} ${bottom - r}`)
+      points.push(`Q ${right - 5} ${bottom + 2}, ${right - r - 5} ${bottom + 2}`)
+      points.push(`L ${exitX} ${bottom + 2}`)
+    } else {
+      // COUNTERCLOCKWISE: entry → left along top → down left → right along bottom → up right → second pass
+      points.push(`Q ${entryX} ${top}, ${entryX - r} ${top}`)
+      points.push(`L ${left + r} ${top}`)
+      points.push(`Q ${left} ${top}, ${left} ${top + r}`)
+      points.push(`L ${left} ${bottom - r}`)
+      points.push(`Q ${left} ${bottom}, ${left + r} ${bottom}`)
+      points.push(`L ${right - r} ${bottom}`)
+      points.push(`Q ${right} ${bottom}, ${right} ${bottom - r}`)
+      points.push(`L ${right} ${top + r}`)
+      points.push(`Q ${right} ${top}, ${right - r} ${top}`)
+      // second pass counterclockwise, offset
+      points.push(`L ${left + r} ${top + 8}`)
+      points.push(`Q ${left} ${top + 8}, ${left} ${top + r + 8}`)
+      points.push(`L ${left + 5} ${bottom - r}`)
+      points.push(`Q ${left + 5} ${bottom + 2}, ${left + r + 5} ${bottom + 2}`)
+      points.push(`L ${exitX} ${bottom + 2}`)
+    }
 
     const nextCard = cardRefs.current[i + 1]
-    if (nextCard){
-        const nextTop = nextCard.offsetTop - outset
-        const nextLeft = nextCard.offsetLeft - outset
-        const nextRight = nextCard.offsetLeft + nextCard.offsetWidth + outset
-        const nextWidth = nextRight - nextLeft
-
-        const nextEntryX = nextLeft + nextWidth * (exitOffsetsRef.current[i+1] ?? 0.5)
-        points.push(`L ${nextEntryX} ${nextTop}`)
-    }
-    else{ //if last
+    if (!nextCard){
       points.push(`L ${exitX} ${docHeight}`)
-
     }
-    }) //end the for each
+  })
 
-    const lastCard = cardRefs.current[cardRefs.current.length - 1]
-    const lastBottom = lastCard ? lastCard.offsetTop + lastCard.offsetHeight + outset : docHeight
-    return points.join(' ')
+  return points.join(' ')
 }
 
 function applyPath(
