@@ -15,6 +15,18 @@ type CaseMetadata = {
     CHECK --upon click, open the case's page 
     --for now, quick summaries are not needed
     CHECK --add padding and rounded corners for the illusion of non-perfect squares
+
+
+    Concept Rework:
+    - Visually make the individual projects like "polaroid" photos hanging from a line that does the same gradient as the other ones
+        -this is very horizontal-view? but also i kind of like it more... it's more museum-y too
+    - i like the polaroids hanging from lines to incorporate the theme here, maybe horizontal for same subject and vertical sorted?
+        - software at the top
+        - ui/ux 
+        - future marketing? or i could combine lol
+
+    - how do i make the mobile view for this? maybe just what it currently is for mobile?
+
 */
 
 export default function CaseCard ({title, image, summary, slug, tags = []}: CaseMetadata) {

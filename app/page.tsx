@@ -16,22 +16,22 @@ import Storyboard from './components/storyboard'
 const storyCards = [
   {
     label: 'Greeting',
-    title: "Hi, I'm Yael Borger",
+    title: "Hi, I'm Yael",
     body: 'should i put the focus here like a tagline.',
-    tags: ['Front End', 'Full Stack', 'UI / UX'],
+    tags: ['Front End', 'UI / UX'],
     color: '#7F77DD',
   },
   {
     label: 'Background',
     title: 'Driven by problem-solving',
-    body: 'A curiosity for how things work led .',
+    body: 'A curiosity for how things work and why things are the way they are.',
     tags: ['JavaScript', 'Python', 'React', 'HTML/CSS'],
     color: '#D4537E',
   },
   {
     label: 'Focus',
-    title: 'Crafting experiences that feel right',
-    body: 'Frontend craft meets UX thinking — the details that make interfaces feel intentional and alive.',
+    title: 'Creating experiences that feel right',
+    body: 'Make interfaces feel intentional and alive.',
     tags: ['Web dev', 'Design'],
     color: '#1D9E75',
   },
