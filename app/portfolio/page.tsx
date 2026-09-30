@@ -1,3 +1,6 @@
+// NOTE: A WEIRD THING IS HAPPENING VISUALLY AND I AM ASSUMING THIS FILE IS THE CULPRIT
+// THE CASECARD COMPONENT IS GETTING SPLIT IN HALF WHEN THERE'S AN UNEVEN NUMBER OF CARDS
+
 "use client"
 import { useState } from "react"
 import CaseCard from 'app/components/caseCard'
@@ -11,8 +14,6 @@ export default function Page() {
   const filtered = activeFilter === "All Projects"
     ? casesData
     : casesData.filter(c => c.tags.includes(activeFilter))
-
-  const columnClass = filtered.length >= 9 ? 'columns-3' : 'columns-2'
 
   return (
     <div className="flex flex-col items-center pt-10">
@@ -28,7 +29,7 @@ export default function Page() {
         </select>
       </div>
 
-      <div className={`w-full max-w-5xl mx-auto px-4 gap-4 ${columnClass}`}>
+      <div className={`w-full max-w-5xl mx-auto px-4 gap-4 md:columns-2 md:gap-16`}>
         {filtered.map((metadata, index) => (
           <CaseCard
             key={index}
@@ -37,6 +38,7 @@ export default function Page() {
             summary={metadata.summary}
             slug={metadata.slug}
             tags={metadata.tags}
+            demo={metadata.demo}
           />
         ))}
       </div>

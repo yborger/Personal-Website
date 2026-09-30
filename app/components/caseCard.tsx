@@ -1,54 +1,64 @@
-
 import Link from 'next/link'
 
 type CaseMetadata = {
     title: string
-    image: string
+    image?: string
     summary: string
     slug: string
     tags?: string[]
+    demo?: string
 }
 
-/* 
-    Notes:
-    CHECK --add in a hover-over for the title
-    CHECK --upon click, open the case's page 
-    --for now, quick summaries are not needed
-    CHECK --add padding and rounded corners for the illusion of non-perfect squares
+export default function CaseCard ({title, image, summary, slug, tags = [], demo}: CaseMetadata) {
+    const isGithub = demo?.includes('github.com')
+    const demoLabel = isGithub ? 'github ↗' : 'demo ↗'
 
-
-    Concept Rework:
-    - Visually make the individual projects like "polaroid" photos hanging from a line that does the same gradient as the other ones
-        -this is very horizontal-view? but also i kind of like it more... it's more museum-y too
-    - i like the polaroids hanging from lines to incorporate the theme here, maybe horizontal for same subject and vertical sorted?
-        - software at the top
-        - ui/ux 
-        - future marketing? or i could combine lol
-
-    - how do i make the mobile view for this? maybe just what it currently is for mobile?
-
-*/
-
-export default function CaseCard ({title, image, summary, slug, tags = []}: CaseMetadata) {
     return(
         <Link href={slug}>
-            <div className="py-4 group relative overflow-hidden rounded-2xl transition-transform hover:-translate-y-1">
-                <img src={image} alt={title} className= "w-full h-auto rounded-xl" />
+            <div className="flex flex-row gap-3 py-4 transition-transform hover:-translate-y-1 cursor-pointer">
+                
+                {/* polaroid frame */}
+                {image && (
+                    <div className="flex-shrink-0 bg-stone-50 dark:bg-neutral-800 p-2 pb-8 shadow-lg rounded-sm w-40 border border-neutral-200 dark:border-neutral-700 relative">
+                        <img 
+                            src={image} 
+                            alt={title} 
+                            className="w-full h-32 object-cover rounded-sm"
+                        />
+                        {demo ? (
+                            <a
+                                href={demo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={e => e.stopPropagation()}
+                                className="absolute bottom-1.5 left-0 right-0 text-center text-[10px] text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 transition-colors"
+                            >
+                                {demoLabel}
+                            </a>
+                        ) : (
+                            <span className="absolute bottom-1.5 left-0 right-0 text-center text-[10px] text-neutral-300 dark:text-neutral-600 select-none">
+                                ◦
+                            </span>
+                        )}
+                    </div>
+                )}
 
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-white bg-black/50 backdrop-blur-lg opacity-0 group-hover:opacity-95 transition-opacity ">
-                    <h2 className="text-2xl font-bold mb-2">{title}</h2>
-                    <p className="text-m">{summary}</p>
-                    <div className="flex flex-wrap gap-2 mt-4">
+                {/* info box */}
+                <div className="flex flex-col justify-center gap-2 bg-stone-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-sm px-4 py-3 shadow-lg flex-1">
+                    <h2 className="text-base font-semibold leading-snug">{title}</h2>
+                    <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">{summary}</p>
+                    <div className="flex flex-wrap gap-1.5 mt-1">
                         {tags.map(tag => (
                             <span
                                 key={tag}
-                                className="text-xs px-2 py-1 rounded-full bg-white/30 border backdrop-blur-sm"
+                                className="text-xs px-2 py-0.5 rounded-full border border-neutral-300 dark:border-neutral-600 text-neutral-500 dark:text-neutral-400"
                             >
                                 {tag}
                             </span>
                         ))}
                     </div>
                 </div>
+
             </div>
         </Link>
     )
