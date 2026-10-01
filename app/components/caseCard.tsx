@@ -23,7 +23,7 @@ export default function CaseCard ({title, image, summary, slug, tags = [], demo}
                         <img 
                             src={image} 
                             alt={title} 
-                            className="w-full h-32 object-cover rounded-sm"
+                            className="w-full h-32 object-cover rounded-sm border-neutral-200 dark:border-neutral-700 border"
                         />
                         {demo ? (
                             <a
@@ -31,7 +31,7 @@ export default function CaseCard ({title, image, summary, slug, tags = [], demo}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={e => e.stopPropagation()}
-                                className="absolute bottom-1.5 left-0 right-0 text-center text-[10px] text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 transition-colors"
+                                className="absolute bottom-1.5 left-0 right-0 text-center text-[15px] text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 transition-colors"
                             >
                                 {demoLabel}
                             </a>
