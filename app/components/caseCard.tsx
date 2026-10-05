@@ -24,7 +24,7 @@ export default function CaseCard ({title, image, summary, slug, tags = [], demo}
             {image && (
                 <div className="flex-shrink-0 bg-stone-50 dark:bg-neutral-800 p-2 pb-8 shadow-lg rounded-sm w-40 border border-neutral-200 dark:border-neutral-700 relative self-start">
                     {/* pin hole */}
-                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-600 z-10" />
+                    <div className="absolute top-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full border  border-neutral-200 dark:border-neutral-700 z-10" />
                     <img 
                         src={image} 
                         alt={title} 
@@ -51,7 +51,7 @@ export default function CaseCard ({title, image, summary, slug, tags = [], demo}
             {/* info box */}
             <div className="flex flex-col justify-center gap-2 bg-stone-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-sm px-4 py-3 shadow-lg flex-1 relative">
                 {/* pin hole */}
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-600 z-10" />
+                <div className="absolute top-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full border  border-neutral-200 dark:border-neutral-700 z-10" />
                 <h2 className="text-base font-semibold leading-snug mt-2">{title}</h2>
                 <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">{summary}</p>
                 <div className="flex flex-wrap gap-1.5 mt-1">

@@ -1,9 +1,6 @@
-// NOTE: A WEIRD THING IS HAPPENING VISUALLY AND I AM ASSUMING THIS FILE IS THE CULPRIT
-// THE CASECARD COMPONENT IS GETTING SPLIT IN HALF WHEN THERE'S AN UNEVEN NUMBER OF CARDS
-
 "use client"
 import { useState } from "react"
-import CaseCard from 'app/components/caseCard'
+import CaseBoard from 'app/components/caseboard'
 import { casesData } from './casesData'
 
 const filterOptions = ["All Projects", "Software", "UI / UX"]
@@ -29,19 +26,7 @@ export default function Page() {
         </select>
       </div>
 
-      <div className={`w-full max-w-5xl mx-auto px-4 gap-4 md:columns-2 md:gap-16`}>
-        {filtered.map((metadata, index) => (
-          <CaseCard
-            key={index}
-            title={metadata.title}
-            image={metadata.image}
-            summary={metadata.summary}
-            slug={metadata.slug}
-            tags={metadata.tags}
-            demo={metadata.demo}
-          />
-        ))}
-      </div>
+      <CaseBoard cards={filtered} />
     </div>
   )
 }
