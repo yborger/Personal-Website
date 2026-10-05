@@ -7,19 +7,19 @@ const phases = [
     title: "Neural Network for Flowers",
     description: "As part of the final project for the Artificial Intelligence course taught at Swarthmore College, my lab partner and I created a Neural Network that can identify flowers through image recognition. I also presented it as part of my senior capstone",
     image: "/neural_network/senior_poster.png",
-    bg: "#7F77DD",
+    bg: "#B8A9E8",
   },
   {
     number: 2,
     title: "Goal",
     description: "The goal was to create a neural network that could identify 5 different types of flowers by a photo. The chosen flowers were daisy, dandelion, rose, sunflower, and tulip.",
-    bg: "#B065AD",
+    bg: "#8EB4EB",
   },
   {
     number: 3,
     title: "Process",
     description: "",
-    bg: "#1DC49E",
+    bg: "#6DCFCC",
     slides: [
       {
         title: "Starting Out",
@@ -42,7 +42,7 @@ const phases = [
     number: 4,
     title: "Takeaways",
     description: "",
-    bg: "#2E9EC4",
+    bg: "#A8EDCA",
     slides: [
       {
         title: "Understanding AI",

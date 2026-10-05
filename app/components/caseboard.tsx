@@ -33,7 +33,7 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
       .map(v => Math.round(v).toString(16).padStart(2,'0')).join('')
   }
 
-  const colorStops = ['#7F77DD', '#D4537E', '#00C27A', '#378ADD', '#2E9EC4']
+  const colorStops = ['#B8A9E8', '#8EB4E8', '#6DCFCC', '#7DE8C0', '#A8EDCA']
 
   function buildPath(): string {
     const points: string[] = []
@@ -41,8 +41,6 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
     if (refs.length === 0) return ''
 
     const cols      = window.innerWidth >= 768 ? 2 : 1
-    const polaroidW = 160
-    const gap       = 12
     const slack     = 20
     const stringY   = 0
     const docHeight = document.body.scrollHeight
@@ -56,21 +54,7 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
       const rowTop    = row[0].offsetTop + stringY
       const leftmost  = row[0].offsetLeft
       const rightmost = row[row.length - 1].offsetLeft + row[row.length - 1].offsetWidth
-
-      // anchor points between cards — midpoints between pin holes
-      const pinHoles: number[] = []
-      row.forEach(card => {
-        const cardLeft     = card.offsetLeft
-        const pin1         = cardLeft + 12 + polaroidW / 2
-        const infoBoxStart = cardLeft + polaroidW + gap
-        const infoBoxWidth = card.offsetWidth - polaroidW - gap
-        const pin2         = infoBoxStart + 12 + infoBoxWidth / 2
-        pinHoles.push(pin1, pin2)
-      })
-
-      // anchor points are the midpoints between consecutive pin holes
-      // the string sags between these anchors
-      const anchors = [leftmost, ...pinHoles, rightmost]
+      const midX      = (leftmost + rightmost) / 2
 
       if (rowI === 0) {
         points.push(`M ${leftmost} ${rowTop}`)
@@ -78,16 +62,12 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
         const prevRow    = rows[rowI - 1]
         const prevRowTop = prevRow[0].offsetTop + stringY
         const prevRight  = prevRow[prevRow.length - 1].offsetLeft + prevRow[prevRow.length - 1].offsetWidth
+        // wrap from end of previous row down to start of this row
         points.push(`C ${prevRight} ${prevRowTop + 40}, ${leftmost} ${rowTop - 40}, ${leftmost} ${rowTop}`)
       }
 
-      // slackened string between each pair of anchors
-      for (let ai = 0; ai < anchors.length - 1; ai++) {
-        const x0   = anchors[ai]
-        const x1   = anchors[ai + 1]
-        const midX = (x0 + x1) / 2
-        points.push(`Q ${midX} ${rowTop + slack}, ${x1} ${rowTop}`)
-      }
+      // one gentle sag across the full row
+      points.push(`Q ${midX} ${rowTop + slack}, ${rightmost} ${rowTop}`)
 
       if (rowI === rows.length - 1) {
         points.push(`C ${rightmost + 40} ${rowTop}, ${rightmost + 40} ${docHeight}, ${rightmost} ${docHeight}`)
@@ -173,7 +153,7 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
         }}
       >
         <defs>
-          <linearGradient id="cg" x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
             {colorStops.map((color, i) => (
               <stop
                 key={i}
@@ -183,7 +163,7 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
             ))}
           </linearGradient>
         </defs>
-        <path ref={trackRef} fill="none" stroke="rgba(127,119,221,0.1)" strokeWidth="2.5" />
+        <path ref={trackRef} fill="none" stroke="rgba(184,169,232,0.1)" strokeWidth="2.5" />
         <path
           ref={drawnRef}
           fill="none"

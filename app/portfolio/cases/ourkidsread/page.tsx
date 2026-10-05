@@ -10,27 +10,27 @@ const phases = [
     description: "Our Kids Read is a non-profit organization based in Maryland, dedicated to children's literacy programs. Their two main programs include book donations, and a reading buddy program.",
     details: "There were lots of additional pages that were piled into the navigation that, as Jahmal himself noted, was overwhelming to even look at.",
     image: "/okr_imgs/okr_logo.png",
-    bg: "#7F77DD",
+    bg: "#B8A9E8",
   },
   {
     number: 2,
     title: "Goals",
     description: "Overall, the project is redesigning and “re-vamping” the website to appeal more towards his current audience, and to modernize the pages. The website was created years ago, and the design was not updated to reflect the new content.",
     image: "/okr_imgs/preferred.png",
-    bg: "#9D6ACC",
+    bg: "#A4AEED",
   },
   {
     number: 3,
     title: "Empathize",
     description: "Jahmal needed a website that looks modern, but is still interesting. Based on his inspiration websites, he likes animated and clean design. The users need something simple and easy to follow, since the target audience is volunteers and company partnership.",
     details: "",
-    bg: "#BC5D9E",
+    bg: "#8EB4E8",
   },
   {
     number: 4,
     title: "Define Problem",
     description: "",
-    bg: "#D4537E",
+    bg: "#7DC4E0",
     slides: [
       {
         title: "Messy Navigation",
@@ -54,7 +54,7 @@ const phases = [
     number: 5,
     title: "Ideate & Prototype",
     description: "",
-    bg: "#1D9E75",
+    bg: "#6DCFCC",
     slides: [
       {
         title: "Navigation",
@@ -74,13 +74,13 @@ const phases = [
     number: 6,
     title: "Testing",
     description: "Since our audience covered such a great scope, I turned to individuals in a variety of careers as an informal test group, making sure to include a few teachers specifically for the more education-leaning aspect of the design.",
-    bg: "#378ADD",
+    bg: "#7DE8C0",
   },
   {
     number: 7,
     title: "Takeaways",
     description: "",
-    bg: "#2E9EC4",
+    bg: "#A8EDCA",
     slides: [
       {
         title: "Team Coordination",

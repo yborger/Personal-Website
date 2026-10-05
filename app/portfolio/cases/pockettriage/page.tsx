@@ -8,20 +8,20 @@ const phases = [
     description: "Pocket Triage is an in-development application intended to store first aid information for both physical and mental health, in a simple, accessible format.",
     details: "I was invited to collaborate on this project as a UI/UX designer. I was given a brief overview of what had been decided prior to my arrival: the color scheme, font, and main branding details were given.",
     image: "/pocket_triage/main_screen.png",
-    bg: "#7F77DD",
+    bg: "#B8A9E8",
   },
   {
     number: 2,
     title: "Goal",
     description: "Design a user friendly mobile interface for the mental health section of a first aid application. I was given a lot of creative control over this section, including the styling and user flow.",
     image: "/pocket_triage/goal nav options.png",
-    bg: "#AF65AD",
+    bg: "#8EB4E8",
   },
   {
     number: 3,
     title: "Process",
     description: "",
-    bg: "#D4537E",
+    bg: "#6DCFCC",
     slides: [
       {
         title: "User Research",
@@ -63,7 +63,7 @@ const phases = [
     number: 4,
     title: "Takeaways",
     description: "",
-    bg: "#1D9E75",
+    bg: "#7DE8C0",
     slides: [
       {
         title: "Take Up Space",
@@ -84,7 +84,7 @@ const phases = [
     title: "Demo",
     description: "This is a demo of the pages I specifically created for Pocket Triage.",
     embed: "https://embed.figma.com/proto/rijIcQxNm2704hV0qV8pQy/Mental-Health-Hub---Pocket-Triage?node-id=2098-38376&scaling=scale-down&content-scaling=fixed&page-id=2003%3A1270&starting-point-node-id=2098%3A38376&embed-host=share",
-    bg: "#2E9EC4"
+    bg: "#A8EDCA"
   },
 ]
 

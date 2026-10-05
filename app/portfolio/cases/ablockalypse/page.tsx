@@ -8,7 +8,7 @@ const phases = [
     description: "This is “Ablockalypse,” a block-based platforming game set in a post-apocalyptic world. The player is a cat running through blocks, with levels alternating between a traditional platformer and a tetris-inspired platform-builder.",
     details: "For a final project in the Game Systems course at Swarthmore College, my project partner and I created a platformer game from scratch.",
     image: "/ablock_imgs/ablockalypse.png",
-    bg: "#7F77DD",
+    bg: "#B8A9E8",
   },
   {
     number: 2,
@@ -16,7 +16,7 @@ const phases = [
     description: "Create a game with a unique concept behind it. My partner and I were drawn to the idea of bringing a classic into a more modern context.",
     details: "We made custom sprites and tiles, fully diving into the mechanics of the game and how they work within the storyline. Our final write up includes background lore for the game, a gameplay guide, and explanation of the controls ",
     image: "/ablock_imgs/writeup_pg.png",
-    bg: "#B065AD",
+    bg: "#8EB4E8",
   },
   {
     number: 3,
@@ -24,7 +24,7 @@ const phases = [
     description: "", //doesn't show
     details: "", //doesn't show
     image: "", //doesn't show
-    bg: "#1DC49E",
+    bg: "#6DCFCC",
     slides: [
       {
         //conceptualizing + drawing inspo
@@ -53,7 +53,7 @@ const phases = [
     description: "",
     details: "",
     image: "",
-    bg: "#2E9EC4",
+    bg: "#A8EDCA",
     slides: [
       {
         title: "Remote Work?",

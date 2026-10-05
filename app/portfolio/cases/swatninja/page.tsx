@@ -7,20 +7,20 @@ const phases = [
     title: "Intro",
     description: "As a final project for the Computational Images course taught at Swarthmore College, I decided to think about how I would adapt things that already exist into augmented reality, as it was something I had learned so much about during this course.",
     image: "/swat_imgs/fly.png",
-    bg: "#7F77DD",
+    bg: "#B8A9E8",
   },
   {
     number: 2,
     title: "Goal",
     description: "To create a game with augmented reality, specifically trying to incorporate concepts from both courses I had taken with this professor (Game Systems and Computational Images).",
     image: "/swat_imgs/moth.png",
-    bg: "#A066D3",
+    bg: "#8EB4E8",
   },
   {
     number: 3,
     title: "Process",
     description: "",
-    bg: "#D4537E",
+    bg: "#6DCFCC",
     slides: [
       {
         title: "Making a Plotline",
@@ -51,7 +51,7 @@ const phases = [
     title: "Takeaways",
     description: "I specifically struggled at asking my professor for assistance on this project. I was very stubborn in the idea that I could do this entire project with no additional help, and I think that was a personal failure as I could not add all of the elements I wanted to in the end.",
     image: "/swat_imgs/bonus_fly.png",
-    bg: "#1D9E75",
+    bg: "#A8EDCA",
   },
 ]
 

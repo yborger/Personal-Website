@@ -8,20 +8,20 @@ const phases = [
     description: "As part of the Swarthmore College’s Software Engineering course, we were tasked with developing a project in a group. The group decided on a virtual study companion.",
     details: "My Study Buddy is a Google Chrome extension designed to assist the busy student with the reminders that are often forgotten, without acting as a distraction.",
     image: "/msb_imgs/select buddy.png",
-    bg: "#7F77DD",
+    bg: "#B8A9E8",
   },
   {
     number: 2,
     title: "Goal",
     description: "The group's goal on the project was to create a buddy that would improve focus and productivity while also giving self-care reminders, as we were college students and that was a definite issue we faced.",
     image: "/msb_imgs/select reminders.png",
-    bg: "#B065AD",
+    bg: "#8EB4E8",
   },
   {
     number: 3,
     title: "Process",
     description: "",
-    bg: "#1DC49E",
+    bg: "#6DCFCC",
     slides: [
       {
         title: "Agile Sprints",
@@ -63,7 +63,7 @@ const phases = [
     number: 4,
     title: "Takeaways",
     description: "",
-    bg: "#2E9EC4",
+    bg: "#A8EDCA",
     slides: [
       {
         title: "Collaboration & Communication",

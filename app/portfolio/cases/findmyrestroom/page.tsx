@@ -8,14 +8,14 @@ const phases = [
     description: "Walking around New York City one random day, I suddenly had to use the restroom. I turned into the first cafe I could find (naturally, a Starbucks), and had to buy a drink so I could use the restroom. And this gave the idea for a “Find my Restroom” application.",
     details: "The main purpose of this is to make the restroom-finding process more convenient for users. After considering the different possible users, I realized there were significantly more details to take into account and therefore actual potential in something like this.",
     image: "/demo_screens/findmyrestroom.png",
-    bg: "#7F77DD",
+    bg: "#B8A9E8",
   },
   {
     number: 2,
     title: "Goals",
     description: "Originally, it was just to create a web application that would find a restroom near me and tell me if I had to buy something ahead of time. As I thought more, I came up with more criteria like accessibility of the restroom, whether it was a clean restroom, among others.",
     details: "This was never meant to be an application to show my software development skill, but rather an experimental use of AI as a programming tool",
-    bg: "#B065AD",
+    bg: "#8EB4E8",
   },
   {
     number: 3,
@@ -23,7 +23,7 @@ const phases = [
     description: "",
     details: "",
     image: "",
-    bg: "#1DC49E",
+    bg: "#6DCFCC",
     slides: [
       {
         title: "Experimenting with AI",
@@ -44,7 +44,6 @@ const phases = [
         title: "The Demo",
         description: "The demo includes the features I asked for and runs on Vercel. It depicts a map of the specified area, it allows the user to set up certain options, and it operates exactly as this demo should.",
         details: "It has all of the individual aspects requested and works pretty decently as a demo of this concept, done within a day.",
-        image: "/artwork/bee_leaf.png",
       }
     ],
   },
@@ -54,7 +53,7 @@ const phases = [
     description: "",
     details: "",
     image: "",
-    bg: "#2E9EC4",
+    bg: "#A8EDCA",
     slides: [
       {
         title: "Strengths",

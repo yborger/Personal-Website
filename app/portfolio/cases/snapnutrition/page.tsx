@@ -8,7 +8,7 @@ const phases = [
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     details: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     image: "/artwork/bee_leaf.png",
-    bg: "#7F77DD",
+    bg: "#B8A9E8",
   },
   {
     number: 2,
@@ -16,7 +16,7 @@ const phases = [
     description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     details: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     image: "/artwork/bee_leaf.png",
-    bg: "#A066D3",
+    bg: "#8EB4E8",
   },
   {
     number: 3,
@@ -24,7 +24,7 @@ const phases = [
     description: "",
     details: "",
     image: "/artwork/bee_leaf.png",
-    bg: "#D4537E",
+    bg: "#6DCFFC",
     slides: [
       {
         title: "Slide 1",
@@ -52,7 +52,7 @@ const phases = [
     description: "Fusce blandit odio nec enim volutpat, a efficitur nisl efficitur. Curabitur ac odio at enim efficitur commodo.",
     details: "Nunc scelerisque viverra mauris in aliquam sem fringilla ut. Donec et odio pellentesque diam volutpat commodo sed egestas.",
     image: "/artwork/bee_leaf.png",
-    bg: "#1D9E75",
+    bg: "#A8EDCA",
   },
 ]
 

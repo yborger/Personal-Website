@@ -56,6 +56,7 @@ export default function StoryCard({
               borderColor: `${color}66`,
               background: `${color}1a`,
               color: color,
+              fontSize: '14px'
             }}
             className="text-[11px] px-2.5 py-0.5 rounded-full border"
           >

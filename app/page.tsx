@@ -19,28 +19,28 @@ const storyCards = [
     title: "Hi, I'm Yael",
     body: 'should i put the focus here like a tagline.',
     tags: ['Front End', 'UI / UX'],
-    color: '#7F77DD',
+    color: '#B8A9E8',
   },
   {
     label: 'Background',
     title: 'Driven by problem-solving',
     body: 'A curiosity for how things work and why things are the way they are.',
     tags: ['JavaScript', 'Python', 'React', 'HTML/CSS'],
-    color: '#D4537E',
+    color: '#8EB4E8',
   },
   {
     label: 'Focus',
     title: 'Creating experiences that feel right',
     body: 'Make interfaces feel intentional and alive.',
     tags: ['Web dev', 'Design'],
-    color: '#1D9E75',
+    color: '#6DCFCC',
   },
   {
     label: 'Work',
     title: 'See the portfolio',
     body: 'lorem ipsum dolor sit amet.',
     tags: ['lorem ipsum'],
-    color: '#378ADD',
+    color: '#A8EDCA',
   },
 ]
 
