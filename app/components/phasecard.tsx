@@ -111,14 +111,14 @@ export default function PhaseCard({number, title, description, details, image, e
 
             <div className={`m-2 md:m-4 items-start gap-2 md:gap-4 ${activeContent.embed || activeContent.image ? 'grid md:grid-cols-[3fr_2fr]' : ''}`}>
                 {activeContent.embed ? (
-                    <div className="w-full rounded-xl overflow-hidden justify-self-center" style={{ aspectRatio: '4/3' }}>
+                    <div className="w-full rounded-xl overflow-hidden justify-self-center drop-shadow-lg border-2 border-neutral-200 dark:border-neutral-700" style={{ aspectRatio: '4/3' }}>
                         <iframe src={activeContent.embed} allowFullScreen className="w-full h-full" />
                     </div>
                 ) : activeContent.image ? (
                     <img
                         src={activeContent.image}
                         alt={title}
-                        className="w-auto h-auto rounded-xl max-h-40 md:max-h-64 object-cover justify-self-center"
+                        className="w-auto h-auto rounded-xl max-h-40 md:max-h-64 object-cover justify-self-center drop-shadow-lg border-2 border-neutral-200 dark:border-neutral-700"
                     />
                 ) : null}
 
@@ -151,7 +151,7 @@ export default function PhaseCard({number, title, description, details, image, e
                             onClick={() => goToSlide(i)}
                             className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all"
                             style={{
-                                background: i === currSlide ? bg : `${bg}40`,
+                                background: i === currSlide ? bg : `${bg}69`,
                                 transform: i === currSlide ? 'scale(1.3)' : 'scale(1)',
                             }}
                         />

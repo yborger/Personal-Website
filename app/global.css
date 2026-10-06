@@ -176,4 +176,7 @@ html.dark {
   color: #f1f1f1;
 }
 
-
+/* NAV STUFF */
+.navGradient {
+  box-shadow: 5 5 0 rgba(0, 0, 0, 1);
+}
