@@ -168,15 +168,16 @@ html {
   @apply bg-white text-black;   /* background + text */
   color-scheme: light dark;     /* for scrollbars, inputs, selection, etc. */
   scroll-snap-type: y mandatory;
+  .cartooning {
+    box-shadow: 5 5 0, 0 0 0 1;
+  }
 }
 
 /* dark mode */
 html.dark {
   background-color: #131313;
   color: #f1f1f1;
-}
-
-/* NAV STUFF */
-.navGradient {
-  box-shadow: 5 5 0 rgba(0, 0, 0, 1);
+  .cartooning{
+    box-shadow: 5 5 0 , 0 0 0 1 ;
+  }
 }

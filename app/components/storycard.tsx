@@ -32,6 +32,7 @@ export default function StoryCard({
       style={{
         borderColor: `${color}59`,
         background: `${color}14`,
+        color: `${color}ff`,
         transform: `translateX(${index % 2 === 0 ? '20px' : '-20px'})`
       }}
       className={[
@@ -39,7 +40,7 @@ export default function StoryCard({
           'ml-[100px] mr-[100px]',
         'opacity-0 translate-y-3',
         'transition-all duration-500 ease-out',
-        'border rounded-xl px-6 py-5',
+        'border rounded-xl px-6 py-5 cartooning',
       ].join(' ')}
     >
       <p className="text-[20px] font-medium leading-snug mb-2 text-neutral-800 dark:text-neutral-100">
@@ -55,10 +56,10 @@ export default function StoryCard({
             style={{
               borderColor: `${color}66`,
               background: `${color}1a`,
-              color: color,
+              color: 'text-neutral-800 dark:text-neutral-100',
               fontSize: '14px'
             }}
-            className="text-[11px] px-2.5 py-0.5 rounded-full border"
+            className="text-[12px] px-2.5 py-0.5 rounded-full border"
           >
             {tag}
           </span>

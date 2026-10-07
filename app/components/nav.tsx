@@ -22,13 +22,13 @@ export function Navbar() {
 
   return (
     <aside className="fixed z-50 w-full mb-16 tracking-tight">
-      <div className="navGradient mr-8 bg-gradient-to-r from-[#B8A9E8] via-[#8EB4E8] to-[#6DCFCC] ... rounded-full lg:sticky lg:top-12">
+      <div className="cartooning mr-8 bg-gradient-to-r from-[#B8A9E8] via-[#8EB4E8] to-[#6DCFCC] ... rounded-full lg:sticky lg:top-12">
         
         <nav
-          className="navFull flex flex-row items-start relative md:overflow-auto"
+          className="navFull flex flex-row items-center relative md:overflow-auto m-2"
           id="nav"
         >          
-          <img src="/ybLogo.png" alt="logo" className="logo h-16 w-auto" />
+          <img src="/ybLogo.png" alt="logo" className="logo h-12 w-auto" />
 
           <div className="container navMenu flex flex-row py-4 space-x-0 pr-0">
             {Object.entries(navItems).map(([path, { name }]) => {

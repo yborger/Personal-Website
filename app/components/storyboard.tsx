@@ -41,7 +41,7 @@ export default function StoryBoard({ cards }: { cards: CardData[] }) {
     if (!svg || !drawn || !track || !walker || !outer || !hint) return
 
   function buildPath(svg: SVGSVGElement): string {
-  const outset  = 12
+  const outset  = 24
   const r       = 16
   const points: string[] = []
 
