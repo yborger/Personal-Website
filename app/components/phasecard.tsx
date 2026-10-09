@@ -49,7 +49,7 @@ export default function PhaseCard({number, title, description, details, image, e
 
     return (
     <section className="h-3/4 flex mx-2 md:ml-[50px] md:mr-[50px] items-center justify-center relative">
-      <div className="relative w-full max-w-4xl mx-1 md:mx-4">
+      <div className="relative w-full max-w-4xl mx-1 md:mx-4 rounded-md cartooning " style={{ color: `${bg}ff` }}>
 
         {/* peek cards behind, rendered back to front */}
         {hasMultipleSlides && [...peekSlides].reverse().map((_, rawI) => {
@@ -57,12 +57,13 @@ export default function PhaseCard({number, title, description, details, image, e
             return (
                 <div
                     key={i}
-                    className="absolute inset-0 rounded-md border bg-white dark:bg-[#131313]"
+                    className="absolute inset-0 rounded-md border bg-white dark:bg-[#131313] cartooning"
                     style={{
                         borderColor: `${bg}59`,
                         transform: `rotate(${peekRotations[i]}deg) translateY(${(i + 1) * 6}px)`,
                         zIndex: peekCount - i,
                         opacity: 1 - (i + 1) * 0.12,
+                        color: `${bg}ff`,
                     }}
                 >
                     <div
@@ -75,7 +76,7 @@ export default function PhaseCard({number, title, description, details, image, e
 
         {/* active card */}
         <div
-            className="relative rounded-md p-3 md:p-6 shadow-lg border px-3 md:px-6 py-3 md:py-5 bg-white dark:bg-[#131313]"
+            className="relative rounded-md p-3 md:p-6 shadow-lg border px-3 md:px-6 py-3 md:py-5 bg-white dark:bg-[#131313] cartooning"
             style={{
                 borderColor: `${bg}59`,
                 zIndex: peekCount + 1,
@@ -107,9 +108,9 @@ export default function PhaseCard({number, title, description, details, image, e
                 </button>
             )}
 
-            <h2 className="text-lg md:text-2xl font-bold mb-3 md:mb-6 text-left">{activeContent.title}</h2>
+            <h2 className="text-lg md:text-2xl font-bold mb-3 md:mb-6 text-left text-neutral-800 dark:text-neutral-100">{activeContent.title}</h2>
 
-            <div className={`m-2 md:m-4 items-start gap-2 md:gap-4 ${activeContent.embed || activeContent.image ? 'grid md:grid-cols-[3fr_2fr]' : ''}`}>
+            <div className={`m-2 md:m-4 items-start gap-2 md:gap-4 text-neutral-800 dark:text-neutral-100 ${activeContent.embed || activeContent.image ? 'grid md:grid-cols-[3fr_2fr]' : ''}`}>
                 {activeContent.embed ? (
                     <div className="w-full rounded-xl overflow-hidden justify-self-center drop-shadow-lg border-2 border-neutral-200 dark:border-neutral-700" style={{ aspectRatio: '4/3' }}>
                         <iframe src={activeContent.embed} allowFullScreen className="w-full h-full" />
@@ -118,11 +119,11 @@ export default function PhaseCard({number, title, description, details, image, e
                     <img
                         src={activeContent.image}
                         alt={title}
-                        className="w-auto h-auto rounded-xl max-h-40 md:max-h-64 object-cover justify-self-center drop-shadow-lg border-2 border-neutral-200 dark:border-neutral-700"
+                        className="w-auto h-auto rounded-xl max-h-40 md:max-h-64 object-cover justify-self-center drop-shadow-lg border-2 border-neutral-200 dark:border-neutral-700 "
                     />
                 ) : null}
 
-                <div className="text-sm md:text-lg text-left">
+                <div className="text-sm md:text-lg text-left ">
                     <p>{activeContent.description}</p>
 
                     {activeContent.details && (
@@ -140,7 +141,7 @@ export default function PhaseCard({number, title, description, details, image, e
             </div>
 
             {expanded && activeContent.details && (
-                <p className="mt-2 md:mt-4 text-xs md:text-sm">{activeContent.details}</p>
+                <p className="mt-2 md:mt-4 text-xs md:text-sm text-neutral-800 dark:text-neutral-100">{activeContent.details}</p>
             )}
 
             {hasMultipleSlides && (

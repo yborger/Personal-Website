@@ -93,12 +93,12 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
       if (i === activeI) {
         btn.style.borderColor = color
         btn.style.borderWidth = '2px'
-        btn.style.color = color
+        //btn.style.color = color
         btn.style.opacity = '1'
       } else {
         btn.style.borderColor = `${cards[i].bg}59`
         btn.style.borderWidth = '1px'
-        btn.style.color = cards[i].bg
+        //btn.style.color = cards[i].bg
         btn.style.opacity = '0.5'
         
       }
@@ -354,7 +354,7 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
     {/* sticky nav */}
     <div
       ref={navRef}
-      className="fixed top-32 left-0 right-0 z-50 flex justify-center pointer-events-none"
+      className="fixed top-32 left-0 right-0 z-50 flex justify-center pointer-events-none  "
       style={{ opacity: 0 }}
     >
       <div className="flex gap-2 flex-wrap justify-center max-w-3xl px-4 pointer-events-auto">
@@ -364,7 +364,7 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
           return (
             <div key={card.number} className="relative group">
               {/* solid base + color overlay wrapper */}
-              <div className="relative rounded-full bg-white dark:bg-[#131313] overflow-hidden">
+              <div className="relative rounded-full bg-white dark:bg-[#131313] overflow-hidden cartooning">
                 <div
                   className="absolute inset-0 rounded-full pointer-events-none"
                   style={{ background: `${card.bg}14` }}
@@ -372,37 +372,36 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
                 <button
                   ref={el => { navBtnRefs.current[i] = el }}
                   onClick={() => scrollToCard(i)}
-                  className="relative text-sm md:text-base px-3 py-1 rounded-full border bg-transparent transition-all duration-300 z-10"
+                  className="relative text-sm md:text-base px-3 py-1 rounded-full border bg-transparent transition-all duration-300 z-10 text-neutral-800 dark:text-neutral-100"
                   style={{
                     borderColor: `${card.bg}59`,
+                    background: `${card.bg}45`,
                     borderWidth: '1px',
-                    color: card.bg,
-                    opacity: 0.5,
+                    opacity: 0.85,
                   }}
                 >
                   {card.title}
-                  {hasSlides && <span className="ml-1 opacity-60 hidden md:inline">▾</span>}
+                  {hasSlides && <span className="ml-1 opacity-60 hidden md:inline ">▾</span>}
                 </button>
               </div>
 
               {/* dropdown — hidden on mobile, hover on desktop */}
               {hasSlides && (
                 <div className="hidden md:block absolute top-full left-0 mt-1 z-50 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200">
-                  <div className="relative rounded-lg overflow-hidden">
+                  <div className="relative rounded-lg overflow-hidden text-neutral-800 dark:text-neutral-100 cartooning">
                     <div className="absolute inset-0 bg-white dark:bg-[#131313]" />
                     <div
                       className="absolute inset-0"
                       style={{ background: `${card.bg}14` }}
                     />
                     <div
-                      className="relative border rounded-lg px-3 py-2 text-sm flex flex-col gap-1 min-w-max"
+                      className="relative border rounded-lg px-3 py-2 text-sm flex flex-col gap-1 min-w-max "
                       style={{ borderColor: `${card.bg}40` }}
                     >
                       {card.slides!.map((slide, si) => (
                         <span
                           key={si}
                           className="opacity-70"
-                          style={{ color }}
                         >
                           {slide.title}
                         </span>
