@@ -20,6 +20,8 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
   const svgRef      = useRef<SVGSVGElement>(null)
   const drawnRef    = useRef<SVGPathElement>(null)
   const trackRef    = useRef<SVGPathElement>(null)
+  const walkerRef   = useRef<SVGCircleElement>(null)
+  const outerRef    = useRef<SVGCircleElement>(null)
   const ghostRef    = useRef<SVGPathElement | null>(null)
   const totalLenRef = useRef<number>(0)
   const cardRefs    = useRef<(HTMLDivElement | null)[]>([])
@@ -34,6 +36,13 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
   }
 
   const colorStops = ['#B8A9E8', '#8EB4E8', '#6DCFCC', '#7DE8C0', '#A8EDCA']
+
+  function gradColor(t: number) {
+    const segments = colorStops.length - 1
+    const scaled   = t * segments
+    const i        = Math.min(Math.floor(scaled), segments - 1)
+    return coloration(colorStops[i], colorStops[i + 1], scaled - i)
+  }
 
   function buildPath(): string {
     const points: string[] = []
@@ -54,7 +63,14 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
       const rowTop    = row[0].offsetTop + stringY
       const leftmost  = row[0].offsetLeft
       const rightmost = row[row.length - 1].offsetLeft + row[row.length - 1].offsetWidth
-      const midX      = (leftmost + rightmost) / 2
+
+      // anchors: left edge, right edge of each card, right edge of row
+      const anchors: number[] = [leftmost]
+      row.forEach((card, ci) => {
+        anchors.push(card.offsetLeft + card.offsetWidth)
+      })
+      // last anchor is already rightmost from last card, replace with rightmost
+      anchors[anchors.length - 1] = rightmost
 
       if (rowI === 0) {
         points.push(`M ${leftmost} ${rowTop}`)
@@ -62,12 +78,16 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
         const prevRow    = rows[rowI - 1]
         const prevRowTop = prevRow[0].offsetTop + stringY
         const prevRight  = prevRow[prevRow.length - 1].offsetLeft + prevRow[prevRow.length - 1].offsetWidth
-        // wrap from end of previous row down to start of this row
         points.push(`C ${prevRight} ${prevRowTop + 40}, ${leftmost} ${rowTop - 40}, ${leftmost} ${rowTop}`)
       }
 
-      // one gentle sag across the full row
-      points.push(`Q ${midX} ${rowTop + slack}, ${rightmost} ${rowTop}`)
+      // one sag between each pair of anchors
+      for (let ai = 0; ai < anchors.length - 1; ai++) {
+        const x0   = anchors[ai]
+        const x1   = anchors[ai + 1]
+        const midX = (x0 + x1) / 2
+        points.push(`Q ${midX} ${rowTop + slack}, ${x1} ${rowTop}`)
+      }
 
       if (rowI === rows.length - 1) {
         points.push(`C ${rightmost + 40} ${rowTop}, ${rightmost + 40} ${docHeight}, ${rightmost} ${docHeight}`)
@@ -118,6 +138,21 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
     const drawLen = totalLen * progress
     const drawn   = drawnRef.current
     if (drawn) drawn.style.strokeDashoffset = String(totalLen - drawLen)
+
+    const walker = walkerRef.current
+    const outer  = outerRef.current
+    if (walker && outer && ghost) {
+      const pt  = ghost.getPointAtLength(drawLen)
+      const col = gradColor(progress)
+      walker.setAttribute('cx', String(pt.x))
+      walker.setAttribute('cy', String(pt.y))
+      walker.setAttribute('fill', col)
+      walker.setAttribute('opacity', drawLen > 10 ? '1' : '0')
+      outer.setAttribute('cx', String(pt.x))
+      outer.setAttribute('cy', String(pt.y))
+      outer.setAttribute('stroke', col)
+      outer.setAttribute('opacity', drawLen > 10 ? '0.35' : '0')
+    }
   }
 
   useEffect(() => {
@@ -173,6 +208,8 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
           strokeLinejoin="round"
           style={{ transition: 'stroke-dashoffset 0.05s linear' }}
         />
+        <circle ref={walkerRef} r="6" fill="#B8A9E8" opacity="0" />
+        <circle ref={outerRef}  r="10" fill="none" stroke="#B8A9E8" strokeWidth="1.5" opacity="0" />
       </svg>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
