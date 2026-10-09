@@ -50,7 +50,8 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
     if (refs.length === 0) return ''
 
     const cols      = window.innerWidth >= 768 ? 2 : 1
-    const slack     = 20
+    const slack     = 28
+    const anchorPad = 30  // padding around each card edge anchor
     const stringY   = 0
     const docHeight = document.body.scrollHeight
 
@@ -61,27 +62,30 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
 
     rows.forEach((row, rowI) => {
       const rowTop    = row[0].offsetTop + stringY
-      const leftmost  = row[0].offsetLeft
-      const rightmost = row[row.length - 1].offsetLeft + row[row.length - 1].offsetWidth
+      const leftmost  = row[0].offsetLeft - anchorPad
+      const rightmost = row[row.length - 1].offsetLeft + row[row.length - 1].offsetWidth + anchorPad
 
-      // anchors: left edge, right edge of each card, right edge of row
+      // anchors: left edge, right edge of each card with padding, right edge of row
       const anchors: number[] = [leftmost]
       row.forEach((card, ci) => {
-        anchors.push(card.offsetLeft + card.offsetWidth)
+        if (ci < row.length - 1) {
+          // anchor between cards: midpoint of the gap
+          const thisRight = card.offsetLeft + card.offsetWidth
+          const nextLeft  = row[ci + 1].offsetLeft
+          anchors.push((thisRight + nextLeft) / 2)
+        }
       })
-      // last anchor is already rightmost from last card, replace with rightmost
-      anchors[anchors.length - 1] = rightmost
+      anchors.push(rightmost)
 
       if (rowI === 0) {
         points.push(`M ${leftmost} ${rowTop}`)
       } else {
         const prevRow    = rows[rowI - 1]
         const prevRowTop = prevRow[0].offsetTop + stringY
-        const prevRight  = prevRow[prevRow.length - 1].offsetLeft + prevRow[prevRow.length - 1].offsetWidth
-        points.push(`C ${prevRight} ${prevRowTop + 40}, ${leftmost} ${rowTop - 40}, ${leftmost} ${rowTop}`)
+        const prevRight  = prevRow[prevRow.length - 1].offsetLeft + prevRow[prevRow.length - 1].offsetWidth + anchorPad
+        points.push(`C ${prevRight} ${prevRowTop + 50}, ${leftmost} ${rowTop - 50}, ${leftmost} ${rowTop}`)
       }
 
-      // one sag between each pair of anchors
       for (let ai = 0; ai < anchors.length - 1; ai++) {
         const x0   = anchors[ai]
         const x1   = anchors[ai + 1]
@@ -132,18 +136,41 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
 
     const scrollTop  = window.scrollY
     const viewHeight = window.innerHeight
-    const docHeight  = document.body.scrollHeight - viewHeight
-    const progress   = Math.min(scrollTop / docHeight, 1)
 
-    const drawLen = totalLen * progress
-    const drawn   = drawnRef.current
+    // use card-based progress like phaseboard — draw ahead of scroll position
+    const refs = cardRefs.current.filter(Boolean) as HTMLDivElement[]
+    const cols = window.innerWidth >= 768 ? 2 : 1
+    const rows: HTMLDivElement[][] = []
+    for (let i = 0; i < refs.length; i += cols) {
+      rows.push(refs.slice(i, i + cols))
+    }
+
+    const rowCount  = rows.length
+    const segLen    = totalLen / rowCount
+    let drawLen     = 0
+
+    rows.forEach((row, i) => {
+      const rowTop    = row[0].offsetTop
+      const rowHeight = Math.max(...row.map(c => c.offsetHeight))
+      const rowCenter = rowTop + rowHeight / 2
+      const viewCenter = scrollTop + viewHeight / 2
+
+      const distFromCenter = (viewCenter - rowCenter) / viewHeight
+      const clamped  = Math.max(-0.5, Math.min(0.5, distFromCenter))
+      const segProg  = clamped + 0.5
+      drawLen += segProg * segLen
+    })
+
+    drawLen = Math.min(drawLen, totalLen)
+
+    const drawn = drawnRef.current
     if (drawn) drawn.style.strokeDashoffset = String(totalLen - drawLen)
 
     const walker = walkerRef.current
     const outer  = outerRef.current
-    if (walker && outer && ghost) {
+    if (walker && outer) {
       const pt  = ghost.getPointAtLength(drawLen)
-      const col = gradColor(progress)
+      const col = gradColor(drawLen / totalLen)
       walker.setAttribute('cx', String(pt.x))
       walker.setAttribute('cy', String(pt.y))
       walker.setAttribute('fill', col)
@@ -198,12 +225,12 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
             ))}
           </linearGradient>
         </defs>
-        <path ref={trackRef} fill="none" stroke="rgba(184,169,232,0.1)" strokeWidth="2.5" />
+        <path ref={trackRef} fill="none" stroke="rgba(184,169,232,0.1)" strokeWidth="4" />
         <path
           ref={drawnRef}
           fill="none"
           stroke="url(#cg)"
-          strokeWidth="2.5"
+          strokeWidth="4"
           strokeLinecap="round"
           strokeLinejoin="round"
           style={{ transition: 'stroke-dashoffset 0.05s linear' }}
