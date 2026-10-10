@@ -97,7 +97,7 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
         btn.style.opacity = '1'
       } else {
         btn.style.borderColor = `${cards[i].bg}59`
-        btn.style.borderWidth = '1px'
+        btn.style.borderWidth = '0px'
         //btn.style.color = cards[i].bg
         btn.style.opacity = '0.5'
         
@@ -381,7 +381,7 @@ export default function PhaseBoard({ cards }: { cards: CardData[] }) {
                   }}
                 >
                   {card.title}
-                  {hasSlides && <span className="ml-1 opacity-60 hidden md:inline ">▾</span>}
+                  {hasSlides && <span className="ml-1 opacity-70 hidden md:inline ">▾</span>}
                 </button>
               </div>
 
