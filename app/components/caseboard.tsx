@@ -51,8 +51,8 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
 
     const cols      = window.innerWidth >= 768 ? 2 : 1
     const slack     = 28
-    const anchorPad = 30  // padding around each card edge anchor
-    const stringY   = 0
+    const anchorPad = 16
+    const stringY   = 150
     const docHeight = document.body.scrollHeight
 
     const rows: HTMLDivElement[][] = []
@@ -65,11 +65,9 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
       const leftmost  = row[0].offsetLeft - anchorPad
       const rightmost = row[row.length - 1].offsetLeft + row[row.length - 1].offsetWidth + anchorPad
 
-      // anchors: left edge, right edge of each card with padding, right edge of row
       const anchors: number[] = [leftmost]
       row.forEach((card, ci) => {
         if (ci < row.length - 1) {
-          // anchor between cards: midpoint of the gap
           const thisRight = card.offsetLeft + card.offsetWidth
           const nextLeft  = row[ci + 1].offsetLeft
           anchors.push((thisRight + nextLeft) / 2)
@@ -78,7 +76,10 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
       anchors.push(rightmost)
 
       if (rowI === 0) {
-        points.push(`M ${leftmost} ${rowTop}`)
+        // lead-in from above like storyboard
+        const midX = (leftmost + rightmost) / 2
+        points.push(`M ${midX} ${-25}`)
+        points.push(`C ${midX} ${rowTop * 0.4}, ${midX} ${rowTop * 0.8}, ${leftmost} ${rowTop}`)
       } else {
         const prevRow    = rows[rowI - 1]
         const prevRowTop = prevRow[0].offsetTop + stringY
@@ -101,12 +102,11 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
     return points.join(' ')
   }
 
-  function applyPath() {
-    const svg   = svgRef.current
-    const drawn = drawnRef.current
-    const track = trackRef.current
-    if (!svg || !drawn || !track) return
-
+  function applyPath(
+    svg:   SVGSVGElement,
+    drawn: SVGPathElement,
+    track: SVGPathElement,
+  ) {
     const PATH = buildPath()
     if (!PATH) return
 
@@ -129,30 +129,33 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
     drawn.style.strokeDashoffset = String(totalLen)
   }
 
-  function onScroll() {
+  function onScroll(
+    drawn:  SVGPathElement,
+    walker: SVGCircleElement,
+    outer:  SVGCircleElement,
+  ) {
     const totalLen = totalLenRef.current
     const ghost    = ghostRef.current
     if (!totalLen || !ghost) return
 
     const scrollTop  = window.scrollY
     const viewHeight = window.innerHeight
+    const refs       = cardRefs.current.filter(Boolean) as HTMLDivElement[]
+    const cols       = window.innerWidth >= 768 ? 2 : 1
 
-    // use card-based progress like phaseboard — draw ahead of scroll position
-    const refs = cardRefs.current.filter(Boolean) as HTMLDivElement[]
-    const cols = window.innerWidth >= 768 ? 2 : 1
     const rows: HTMLDivElement[][] = []
     for (let i = 0; i < refs.length; i += cols) {
       rows.push(refs.slice(i, i + cols))
     }
 
-    const rowCount  = rows.length
-    const segLen    = totalLen / rowCount
-    let drawLen     = 0
+    const rowCount = rows.length
+    const segLen   = totalLen / rowCount
+    let drawLen    = 0
 
-    rows.forEach((row, i) => {
-      const rowTop    = row[0].offsetTop
-      const rowHeight = Math.max(...row.map(c => c.offsetHeight))
-      const rowCenter = rowTop + rowHeight / 2
+    rows.forEach((row) => {
+      const rowTop     = row[0].offsetTop
+      const rowHeight  = Math.max(...row.map(c => c.offsetHeight))
+      const rowCenter  = rowTop + rowHeight / 2
       const viewCenter = scrollTop + viewHeight / 2
 
       const distFromCenter = (viewCenter - rowCenter) / viewHeight
@@ -162,42 +165,77 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
     })
 
     drawLen = Math.min(drawLen, totalLen)
+    drawn.style.strokeDashoffset = String(totalLen - drawLen)
 
-    const drawn = drawnRef.current
-    if (drawn) drawn.style.strokeDashoffset = String(totalLen - drawLen)
+    const pt  = ghost.getPointAtLength(drawLen)
+    const col = gradColor(drawLen / totalLen)
 
-    const walker = walkerRef.current
-    const outer  = outerRef.current
-    if (walker && outer) {
-      const pt  = ghost.getPointAtLength(drawLen)
-      const col = gradColor(drawLen / totalLen)
-      walker.setAttribute('cx', String(pt.x))
-      walker.setAttribute('cy', String(pt.y))
-      walker.setAttribute('fill', col)
-      walker.setAttribute('opacity', drawLen > 10 ? '1' : '0')
-      outer.setAttribute('cx', String(pt.x))
-      outer.setAttribute('cy', String(pt.y))
-      outer.setAttribute('stroke', col)
-      outer.setAttribute('opacity', drawLen > 10 ? '0.35' : '0')
-    }
+    walker.setAttribute('cx', String(pt.x))
+    walker.setAttribute('cy', String(pt.y))
+    walker.setAttribute('fill', col)
+    walker.setAttribute('opacity', drawLen > 10 ? '1' : '0')
+    outer.setAttribute('cx', String(pt.x))
+    outer.setAttribute('cy', String(pt.y))
+    outer.setAttribute('stroke', col)
+    outer.setAttribute('opacity', drawLen > 10 ? '0.35' : '0')
   }
 
   useEffect(() => {
-    const handleResize = () => { applyPath(); onScroll() }
+    const svg    = svgRef.current
+    const drawn  = drawnRef.current
+    const track  = trackRef.current
+    const walker = walkerRef.current
+    const outer  = outerRef.current
+    if (!svg || !drawn || !track || !walker || !outer) return
 
-    setTimeout(() => {
-      applyPath()
-      onScroll()
-    }, 100)
+    const handleScroll = () => onScroll(drawn, walker, outer)
+    const handleResize = () => {
+      applyPath(svg, drawn, track)
+      onScroll(drawn, walker, outer)
+    }
 
-    window.addEventListener('scroll', onScroll, { passive: true })
+    applyPath(svg, drawn, track)
+    onScroll(drawn, walker, outer)
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
     window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleResize)
     }
   }, [cards])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const first = cardRefs.current[0]
+      if (!first) return
+
+      const targetY  = first.offsetTop - window.innerHeight * 0.5
+      const startY   = window.scrollY
+      const distance = targetY - startY
+      const duration = 2000
+      let startTime: number | null = null
+
+      function easeInOut(t: number): number {
+        return t < 0.5
+          ? 2 * t * t
+          : -1 + (4 - 2 * t) * t
+      }
+
+      function step(timestamp: number) {
+        if (!startTime) startTime = timestamp
+        const elapsed  = timestamp - startTime
+        const progress = Math.min(elapsed / duration, 1)
+        window.scrollTo(0, startY + distance * easeInOut(progress))
+        if (progress < 1) requestAnimationFrame(step)
+      }
+
+      requestAnimationFrame(step)
+    }, 100)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <div className="relative w-full max-w-5xl mx-auto px-4">
@@ -238,6 +276,9 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
         <circle ref={walkerRef} r="6" fill="#B8A9E8" opacity="0" />
         <circle ref={outerRef}  r="10" fill="none" stroke="#B8A9E8" strokeWidth="1.5" opacity="0" />
       </svg>
+
+      {/* spacer for lead-in animation */}
+      <div className="h-[21vh]" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
         {cards.map((card, i) => (
