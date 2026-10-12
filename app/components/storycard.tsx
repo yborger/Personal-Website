@@ -59,7 +59,7 @@ export default function StoryCard({
               color: 'text-neutral-800 dark:text-neutral-100',
               fontSize: '14px'
             }}
-            className="text-[12px] px-2.5 py-0.5 rounded-full border"
+            className="text-neutral-500 dark:text-neutral-400 text-[12px] px-2.5 py-0.5 rounded-full border"
           >
             {tag}
           </span>

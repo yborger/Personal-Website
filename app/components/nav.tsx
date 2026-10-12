@@ -30,13 +30,13 @@ export function Navbar() {
         >          
           <img src="/ybLogo.png" alt="logo" className="logo h-12 w-auto" />
 
-          <div className="container navMenu flex flex-row py-4 space-x-0 pr-0">
+          <div className="container navMenu flex flex-row py-4 space-x-0 pr-0 text-neutral-900 dark:text-neutral-100">
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all cursor-pointer hover:text-neutral-100 dark:hover:text-neutral-300 flex relative px-2 m-1"
+                  className="transition-all cursor-pointer hover:text-neutral-100 dark:hover:text-neutral-300 flex relative px-2 m-1 "
                 >
                   {name}
                 </Link>
