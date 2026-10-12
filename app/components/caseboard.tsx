@@ -78,7 +78,7 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
       if (rowI === 0) {
         // lead-in from above like storyboard
         const midX = (leftmost + rightmost) / 2
-        points.push(`M ${midX} ${-25}`)
+        points.push(`M ${midX} ${-50}`)
         points.push(`C ${midX} ${rowTop * 0.4}, ${midX} ${rowTop * 0.8}, ${leftmost} ${rowTop}`)
       } else {
         const prevRow    = rows[rowI - 1]
@@ -211,7 +211,7 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
       const first = cardRefs.current[0]
       if (!first) return
 
-      const targetY  = first.offsetTop - window.innerHeight * 0.5
+      const targetY  = first.offsetTop - window.innerHeight * 0.5 + 1000
       const startY   = window.scrollY
       const distance = targetY - startY
       const duration = 2000
@@ -278,7 +278,7 @@ export default function CaseBoard({ cards }: { cards: CaseData[] }) {
       </svg>
 
       {/* spacer for lead-in animation */}
-      <div className="h-[21vh]" />
+      <div className="h-[120vh]" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
         {cards.map((card, i) => (
